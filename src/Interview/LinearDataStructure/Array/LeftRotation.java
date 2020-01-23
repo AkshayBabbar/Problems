@@ -55,30 +55,16 @@ import java.util.Scanner;
 public class LeftRotation {
 
     private static int[] rotLeft(int[] a, int d) {
-
-        if (d == 0) {
-            return a;
-        } else {
-
-            int[] temp = new int[a.length];
-
-
-            int j = 0;
-            while (j < d) {
-                temp[a.length-1 - j] = a[d - j];
-
-                j++;
-            }
+        for (int j = 0; j < d; j++) {
             int i = 0;
-            while (d < a.length-1) {
-                temp[i] = a[d + i];
-                i++;
+            int first = a[0];
+            for (i = 0; i < a.length - 1; i++) {
+                a[i] = a[i + 1];
             }
-            return temp;
+            a[i] = first;
         }
-
+        return a;
     }
-
 
     private static final Scanner scanner = new Scanner(System.in);
 
