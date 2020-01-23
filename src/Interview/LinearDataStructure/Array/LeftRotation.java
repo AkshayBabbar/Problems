@@ -61,6 +61,7 @@ public class LeftRotation {
             for (i = 0; i < a.length - 1; i++) {
                 a[i] = a[i + 1];
             }
+            
             a[i] = first;
         }
         return a;
