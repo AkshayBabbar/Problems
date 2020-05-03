@@ -36,7 +36,7 @@ public class FindSubString {
             return -1;
         }
         for (int i = 0; i < wholeString.length(); i++) {
-            if (searchedText.charAt(i) == wholeString.charAt(i)) {
+            if (wholeString.charAt(i) == searchedText.charAt(index)) {
                 index++;
                 if (index == searchedText.length()) {
                     return i - index + 1;
