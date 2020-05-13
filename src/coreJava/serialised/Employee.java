@@ -10,7 +10,8 @@ import java.io.Serializable;
 
 public class Employee implements Serializable {
 
-    private Integer id;
+//    static  String companyName ="Amdocs Pvt Ltd.";;
+private Integer id;
     private String name;
 
     public Employee(Integer id, String name) {
