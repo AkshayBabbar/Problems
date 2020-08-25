@@ -1,4 +1,4 @@
-package Interview.LinearDataStructure.Array;
+package Interview.linearDataStructure.Array;
 
 /*
 *

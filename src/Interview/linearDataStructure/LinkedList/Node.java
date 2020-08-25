@@ -1,4 +1,4 @@
-package Interview.LinearDataStructure.LinkedList;
+package Interview.linearDataStructure.LinkedList;
 
 /*
  *   @Author:    Akshay Babbar

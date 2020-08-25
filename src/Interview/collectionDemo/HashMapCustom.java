@@ -1,4 +1,4 @@
-package Interview.CollectionDemo;
+package Interview.collectionDemo;
 
 public class HashMapCustom<K, V> {
 

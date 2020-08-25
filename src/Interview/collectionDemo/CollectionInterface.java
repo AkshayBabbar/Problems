@@ -1,6 +1,4 @@
-package Interview.CollectionDemo;
-
-import java.util.Collection;
+package Interview.collectionDemo;
 
 /*
  *   Author: Akshay Babbar

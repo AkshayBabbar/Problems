@@ -1,4 +1,4 @@
-package Interview.CollectionDemo;
+package Interview.collectionDemo;
 
 /*
  *   Author:     Akshay Babbar

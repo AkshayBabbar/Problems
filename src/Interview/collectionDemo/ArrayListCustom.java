@@ -1,4 +1,4 @@
-package Interview.CollectionDemo;
+package Interview.collectionDemo;
 
 import java.util.Arrays;
 
