@@ -1,4 +1,4 @@
-package coreJava.designPatterns.factory;
+package coreJava.designPatterns.creational.factory;
 
 public class Server extends Computer {
 

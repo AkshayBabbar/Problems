@@ -1,6 +1,7 @@
-package coreJava.designPatterns.factory;
+package coreJava.designPatterns.creational.abstractFactory;
 
-public class PC extends Computer {
+
+public class PC extends Computer2 {
     private String ram;
     private String hdd;
     private String CPU;
