@@ -2,7 +2,7 @@
 
 package Interview.linearDataStructure.Array;
 
-/*
+/**
 *   @Author: Akshay Babbar
 *   @URL:    https://www.hackerrank.com/challenges/mini-max-sum/problem
 *

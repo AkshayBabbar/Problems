@@ -1,11 +1,11 @@
 package coreJava.designPatterns.creational.factory;
 
-/*
- *       @author: Akshay Babbar
- *       @Purpose: This is a factory class implementation which helped to achieve our purpose.
- *       we have super classes and sub-classes ready, we can write our factory class.
- *       Here is the basic implementation.
- * */
+/**
+ * @author: Akshay Babbar
+ * @Purpose: This is a factory class implementation which helped to achieve our @Purpose.
+ * we have super classes and sub-classes ready, we can write our factory class.
+ * Here is the basic implementation.
+ */
 
 
 public class ComputerFactory {

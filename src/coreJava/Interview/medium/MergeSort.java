@@ -2,10 +2,11 @@ package coreJava.Interview.medium;
 
 import java.util.Scanner;
 
-/*
- *
+/**
  * Author: Akshay Babbar
- * Purpose: Implementation of Merge Sort for recursion based solution.*/
+ *
+ * @Purpose: Implementation of Merge Sort for recursion based solution.
+ */
 public class MergeSort {
 
     public static void main(String[] args) {

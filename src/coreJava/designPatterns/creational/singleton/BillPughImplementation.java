@@ -1,11 +1,12 @@
 package coreJava.designPatterns.creational.singleton;
 
-/*
- *       Author:     Akshay Babbar
- *       Purpose:    Implementation of Bill Pugh Singleton.
- *                   Prior to Java 5 due to memory model issue of Java, too many threads were trying to fetch singleton class.
- *                   Now to solve this Bill Pugh implemented inner private static helper class thus removing synch constraints.
- *                   */
+/**
+ * Author:     Akshay Babbar
+ *
+ * @Purpose: Implementation of Bill Pugh Singleton.
+ * Prior to Java 5 due to memory model issue of Java, too many threads were trying to fetch singleton class.
+ * Now to solve this Bill Pugh implemented inner private static helper class thus removing synch constraints.
+ */
 public class BillPughImplementation {
 
     private BillPughImplementation() {

@@ -1,11 +1,11 @@
 package Interview.collectionDemo;
 
-/*
- *   Author: Akshay Babbar
- *   Version:    1.0
- *   Date:       13/01/2020
- *   Purpose:    Bucket is here a namesake for Collection Interface just to test waters.
- * */
+/**
+ * @Author: Akshay Babbar
+ * @Version: 1.0
+ * @Date: 13/01/2020
+ * @Purpose: Bucket is here a namesake for Collection Interface just to test waters.
+ */
 public interface CollectionInterface<T> extends Iterable<T> {
 
 

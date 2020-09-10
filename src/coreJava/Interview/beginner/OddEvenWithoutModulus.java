@@ -2,7 +2,7 @@ package coreJava.Interview.beginner;
 
 import java.util.Scanner;
 
-/*
+/**
  * Author: Akshay Babbar*/
 public class OddEvenWithoutModulus {
 

@@ -1,10 +1,10 @@
 package coreJava.serialised;
 
-/*
- *
+/**
  * Author: Akshay Babbar
- * Purpose: This is driver class.
- * */
+ *
+ * @Purpose: This is driver class.
+ */
 
 import java.io.Serializable;
 

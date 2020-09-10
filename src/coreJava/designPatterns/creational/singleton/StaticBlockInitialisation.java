@@ -1,11 +1,11 @@
 package coreJava.designPatterns.creational.singleton;
 
-/*
- *   Author: Akshay Babbar
- *   Purpose: The purpose of this class is that the static block initialisation of singleton design pattern.
- *               This is similar to the eager initialisation.
- *               The solution provided is done in Static Block.
- * */
+/**
+ * @uthor: Akshay Babbar
+ * @Purpose: The @Purpose of this class is that the static block initialisation of singleton design pattern.
+ * This is similar to the eager initialisation.
+ * The solution provided is done in Static Block.
+ */
 public class StaticBlockInitialisation {
 
     private static StaticBlockInitialisation INSTANCE;

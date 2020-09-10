@@ -1,9 +1,9 @@
 package coreJava.Interview.beginner;
 
 
-/*
- * Author: Akshay Babbar
- * Purpose: To find the number is binary or not.
+/**
+ * @Author: Akshay Babbar
+ * @Purpose: To find the number is binary or not.
  **/
 public class BinaryNumberOrNotExample {
 

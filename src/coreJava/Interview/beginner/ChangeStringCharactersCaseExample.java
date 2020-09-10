@@ -1,8 +1,9 @@
 package coreJava.Interview.beginner;
-/*
+/**
  * Author: Akshay Babbar
- * Purpose: Change the case of String Entered.
- *  */
+ *
+ * @Purpose: Change the case of String Entered.
+ */
 
 
 public class ChangeStringCharactersCaseExample {

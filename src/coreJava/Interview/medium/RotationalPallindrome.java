@@ -1,9 +1,10 @@
 package coreJava.Interview.medium;
 
-/*
+/**
  * Author: Akshay Babbar
- * Purpose: Check if the string can be made pallindrome after rotations
- * */
+ *
+ * @Purpose: Check if the string can be made pallindrome after rotations
+ */
 
 public class RotationalPallindrome {
 

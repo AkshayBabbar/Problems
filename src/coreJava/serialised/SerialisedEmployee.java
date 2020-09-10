@@ -3,10 +3,11 @@ package coreJava.serialised;
 
 import java.io.*;
 
-/*
+/**
  * Author: Akshay Babbar
- * Purpose: This is the class that will convert the Objects into serialised file.
- * */
+ *
+ * @Purpose: This is the class that will convert the Objects into serialised file.
+ */
 public class SerialisedEmployee {
     public static void main(String[] args) {
         Employee object1 = new Employee(1, "Babbar");

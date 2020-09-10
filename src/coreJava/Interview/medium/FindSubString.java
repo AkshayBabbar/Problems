@@ -2,11 +2,11 @@ package coreJava.Interview.medium;
 
 import java.util.Scanner;
 
-/*
- *
+/**
  * Author: Akshay Babbar
- * Purpose: Find the user defined Sub String in the String that has been defined.
- * */
+ *
+ * @Purpose: Find the user defined Sub String in the String that has been defined.
+ */
 public class FindSubString {
 
     public static void main(String[] args) {

@@ -1,10 +1,10 @@
 package coreJava.Interview.beginner;
 
-/*
+/**
  * Author: Akshay Babbar
- * Purpose:  how to reverse String in java with example, diagram and program by using StringBuffer in java.
  *
- * */
+ * @Purpose: how to reverse String in java with example, diagram and program by using StringBuffer in java.
+ */
 public class ReverseUsingSB {
 
     public static void main(String... args) {

@@ -1,7 +1,7 @@
 package coreJava.concurrency;
 
 
-/*
+/**
  *   @author: Akshay Babbar
  *   @Purpose: Obtain a reference to currently executed thread.
  *

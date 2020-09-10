@@ -1,6 +1,10 @@
 package coreJava.designPatterns.creational.abstractFactory;
 
-public class Server extends Computer2 {
+
+/**
+ * @Author: Akshay Babbar
+ */
+public class Server extends Computer {
 
     private String ram;
     private String cpu;

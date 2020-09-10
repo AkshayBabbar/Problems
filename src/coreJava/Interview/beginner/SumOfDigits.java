@@ -2,9 +2,10 @@ package coreJava.Interview.beginner;
 
 import java.util.Scanner;
 
-/*
+/**
  * Author: Akshay Babbar
- * Purpose: Find sum of digits in number in java.
+ *
+ * @Purpose: Find sum of digits in number in java.
  */
 public class SumOfDigits {
     public static int sumOfDigits(int test) {

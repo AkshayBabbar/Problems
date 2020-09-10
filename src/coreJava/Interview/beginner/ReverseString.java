@@ -1,6 +1,6 @@
 package coreJava.Interview.beginner;
 
-/*
+/**
  * Author: Akshay Babbar
  * Problem: Reverse String - keeping performance in mind (without StringBuffer) in java
  * Condition: Complexity offered by our program to reverse String in java will be O(n/2), where n is number of characters in string in java.

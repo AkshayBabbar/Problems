@@ -1,6 +1,6 @@
 package coreJava.concurrency;
 
-/*
+/**
  *   @author: Akshay Babbar
  *   @Purpose: Creating thread using Lambda.
  * */

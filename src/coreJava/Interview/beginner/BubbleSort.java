@@ -1,11 +1,10 @@
 package coreJava.Interview.beginner;
 
 
-/*
- *
- * Author: Akshay Babbar
- * Purpose: To create a sorting solution using Bubble Sort Algorithm.
- * */
+/**
+ * @Author: Akshay Babbar
+ * @Purpose: To create a sorting solution using Bubble Sort Algorithm.
+ */
 
 import java.util.Scanner;
 

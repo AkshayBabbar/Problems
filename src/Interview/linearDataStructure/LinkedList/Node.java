@@ -1,6 +1,6 @@
 package Interview.linearDataStructure.LinkedList;
 
-/*
+/**
  *   @Author:    Akshay Babbar
  *   @Purpose:   Generic Node class which will be used from time to time.*/
 public class Node {

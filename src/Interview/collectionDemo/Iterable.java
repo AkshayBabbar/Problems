@@ -1,12 +1,12 @@
 package Interview.collectionDemo;
 
 
-/*
-* AUTHOR:   Akshay Babbar
-* Version:  1.0
-* Purpose:  This is the mock representation of Iterator Interface.
-*            So that we can get to know how it is going to work.
-* */
+/**
+ * @version :  1.0
+ * @author: Akshay Babbar
+ * @purpose :  This is the mock representation of Iterator Interface.
+ * So that we can get to know how it is going to work.
+ */
 public interface Iterable<T>{
 
     /*

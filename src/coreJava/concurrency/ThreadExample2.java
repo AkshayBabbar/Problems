@@ -1,6 +1,6 @@
 package coreJava.concurrency;
 
-/*
+/**
  *   @author: Akshay Babbar
  *   @Purpose: Create a thread using user defined static Thread class.
  * */

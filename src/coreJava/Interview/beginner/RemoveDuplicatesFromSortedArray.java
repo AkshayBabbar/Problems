@@ -2,10 +2,11 @@ package coreJava.Interview.beginner;
 
 import java.util.ArrayList;
 
-/*
+/**
  * Author: AKshay Babbar
- * Purpose: Way to remove Duplicates from Sorted Array.
- * */
+ *
+ * @Purpose: Way to remove Duplicates from Sorted Array.
+ */
 public class RemoveDuplicatesFromSortedArray {
 
     public static int[] removeDuplicates(int[] arr) {

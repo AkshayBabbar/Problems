@@ -1,8 +1,10 @@
 package coreJava.Interview.medium;
 
-/*
+/**
  * Author: Akshay Babbar
- * Purpose: Create a recursive solution for Pallindrome.*/
+ *
+ * @Purpose: Create a recursive solution for Pallindrome.
+ */
 public class RecursivePallindrome {
 
     public static boolean recursivePallindrome(String input) {

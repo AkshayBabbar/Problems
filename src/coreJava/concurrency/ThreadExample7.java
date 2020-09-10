@@ -3,10 +3,10 @@ package coreJava.concurrency;
 
 import static java.lang.Thread.sleep;
 
-/*
- *   @author: Akshay Babbar
- *   @Purpose: This class purpose is to pause the thread and throw interrupted Exception for providing interrupts.
- * */
+/**
+ * @author: Akshay Babbar
+ * @Purpose: This class @Purpose is to pause the thread and throw interrupted Exception for providing interrupts.
+ */
 public class ThreadExample7 {
 
     public static void main(String[] args) {

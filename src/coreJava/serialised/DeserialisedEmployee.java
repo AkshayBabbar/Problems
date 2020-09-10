@@ -1,6 +1,6 @@
 package coreJava.serialised;
 
-/*
+/**
  *
  * Author: Akshay Babbar
  * Pupose: Deserialised the Serialised File, so that we can fetch our product.*/

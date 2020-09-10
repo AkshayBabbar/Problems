@@ -1,6 +1,6 @@
 package coreJava.concurrency;
 
-/*
+/**
  *   @author: Akshay Babbar
  *   @Purpose: Create thread using user defined runnable interface.
  * */
