@@ -1,4 +1,4 @@
-package coreJava.designPatterns.prototype;
+package coreJava.designPatterns.creational.prototype;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ public class Employees implements Cloneable {
     }
 
     public Employees() {
-        empList = new ArrayList<String>();
+        empList = new ArrayList<>();
 
     }
 
@@ -29,9 +29,7 @@ public class Employees implements Cloneable {
     @Override
     public Object clone() throws CloneNotSupportedException {
         List<String> temp = new ArrayList<String>();
-        for (String s : this.getEmpList()) {
-            temp.add(s);
-        }
+        temp.addAll(this.getEmpList());
         return new Employees(temp);
 
     }
