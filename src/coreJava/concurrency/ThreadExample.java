@@ -1,9 +1,16 @@
 package coreJava.concurrency;
 
-public class ThreadExample {
+public class ThreadExample implements Runnable {
+    @Override
+    public void run() {
+        System.out.println("in run() method");
 
-    public static void main(String[] args) {
-        Thread thread = new Thread();
-        thread.start();
+        for (int i = 0; i < 5; i++) {
+            System.out.println("i=" + i + " ,ThreadName = " + Thread.currentThread().getName());
+        }
     }
+//    public static void main(String[] args) {
+//        Thread thread = new Thread();
+//        thread.start();
+//    }
 }
