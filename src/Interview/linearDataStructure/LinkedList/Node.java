@@ -14,6 +14,17 @@ public class Node {
         this.data = data;
     }
 
+    public void push(Node prev_node, int data) throws LinkedListEmptyException {
+        if (prev_node == null) {
+            throw new LinkedListEmptyException("The given node cannot be null");
+        }
+        Node newNode = new Node(data);
+        newNode.next = prev_node.next;
+
+        prev_node.next = newNode;
+
+    }
+
     public void displayNode() {
         System.out.println(data + " ");
     }
