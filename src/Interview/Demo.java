@@ -48,7 +48,9 @@ public class Demo {
     public static void main(String[] args) {
 
         String[] cmd = new String[1];
-        cmd[0] = "file.java";
+//        cmd[0] = "file.java";
+        System.out.println(10 * 20 + "Javatpoint");
+        System.out.println("Javatpoint" + 10 * 20);
 
 //        Process process = Runtime.getRuntime().exec(cmd);
 
