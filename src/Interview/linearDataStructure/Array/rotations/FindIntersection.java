@@ -1,4 +1,4 @@
-package Interview.linearDataStructure.Array;
+package Interview.linearDataStructure.Array.rotations;
 
 
 import java.util.HashMap;

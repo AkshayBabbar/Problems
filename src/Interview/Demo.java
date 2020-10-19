@@ -1,5 +1,9 @@
 package Interview;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+
 /**
  * Created by Akshay Babbar on 21-08-2017.
  */
@@ -47,15 +51,28 @@ public class Demo {
 
     public static void main(String[] args) {
 
-        String[] cmd = new String[1];
+//        String[] cmd = new String[1];
 //        cmd[0] = "file.java";
-        System.out.println(10 * 20 + "Javatpoint");
-        System.out.println("Javatpoint" + 10 * 20);
+//        System.out.println(10 * 20 + "Javatpoint");
+//        System.out.println("Javatpoint" + 10 * 20);
 
 //        Process process = Runtime.getRuntime().exec(cmd);
 
         System.out.println("Test");
 
+        System.out.println("1 - " + LocalDateTime.of(2020, 12, 31, 23, 59, 59).minusYears(1));
+
+        System.out.println("2 - " + LocalDateTime.of(2020, 12, 31, 23, 59, 59).minusYears(1));
+
+        System.out.println("3 - " + LocalDateTime.parse("2019-12-31T23:59").withSecond(59));
+
+        System.out.println("4 - " + LocalDateTime.of(LocalDate.of(2019, 12, 31), LocalTime.MAX));
+
+        System.out.println("5 - " + LocalDateTime.of(2020, 1, 1, 0, 1, 1).minusSeconds(61));
+
+        System.out.println("6 - " + LocalDateTime.parse("2017-12-31T23:59").withYear(2019));
+
+        System.out.println("7 - " + LocalDateTime.of(LocalDate.of(2020, 1, 1), LocalTime.MIDNIGHT).minusSeconds(1));
     }
 //        Demo t = new Demo();
 //
