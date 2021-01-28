@@ -22,9 +22,9 @@ public class JumpSearch {
             }
         }
 
+
         while (arr[previousePointer] < x) {
             previousePointer++;
-
             // If we reached next block or end of
             // array, element is not present.
             if (previousePointer == Math.min(jumpBlock, size))
