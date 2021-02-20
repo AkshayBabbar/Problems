@@ -8,10 +8,14 @@ package Interview.linearDataStructure.Array.rotations;
 public class Rotation {
     public static int[] rotate(int[] array, int size, int numberOfElements) {
         int[] rotatedArray = {};
-        for (int i = 0; i < numberOfElements; i++) {
-            rotatedArray = leftRotatebyOne(array);
+        if (numberOfElements == 0) {
+            return rotatedArray;
+        } else {
+            for (int i = 0; i < numberOfElements; i++) {
+                rotatedArray = leftRotatebyOne(array);
+            }
+            return rotatedArray;
         }
-        return rotatedArray;
     }
 
     private static int[] leftRotatebyOne(int[] array) {
@@ -23,7 +27,7 @@ public class Rotation {
         return array;
     }
 
-    public static void printArray(int arr[], int n) {
+    public static void printArray(int[] arr, int n) {
         for (int i = 0; i < n; i++)
             System.out.print(arr[i] + " ");
     }
