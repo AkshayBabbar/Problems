@@ -1,9 +1,5 @@
 package Interview.linearDataStructure.Array.interviewCake;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Stack;
-
 /**
  * Your company built an in-house calendar tool called HiCal. You want to add a feature to see the times in a day when everyone is available.
  * A meeting is stored as an object of a Meeting class with integer variables startTime and endTime.
@@ -49,24 +45,24 @@ public class Meeting {
         this.endTime = endTime;
     }
 
-    public Meeting[] mergeRanges(Meeting[] meetings) {
-        if (meetings.length == 0) {
-            return null;
-        }
-        Stack<Meeting> stack = new Stack<Meeting>();
-
-        Arrays.sort(meetings, new Comparator<Meeting>() {
-            @Override
-            public int compare(Meeting o1, Meeting o2) {
-                return o1.getStartTime() - o2.getStartTime();
-            }
-        });
-        stack.push(meetings[0]);
-
-
-        for (int i = 0; i < meetings.length; i++) {
-            int startingPosition = meetings[i].getStartTime();
-            int endingPosition = meetings[i].getEndTime();
-        }
-    }
+//    public Meeting[] mergeRanges(Meeting[] meetings) {
+//        if (meetings.length == 0) {
+//            return null;
+//        }
+//        Stack<Meeting> stack = new Stack<Meeting>();
+//
+//        Arrays.sort(meetings, new Comparator<Meeting>() {
+//            @Override
+//            public int compare(Meeting o1, Meeting o2) {
+//                return o1.getStartTime() - o2.getStartTime();
+//            }
+//        });
+//        stack.push(meetings[0]);
+//
+//
+//        for (int i = 0; i < meetings.length; i++) {
+//            int startingPosition = meetings[i].getStartTime();
+//            int endingPosition = meetings[i].getEndTime();
+//        }
+//    }
 }
