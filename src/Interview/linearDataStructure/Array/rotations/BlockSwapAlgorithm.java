@@ -19,21 +19,47 @@ package Interview.linearDataStructure.Array.rotations;
 
 public class BlockSwapAlgorithm {
 
-    public static void foo(boolean a, boolean b) {
-        if (a) {
-            System.out.println("A");
-        } else if (a && b) {
-            System.out.println("A && B");
+    public static void leftRotate(int[] arr, int numberOfElementsToBeRotated, int arraySize) {
+        leftRotateRecursive(arr, 0, numberOfElementsToBeRotated, arraySize);
+    }
+
+    public static void leftRotateRecursive(int[] arr, int i, int numberOfElementsToBeRotated, int arraySize) {
+        if (numberOfElementsToBeRotated == 0 || numberOfElementsToBeRotated == arraySize) {
+            return;
+        }
+        if (arraySize - numberOfElementsToBeRotated == numberOfElementsToBeRotated) {
+            swap(arr, i, arraySize - numberOfElementsToBeRotated + i, numberOfElementsToBeRotated);
+        }
+
+        if (numberOfElementsToBeRotated < arraySize - numberOfElementsToBeRotated) {
+            swap(arr, i, numberOfElementsToBeRotated, arraySize - numberOfElementsToBeRotated);
         } else {
-            if (!b) {
-                System.out.println("notB");
-            } else {
-                System.out.println("ELSE");
-            }
+            swap(arr, i, numberOfElementsToBeRotated, arraySize - numberOfElementsToBeRotated);
+//            leftRotate(arr+arraySize-numberOfElementsToBeRotated,);
         }
     }
 
+    private static void swap(int[] arr, int fi, int si, int numberOfElementsToBeRotated) {
+        int temp;
+        for (int i = 0; i < numberOfElementsToBeRotated; i++) {
+            temp = arr[fi + i];
+            arr[fi + i] = arr[si + i];
+            arr[si + i] = temp;
+        }
+    }
+
+    public static void printArray(int[] arr, int arraySize) {
+        int i;
+        for (i = 0; i < arraySize; i++)
+            System.out.print(arr[i] + " ");
+        System.out.println();
+    }
+
+
     public static void main(String[] args) {
-        foo(false, true);
+
+        int[] arr = {1, 2, 3, 4, 5, 6, 7};
+        leftRotate(arr, 2, 7);
+        printArray(arr, 7);
     }
 }
