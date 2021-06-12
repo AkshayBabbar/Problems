@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class Employee {
     private String id;
-    private Double Salary;
+    private Double salary;
     private String firstName;
     private String lastName;
 
@@ -27,7 +27,7 @@ public class Employee {
 
     public Employee(String id, Double salary, String firstName, String lastName, boolean isActive) {
         this.id = id;
-        Salary = salary;
+        this.salary = salary;
         this.firstName = firstName;
         this.lastName = lastName;
         this.activeEmployee = isActive;
@@ -58,11 +58,11 @@ public class Employee {
     }
 
     public Double getSalary() {
-        return Salary;
+        return salary;
     }
 
     public void setSalary(Double salary) {
-        Salary = salary;
+        this.salary = salary;
     }
 
     public static void main(String[] args) {

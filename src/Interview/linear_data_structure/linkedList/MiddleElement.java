@@ -1,4 +1,4 @@
-package Interview.linearDataStructure.LinkedList;
+package Interview.linear_data_structure.linkedList;
 
 
 /**

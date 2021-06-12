@@ -1,4 +1,4 @@
-package Interview.linearDataStructure.Array.interviewCake;
+package Interview.linear_data_structure.Array.interviewCake;
 
 /**
  * Your company built an in-house calendar tool called HiCal. You want to add a feature to see the times in a day when everyone is available.
