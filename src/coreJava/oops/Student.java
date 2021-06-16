@@ -31,11 +31,13 @@ public class Student {
     public static void main(String[] args) {
         List<Student> studentList = new ArrayList<>();
         studentList.add(new Student("1234", "Tarun", 28));
-        studentList.add(new Student("1233", "Arun", 28));
-        studentList.add(new Student("1236", "Shiv", 28));
+        studentList.add(new Student("1233", "Arun", 24));
+        studentList.add(new Student("1236", "Shiv", 26));
         studentList.add(new Student("1233", "Rohan", 28));
         Collections.sort(studentList, Comparator.comparing(Student::getAge)
                 .thenComparing(Student::getName));
+
+        System.out.println("Test");
     }
 }
 
