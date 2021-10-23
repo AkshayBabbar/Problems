@@ -16,6 +16,7 @@ public class Driver {
 
         // User behavior in our app:
         downloader.renderPopularVideos();
+
         downloader.renderVideoPage("catzzzzzzzzz");
         downloader.renderPopularVideos();
         downloader.renderVideoPage("dancesvideoo");
