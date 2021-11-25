@@ -1,0 +1,53 @@
+/* 1. Array is unsorted
+2. MId is a random index from low to high
+
+2 1 3 5 4 6
+
+Which elements are always searchable? */
+
+normalised BS :
+  checking the Mid
+  then compare the searched number.
+  if less then divide it and create a new mid and try to search.
+  till we find number.
+
+    PreCondition:
+  Sorted Array.
+
+Distinct
+   On Unsorted Array:
+  Mid Position -> N-1/2
+
+    int searchable(int[] array){
+    int size = array.length;
+    List<Arraylist<Integer>> setArray = new ArrayList<>();
+    for(int i = 0; i<size; i++){
+      setArray.add(setCreation(array[i], array);
+      }
+    //Intersection of Multiple ArrayList.
+
+   }
+
+     ArrayList setCreation(int mid, int[] array){
+
+       List<Integer> setArrayLeft = new ArrayList<>();
+       List<Integer> setArrayRight = new ArrayList<>();
+
+       /*
+       mid = 3
+       leftArray = 5 6
+       right Array = 4
+       set = 4 5 6
+
+
+       */
+       for(int i = 0; i< array.length; i++){
+         if(mid<array[i]){
+           setArray.add(array[i]);
+         }
+         if(mid>array[i]){
+           setArray.add(array[i]);
+       }
+       return setArray;
+     }
+
