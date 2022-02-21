@@ -1,4 +1,4 @@
-package corejava.Interview.medium;
+package src.corejava.Interview.medium;
 
 import java.util.Scanner;
 

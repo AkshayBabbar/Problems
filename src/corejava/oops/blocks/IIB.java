@@ -1,4 +1,4 @@
-package corejava.oops.blocks;
+package src.corejava.oops.blocks;
 
 public class IIB {
 

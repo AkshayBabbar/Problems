@@ -1,4 +1,4 @@
-package corejava.designPatterns.structural.proxy;
+package src.corejava.designPatterns.structural.proxy;
 
 public class Driver {
     public static void main(String[] args) {

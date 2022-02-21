@@ -1,4 +1,4 @@
-package corejava.oops.immutable;
+package src.corejava.oops.immutable;
 
 public final class Employee {
     private final int id;

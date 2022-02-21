@@ -1,4 +1,4 @@
-package corejava.oops.immutable;
+package src.corejava.oops.immutable;
 
 public class Address implements Cloneable {
     private String street;

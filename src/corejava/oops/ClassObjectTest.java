@@ -1,4 +1,4 @@
-package corejava.oops;
+package src.corejava.oops;
 
 public class ClassObjectTest {
     public static void main(String[] args) {

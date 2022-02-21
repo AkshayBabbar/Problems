@@ -1,4 +1,4 @@
-package corejava.serialised;
+package src.corejava.serialised;
 
 /**
  *

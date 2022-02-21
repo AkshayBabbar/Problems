@@ -1,4 +1,4 @@
-package corejava.concurrency;
+package src.corejava.concurrency;
 
 public class Task implements Runnable {
 

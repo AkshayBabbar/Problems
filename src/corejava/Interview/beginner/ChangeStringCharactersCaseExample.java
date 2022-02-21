@@ -1,4 +1,4 @@
-package corejava.Interview.beginner;
+package src.corejava.Interview.beginner;
 /**
  * Author: Akshay Babbar
  *

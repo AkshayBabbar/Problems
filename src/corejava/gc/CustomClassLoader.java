@@ -1,4 +1,4 @@
-package corejava.gc;
+package src.corejava.gc;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;

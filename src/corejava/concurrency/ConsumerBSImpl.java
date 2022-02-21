@@ -1,4 +1,4 @@
-package corejava.concurrency;
+package src.corejava.concurrency;
 
 public class ConsumerBSImpl extends Thread {
     final ProducerBSImpl producerBS;

@@ -1,4 +1,4 @@
-package corejava.Interview.medium;
+package src.corejava.Interview.medium;
 
 /**
  * Author: Akshay Babbar

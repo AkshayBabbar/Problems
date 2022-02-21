@@ -1,4 +1,4 @@
-package corejava.gc;
+package src.corejava.gc;
 
 import java.lang.ref.ReferenceQueue;
 import java.lang.ref.SoftReference;

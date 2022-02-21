@@ -1,4 +1,4 @@
-package corejava.concurrency;
+package src.corejava.concurrency;
 
 
 import static java.lang.Thread.sleep;

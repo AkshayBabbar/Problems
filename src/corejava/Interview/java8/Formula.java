@@ -1,4 +1,4 @@
-package corejava.Interview.java8;
+package src.corejava.Interview.java8;
 
 public interface Formula {
 

@@ -1,4 +1,4 @@
-package corejava.oops;
+package src.corejava.oops;
 
 import java.util.*;
 import java.util.Map.Entry;

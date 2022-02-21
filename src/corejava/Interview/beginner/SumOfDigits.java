@@ -1,4 +1,4 @@
-package corejava.Interview.beginner;
+package src.corejava.Interview.beginner;
 
 import java.util.Scanner;
 

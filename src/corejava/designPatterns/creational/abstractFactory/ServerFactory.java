@@ -1,4 +1,4 @@
-package corejava.designPatterns.creational.abstractFactory;
+package src.corejava.designPatterns.creational.abstractFactory;
 
 public class ServerFactory implements ComputerAbstractFactory {
     private String ram;

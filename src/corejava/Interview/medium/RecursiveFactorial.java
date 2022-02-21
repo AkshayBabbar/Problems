@@ -1,4 +1,4 @@
-package corejava.Interview.medium;
+package src.corejava.Interview.medium;
 
 public class RecursiveFactorial {
     public static int factorial(int input) {

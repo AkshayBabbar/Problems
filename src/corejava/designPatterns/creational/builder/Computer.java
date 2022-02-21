@@ -1,4 +1,4 @@
-package corejava.designPatterns.creational.builder;
+package src.corejava.designPatterns.creational.builder;
 
 /**
  * @author :  Akshay Babbar

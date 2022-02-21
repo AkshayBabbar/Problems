@@ -1,4 +1,4 @@
-package corejava.oops;
+package src.corejava.oops;
 
 import java.util.Comparator;
 import java.util.Date;

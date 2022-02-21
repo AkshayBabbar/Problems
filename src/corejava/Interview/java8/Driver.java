@@ -1,4 +1,4 @@
-package corejava.Interview.java8;
+package src.corejava.Interview.java8;
 
 import java.util.List;
 import java.util.function.IntBinaryOperator;

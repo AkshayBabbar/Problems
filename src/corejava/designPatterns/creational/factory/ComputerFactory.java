@@ -1,4 +1,4 @@
-package corejava.designPatterns.creational.factory;
+package src.corejava.designPatterns.creational.factory;
 
 /**
  * @author: Akshay Babbar

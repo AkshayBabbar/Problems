@@ -1,4 +1,4 @@
-package corejava.exception;
+package src.corejava.exception;
 
 import java.io.FileNotFoundException;
 

@@ -1,4 +1,4 @@
-package corejava.concurrency;
+package src.corejava.concurrency;
 
 public class ThreadPoolTest {
     public static void main(String[] args) throws Exception {

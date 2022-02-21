@@ -1,4 +1,4 @@
-package corejava.designPatterns.structural.Adapter;
+package src.corejava.designPatterns.structural.Adapter;
 
 public class AdapterPatternTest {
     public static void main(String[] args) {
