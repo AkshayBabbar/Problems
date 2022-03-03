@@ -1,4 +1,4 @@
-package Interview.nonLinearDS.tree;
+package src.Interview.nonLinearDS.tree;
 
 public class Node {
     int data;

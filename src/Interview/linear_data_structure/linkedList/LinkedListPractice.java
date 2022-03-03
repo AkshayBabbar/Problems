@@ -1,4 +1,4 @@
-package Interview.linear_data_structure.linkedList;
+package src.Interview.linear_data_structure.linkedList;
 
 public class LinkedListPractice {
 

@@ -1,4 +1,4 @@
-package Interview.linear_data_structure.Array.rotations;
+package src.Interview.linear_data_structure.Array.rotations;
 
 
 import java.io.BufferedWriter;

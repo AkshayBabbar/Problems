@@ -1,4 +1,4 @@
-package Interview.nonLinearDS.Stack;
+package src.Interview.nonLinearDS.Stack;
 
 public class Stack {
 }

@@ -1,4 +1,4 @@
-package Interview.algorithm.searching;
+package src.Interview.algorithm.searching;
 
 public class Driver {
     public static void main(String[] args) {

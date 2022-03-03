@@ -1,4 +1,4 @@
-package Interview.algorithm.searching;
+package src.Interview.algorithm.searching;
 
 /**
  * @author Akshay Babbar

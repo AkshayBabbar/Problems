@@ -1,4 +1,4 @@
-package Interview.nonLinearDS;
+package src.Interview.nonLinearDS;
 
 public class MinHeap {
 

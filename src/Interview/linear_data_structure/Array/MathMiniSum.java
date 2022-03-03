@@ -1,6 +1,6 @@
 
 
-package Interview.linear_data_structure.Array;
+package src.Interview.linear_data_structure.Array;
 
 /**
 *   @Author: Akshay Babbar

@@ -1,4 +1,4 @@
-package Interview.math;
+package src.Interview.math;
 
 /**
  * Given two binary strings, return their sum (also a binary string).
@@ -32,7 +32,5 @@ public class AddBinary {
 
     public static void main(String[] args) {
         String a = "1101", b = "100";
-
-        System.out.print(addBinary(a, b));
     }
 }
