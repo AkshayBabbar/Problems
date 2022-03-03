@@ -1,3 +1,5 @@
+package src.corejava.oops;
+
 import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.Formatter;
@@ -20,13 +22,11 @@ public class PaddingNumbersInJava{
         String padded = String.format("%08d", quantity);
         System.out.println("Number padded with leading zero : " + padded);
  
-        System.out.printf("4 digit number padded with zero to make 6 digit :
-                     %06d %n", 4001);
+        System.out.printf("4 digit number padded with zero to make 6 digit :%06d %n", 4001);
  
         // You can also display hexadecimal number padded by zero
         // just replace %d with %x, as shown below
-        System.out.printf("2 digit hexadecimal number padded with zero : 
-                      %06x %n", 0xBE);
+        System.out.printf("2 digit hexadecimal number padded with zero :%06x %n", 0xBE);
  
         // Another way to left pad a number is by using DecimalFormat class
         // Below format will make String 6 digit long
