@@ -9,7 +9,6 @@ package src.corejava.concurrency;
 public class FinalMTCheck {
 
     final String string = new String("a");
-
     public static void main(String[] args) {
 
     }
