@@ -81,6 +81,8 @@ public class ArrayIntro {
 //        return prefixSum;
 //    }
     public ArrayList<Integer> prefixSumUtil(ArrayList<Integer> A) {
+
+
         ArrayList<Integer> prefixSum = new ArrayList<>();
         prefixSum.add(A.get(0));
 
