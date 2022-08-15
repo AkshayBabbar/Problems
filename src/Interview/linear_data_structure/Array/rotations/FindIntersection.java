@@ -34,6 +34,9 @@ public class FindIntersection {
 
         Integer count = 1;
         HashMap<Character, Integer> map = new HashMap<>();
+        for(Map.Entry mapSet:map.entrySet()){
+
+        }
         for (int i = 0; i < first.length(); i++) {
             if (map.get(first.charAt(i)) == null && first.charAt(i) != ' ')
                 map.put(first.charAt(i), 1);

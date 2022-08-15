@@ -81,9 +81,9 @@ public class Solution {
             }
         });
 
-        int result = Result.countConnections(matrix);
-
-        bufferedWriter.write(String.valueOf(result));
+//        int result = input.countConnections(matrix);
+//
+//        bufferedWriter.write(String.valueOf(result));
         bufferedWriter.newLine();
 
         bufferedReader.close();

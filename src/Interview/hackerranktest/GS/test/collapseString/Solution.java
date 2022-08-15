@@ -51,9 +51,9 @@ public class Solution {
 
         String inputString = bufferedReader.readLine();
 
-        String result = Result.collapseString(inputString);
-
-        bufferedWriter.write(result);
+//        String result = i.collapseString(inputString);
+//
+//        bufferedWriter.write(result);
         bufferedWriter.newLine();
 
         bufferedReader.close();
