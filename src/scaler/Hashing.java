@@ -64,18 +64,65 @@ public class Hashing {
         return 0;
     }
 
+    public static ArrayList<Integer> dNums(ArrayList<Integer> A, int B) {
+        ArrayList<Integer> output = new ArrayList<>();
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < B; i++) {
+            if (map.containsKey(A.get(i))) {
+                map.put(A.get(i), map.get(A.get(i)) + 1);
+            } else {
+                map.put(A.get(i), 1);
+            }
+        }
+        output.add(map.size());
+
+        int prev = 1;
+        int next = B;
+        while(next<A.size()) {
+            if (map.containsKey(A.get(prev-1))) {
+                if ((map.get(A.get(prev-1)) - 1) == 0) {
+                    map.remove(A.get(prev-1));
+                } else {
+                    map.put(A.get(prev-1), map.get(A.get(prev-1)) - 1);
+                }
+            }
+            if (map.containsKey(A.get(next))) {
+                    map.put(A.get(next), map.get(A.get(next))+1);
+                }
+            else{
+                map.put(A.get(next),1);
+            }
+            output.add(map.size());
+
+            prev++;
+            next++;
+        }
+
+    return output;
+    }
+
+    public static String toBinary(int A){
+        String out = "";
+        while(A!=0){
+            out = Integer.toString(A%2) + out;
+            A = A/2;
+        }
+        return out;
+    }
 
     public static void main(String[] args) {
         ArrayList<Integer> array1 = new ArrayList<>(Arrays.asList(2, 1, 4, 10));
         ArrayList<Integer> array2 = new ArrayList<>(Arrays.asList(3, 6, 2, 10, 10));
-        ArrayList<Integer> array3 = new ArrayList<>(Arrays.asList(34, 63, 64, 38, 65, 83, 50, 44, 18, 34, 71, 80, 22, 28, 20, 96, 33, 70, 0, 25, 64, 96, 18, 2, 53, 100, 24, 47, 98, 69, 60, 55, 8, 38, 72, 94, 18, 68, 0, 53, 18, 30, 86, 55, 13, 93, 15, 43, 73, 68, 29));
-        int element = 97;
+        ArrayList<Integer> array3 = new ArrayList<>(Arrays.asList(3, 3, 27, 38, 38, 42, 42, 42, 42, 42, 48, 48, 54, 54, 54, 54, 54, 54, 54, 58, 63, 65, 76, 76, 76, 86, 86, 86));
+        int element = 3;
+        System.out.println(toBinary(17));
 
         System.out.println(checkDiffK(array3, element));
+        ArrayList<Integer> output = dNums(array3, element);
 
-//        ArrayList<Integer> output = commonElements(array1,array2);
-//        for (Integer e:output) {
-//            System.out.println(e);
-//        }
+//        ArrayList<Integer> output2 = commonElements(array1, array2);
+        for (Integer e : output) {
+            System.out.println(e);
+        }
     }
 }
