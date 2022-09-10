@@ -1,5 +1,6 @@
 package src.scaler;
 
+import java.util.ArrayList;
 import java.util.PriorityQueue;
 
 public class BitManupilation {
@@ -12,6 +13,41 @@ public class BitManupilation {
 //    void printSum(){
 //        System.out.println(number);
 //    }
+
+    public ArrayList<Integer> solve(ArrayList<Integer> A){
+        if(A.size()<3){
+            return A;
+        }
+
+        int xorElement =0;
+        for(int i=0; i<A.size(); i++){
+            xorElement = xorElement^A.get(i);
+        }
+        int idx =-1;
+        for( int i =0 ; i<32; i++){
+            if(( xorElement & (1<<i)) !=0){
+
+                idx = i; break;
+            }
+        }
+
+        int xorA=0;
+        int xorB=0;
+
+        for(int i=0; i<A.size(); i++){
+            if((A.get(i) & (1<<idx)) !=0){
+                xorA = xorA ^ A.get(i);
+            }
+            else{
+                xorB = xorB ^ A.get(i);
+            }
+        }
+        ArrayList<Integer> output = new ArrayList<>();
+        output.add(xorA);
+        output.add(xorB);
+        return output;
+
+    }
 
     public String addBinary(String A, String B) {
         int len1 = A.length();

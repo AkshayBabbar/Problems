@@ -23,15 +23,28 @@ public class Hashing {
     }
 
     public static ArrayList<Integer> commonElements(ArrayList<Integer> A, ArrayList<Integer> B) {
-        HashSet<Integer> set2 = new HashSet<>();
-        set2.addAll(B);
+        // Taking HashMap of B.
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < B.size(); i++) {
+            if (map.containsKey(B.get(i))) {
+                map.put(B.get(i), map.get(B.get(i)) + 1);
+            } else {
+                map.put(B.get(i), 1);
+            }
+        }
         ArrayList<Integer> output = new ArrayList<>();
 
         for (int i = 0; i < A.size(); i++) {
-            if (set2.contains(A.get(i))) {
+            if (map.containsKey(A.get(i))) {
                 output.add(A.get(i));
+                if (map.get(A.get(i)) - 1 == 0) {
+                    map.remove(A.get(i));
+                } else {
+                    map.put(A.get(i), map.get(A.get(i)) - 1);
+                }
             }
         }
+        Long a = 1L;
         return output;
     }
 
@@ -78,19 +91,18 @@ public class Hashing {
 
         int prev = 1;
         int next = B;
-        while(next<A.size()) {
-            if (map.containsKey(A.get(prev-1))) {
-                if ((map.get(A.get(prev-1)) - 1) == 0) {
-                    map.remove(A.get(prev-1));
+        while (next < A.size()) {
+            if (map.containsKey(A.get(prev - 1))) {
+                if ((map.get(A.get(prev - 1)) - 1) == 0) {
+                    map.remove(A.get(prev - 1));
                 } else {
-                    map.put(A.get(prev-1), map.get(A.get(prev-1)) - 1);
+                    map.put(A.get(prev - 1), map.get(A.get(prev - 1)) - 1);
                 }
             }
             if (map.containsKey(A.get(next))) {
-                    map.put(A.get(next), map.get(A.get(next))+1);
-                }
-            else{
-                map.put(A.get(next),1);
+                map.put(A.get(next), map.get(A.get(next)) + 1);
+            } else {
+                map.put(A.get(next), 1);
             }
             output.add(map.size());
 
@@ -98,31 +110,43 @@ public class Hashing {
             next++;
         }
 
-    return output;
+        return output;
     }
 
-    public static String toBinary(int A){
+    public static String toBinary(int A) {
         String out = "";
-        while(A!=0){
-            out = Integer.toString(A%2) + out;
-            A = A/2;
+        while (A != 0) {
+            out = Integer.toString(A % 2) + out;
+            A = A / 2;
         }
         return out;
     }
 
+    public static int function(int x,int n){
+        if(n==0){
+            return 1;
+        }
+        else if(n%2 == 0){
+            return function(x*x,(n-1)/2);
+        }
+        else{
+            return x* function(x*x,(n-1)/2);
+        }
+    }
     public static void main(String[] args) {
-        ArrayList<Integer> array1 = new ArrayList<>(Arrays.asList(2, 1, 4, 10));
-        ArrayList<Integer> array2 = new ArrayList<>(Arrays.asList(3, 6, 2, 10, 10));
+        ArrayList<Integer> array1 = new ArrayList<>(Arrays.asList(1, 2, 2, 1));
+        ArrayList<Integer> array2 = new ArrayList<>(Arrays.asList(2, 3, 1, 2));
         ArrayList<Integer> array3 = new ArrayList<>(Arrays.asList(3, 3, 27, 38, 38, 42, 42, 42, 42, 42, 48, 48, 54, 54, 54, 54, 54, 54, 54, 58, 63, 65, 76, 76, 76, 86, 86, 86));
         int element = 3;
-        System.out.println(toBinary(17));
+        System.out.println(function(2,10));
+//        System.out.println(toBinary(17));
 
-        System.out.println(checkDiffK(array3, element));
-        ArrayList<Integer> output = dNums(array3, element);
+//        System.out.println(checkDiffK(array3, element));
+//        ArrayList<Integer> output = dNums(array3, element);
 
 //        ArrayList<Integer> output2 = commonElements(array1, array2);
-        for (Integer e : output) {
-            System.out.println(e);
-        }
+//        for (Integer e : output) {
+//            System.out.println(e);
+//        }
     }
 }
