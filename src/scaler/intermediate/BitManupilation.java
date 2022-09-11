@@ -1,7 +1,6 @@
-package src.scaler;
+package src.scaler.intermediate;
 
 import java.util.ArrayList;
-import java.util.PriorityQueue;
 
 public class BitManupilation {
 

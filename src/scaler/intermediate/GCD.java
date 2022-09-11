@@ -1,4 +1,4 @@
-package src.scaler;
+package src.scaler.intermediate;
 
 public class GCD {
 
