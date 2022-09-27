@@ -125,8 +125,7 @@ public class Hashing {
     public static int function(int x,int n){
         if(n==0){
             return 1;
-        }
-        else if(n%2 == 0){
+        } else if(n%2 == 0){
             return function(x*x,(n-1)/2);
         }
         else{

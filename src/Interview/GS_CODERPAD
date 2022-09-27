@@ -35,7 +35,7 @@
 //  **  respectively. 87 is the highest.
 //  */
 
-// class Solution {
+// class src.Interview.hackerranktest.MorganStanley.Solution {
 //   /*
 //    **  Find the best average grade.
 //    */
@@ -136,7 +136,7 @@ import static org.junit.Assert.*;
  * ""      -> ""
  *
  */
-public class Solution {
+public class src.Interview.hackerranktest.MorganStanley.Solution {
 
   public static String rle(String input) {
     StringBuilder output = new StringBuilder();
@@ -171,6 +171,6 @@ public class Solution {
   }
 
   public static void main(String[] args) throws InterruptedException     {
-    JUnitCore.main("Solution");
+    JUnitCore.main("src.Interview.hackerranktest.MorganStanley.Solution");
   }
 }
