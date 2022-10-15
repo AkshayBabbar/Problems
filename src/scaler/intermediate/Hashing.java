@@ -122,22 +122,89 @@ public class Hashing {
         return out;
     }
 
-    public static int function(int x,int n){
-        if(n==0){
+    public static int function(int x, int n) {
+        if (n == 0) {
             return 1;
-        } else if(n%2 == 0){
-            return function(x*x,(n-1)/2);
-        }
-        else{
-            return x* function(x*x,(n-1)/2);
+        } else if (n % 2 == 0) {
+            return function(x * x, (n - 1) / 2);
+        } else {
+            return x * function(x * x, (n - 1) / 2);
         }
     }
+
+    /**
+     * Problem Description
+     * Given an array A of N integers.
+     * <p>
+     * Find the largest continuous sequence in a array which sums to zero.
+     * <p>
+     * <p>
+     * Problem Constraints
+     * 1 <= N <= 106
+     * -107 <= A[i] <= 107
+     * <p>
+     * Input Format
+     * Single argument which is an integer array A.
+     * <p>
+     * Output Format
+     * Return an array denoting the longest continuous sequence with total sum of zero.
+     * <p>
+     * NOTE : If there are multiple correct answers, return the sequence which occurs first in the array.
+     * <p>
+     * Example Input
+     * A = [1,2,-2,4,-4]
+     * <p>
+     * <p>
+     * Example Output
+     * [2,-2,4,-4]
+     * <p>
+     * <p>
+     * Example Explanation
+     * [2,-2,4,-4] is the longest sequence with total sum of zero.
+     *
+     * @param input
+     * @return
+     */
+    public static ArrayList<Integer> lszero(ArrayList<Integer> input) {
+        int pfSum = input.get(0);
+        int startIndex = -1;
+        int endIndex = -1;
+        HashMap<Integer, Integer> map = new HashMap<>();
+        int ans = 0;
+        map.put(pfSum, 0);
+        for (int i = 1; i < input.size(); i++) {
+            pfSum = pfSum + input.get(i);
+            if (map.containsKey(pfSum)) {
+                if (map.get(pfSum) - i > ans) {
+                    startIndex = map.get(pfSum) - 1;
+                    endIndex = i;
+                    ans = endIndex - startIndex;
+                }
+            }
+            if (pfSum == 0) {
+                startIndex = 0;
+                endIndex = i;
+                ans = endIndex - startIndex;
+            } else {
+                map.put(pfSum, i);
+            }
+        }
+
+        ArrayList<Integer> output = new ArrayList<Integer>();
+        for (int i = startIndex; i < endIndex + 1; i++) {
+            output.add(input.get(i));
+        }
+        return output;
+    }
+
     public static void main(String[] args) {
-        ArrayList<Integer> array1 = new ArrayList<>(Arrays.asList(1, 2, 2, 1));
+        ArrayList<Integer> array1 = new ArrayList<>(Arrays.asList(1, 2, -2, 4, -4));
         ArrayList<Integer> array2 = new ArrayList<>(Arrays.asList(2, 3, 1, 2));
         ArrayList<Integer> array3 = new ArrayList<>(Arrays.asList(3, 3, 27, 38, 38, 42, 42, 42, 42, 42, 48, 48, 54, 54, 54, 54, 54, 54, 54, 58, 63, 65, 76, 76, 76, 86, 86, 86));
         int element = 3;
-        System.out.println(function(2,10));
+        System.out.println(function(2, 10));
+
+        lszero(array1);
 //        System.out.println(toBinary(17));
 
 //        System.out.println(checkDiffK(array3, element));

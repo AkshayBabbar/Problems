@@ -1,0 +1,44 @@
+Wordle is a game where there's a secret 5-letter word. The player has to identify the word in 6 tries. Every time they try a word, they get clues on how close the word is to the secret word.
+
+For example:
+Secret word:  CHALK
+Player input: BLAST
+
+
+Output: RYGRR
+Explanation for output: B, S, T in red color (R), L in yellow color (Y), A in green color (G).
+
+-Red color means the letter doesn't occur at all.
+-Yellow color means the letter exists in secret word but is not at the right position.
+-Green color means the letter exists in the secret word and is at the right position.
+
+Qn: Given a secret word and player's input, return how correct the input was as a string consists of R, Y, and G.
+
+
+public static String retryOutput(String input, String skey){
+  StringBuilder out = new StringBuilder();
+  HashMap<Character, Integer> map = new HashMap<>();
+  //BLOOT - INPUT
+  //RRYGR
+  //COKOK - Secret
+
+  for(int i =0; i<input.length();i++)
+  {
+    if(input.charAt(i) == skey.charAt(i)){
+      out.append("G");
+    }
+    else{
+      for(int j =0; j<skey.length();j++){
+      if(input.charAt(i) == skey.charAt(j)){
+        out.append("Y");
+      }
+      }
+     output.append("R");
+  }
+}
+  // Input length<5.
+  // DUPLICATE AAAAA
+  // DUPLICATE SSSSS
+
+
+

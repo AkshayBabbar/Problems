@@ -45,7 +45,7 @@ public class Demo {
 //        this(x, y);
 //    }
 
-    static Integer getAsci(String str) {
+    static Integer getAscii(String str) {
         return str.length();
     }
 
@@ -97,7 +97,7 @@ public class Demo {
     }
 
     public static void main(String[] args) {
-        System.out.println(minimumKeypadClickCount("abacadefghibj"));
+//        System.out.println(minimumKeypadClickCount("abacadefghibj"));
 //            getShoCode(26);
 
 
