@@ -1,6 +1,7 @@
 package src.scaler.intermediate;
 
 import java.util.*;
+import java.util.Queue;
 
 public class Hashing {
 
@@ -199,13 +200,14 @@ public class Hashing {
 
     public static void main(String[] args) {
         ArrayList<Integer> array1 = new ArrayList<>(Arrays.asList(1, 2, -2, 4, -4));
-        ArrayList<Integer> array2 = new ArrayList<>(Arrays.asList(2, 3, 1, 2));
-        ArrayList<Integer> array3 = new ArrayList<>(Arrays.asList(3, 3, 27, 38, 38, 42, 42, 42, 42, 42, 48, 48, 54, 54, 54, 54, 54, 54, 54, 58, 63, 65, 76, 76, 76, 86, 86, 86));
+//        ArrayList<Integer> array2 = new ArrayList<>(Arrays.asList(2, 3, 1, 2));
+//        ArrayList<Integer> array3 = new ArrayList<>(Arrays.asList(3, 3, 27, 38, 38, 42, 42, 42, 42, 42, 48, 48, 54, 54, 54, 54, 54, 54, 54, 58, 63, 65, 76, 76, 76, 86, 86, 86));
         int element = 3;
         System.out.println(function(2, 10));
 
         lszero(array1);
-//        System.out.println(toBinary(17));
+        System.out.println(toBinary(17));
+
 
 //        System.out.println(checkDiffK(array3, element));
 //        ArrayList<Integer> output = dNums(array3, element);
@@ -214,5 +216,44 @@ public class Hashing {
 //        for (Integer e : output) {
 //            System.out.println(e);
 //        }
+    }
+
+//    public String solve(int A) {
+//        Queue<Integer> queue = new LinkedList<>();
+//        queue.add(11);
+//        queue.add(22);
+//        if(A<2){
+//            if(A==1)return "11";
+//            if(A==2)return "22";
+//        }
+//        int count =2;
+//        else{
+//            while(count<A){
+//                int x = queue.peek();
+//                int element = 100*x+ 100+x;
+//            }
+//        }
+//    }
+
+    public int[] prevSmaller(int[] A) {
+        ArrayList<Integer> test = new ArrayList<>();
+        int length = A.length;
+        Stack<Integer> stk = new Stack<>();
+        int[] outArray = new int[length];
+        for (int i = 0; i < length; i++) {
+            if (stk.isEmpty()) {
+                outArray[i] = -1;
+                stk.push(A[i]);
+            } else {
+                while (!stk.isEmpty() && stk.peek() >= A[i]) {
+                    stk.pop();
+                }
+                if (stk.isEmpty()) {
+                    outArray[i] = -1;
+                } else outArray[i] = stk.peek();
+                stk.push(A[i]);
+            }
+        }
+        return outArray;
     }
 }

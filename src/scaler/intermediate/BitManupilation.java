@@ -1,51 +1,70 @@
 package src.scaler.intermediate;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class BitManupilation {
 
-//    int number = 100;
-    void cals(int number){
-        number++;
-        Integer test = 10000;
+    /**
+     * Given an array of positive integers A, two integers appear only once, and all the other integers appear twice.
+     * Find the two integers that appear only once.
+     * <p>
+     * Note: Return the two numbers in ascending order.
+     * <p>
+     * 2 <= |A| <= 100000
+     * 1 <= A[i] <= 109
+     * <p>
+     * Example Input
+     * Input 1:
+     * A = [1, 2, 3, 1, 2, 4]
+     * Input 2:
+     * <p>
+     * A = [1, 2]
+     * <p>
+     * <p>
+     * Example Output
+     * Output 1:
+     * [3, 4]
+     * Output 2:
+     * <p>
+     * [1, 2]
+     *
+     * @param ArrayList<Integer>
+     */
+
+    public static ArrayList<Integer> uniqueDouble(ArrayList<Integer> input) {
+        int result = 0;
+
+        for (int i : input) {
+            result ^= i;
+        }
+        int mask = (result & result - 1) ^ result;
+        int first = 0;
+        int second = 0;
+
+        for (int i : input) {
+            if ((mask & i) == 0) {
+                first = first ^ i;
+            } else {
+                second = second ^ i;
+            }
+        }
+        ArrayList<Integer> output = new ArrayList<Integer>();
+
+        output.add(Math.min(first, second));
+        output.add(Math.max(first, second));
+
+        return output;
     }
 //    void printSum(){
 //        System.out.println(number);
 //    }
 
-    public ArrayList<Integer> solve(ArrayList<Integer> A){
-        if(A.size()<3){
-            return A;
+    public static void recusrion(int number) {
+        if (number > 0) {
+            System.out.print(number);
+            recusrion(number - 1);
         }
-
-        int xorElement =0;
-        for(int i=0; i<A.size(); i++){
-            xorElement = xorElement^A.get(i);
-        }
-        int idx =-1;
-        for( int i =0 ; i<32; i++){
-            if(( xorElement & (1<<i)) !=0){
-
-                idx = i; break;
-            }
-        }
-
-        int xorA=0;
-        int xorB=0;
-
-        for(int i=0; i<A.size(); i++){
-            if((A.get(i) & (1<<idx)) !=0){
-                xorA = xorA ^ A.get(i);
-            }
-            else{
-                xorB = xorB ^ A.get(i);
-            }
-        }
-        ArrayList<Integer> output = new ArrayList<>();
-        output.add(xorA);
-        output.add(xorB);
-        return output;
-
     }
 
     public String addBinary(String A, String B) {
@@ -95,16 +114,11 @@ public class BitManupilation {
 //        return ans;
 //    }
 
-    public static void recusrion(int number){
-        if (number>0){
-            System.out.print    (number);
-            recusrion(number-1);
-        }
-    }
-
     public static void main(String[] args) {
 
         BitManupilation bit = new BitManupilation();
+        ArrayList<Integer> input = new ArrayList<>(Arrays.asList(186, 256, 102, 377, 186, 377));
+        uniqueDouble(input);
 //        System.out.println(bit.addBinary("1", "1"));
 //        String check = bit.addBinary("1010110111001101101000", "1000011011000000111100110");
 //        String test = "1001110001111010101001110";
@@ -114,7 +128,7 @@ public class BitManupilation {
         Integer test = 100;
 
         bit.cals(test);
-        test = test*2;
+        test = test * 2;
         System.out.println(test);
 //        bit.printSum();
 
@@ -139,6 +153,47 @@ public class BitManupilation {
 
 //        recusrion(10);
 
+
+    }
+
+    //    int number = 100;
+    void cals(int number) {
+        number++;
+        Integer test = 10000;
+    }
+
+    public ArrayList<Integer> solve(ArrayList<Integer> A) {
+        if (A.size() < 3) {
+            return A;
+        }
+
+        int xorElement = 0;
+        for (int i = 0; i < A.size(); i++) {
+            xorElement = xorElement ^ A.get(i);
+        }
+        int idx = -1;
+        for (int i = 0; i < 32; i++) {
+            if ((xorElement & (1 << i)) != 0) {
+
+                idx = i;
+                break;
+            }
+        }
+
+        int xorA = 0;
+        int xorB = 0;
+
+        for (int i = 0; i < A.size(); i++) {
+            if ((A.get(i) & (1 << idx)) != 0) {
+                xorA = xorA ^ A.get(i);
+            } else {
+                xorB = xorB ^ A.get(i);
+            }
+        }
+        ArrayList<Integer> output = new ArrayList<>();
+        output.add(xorA);
+        output.add(xorB);
+        return output;
 
     }
 }

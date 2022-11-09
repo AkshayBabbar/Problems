@@ -1,6 +1,6 @@
 package src.scaler.intermediate;
 
-public class Queue {
+public class Queue<I extends Number> {
     private int[] arr;
     private int front;
     private int rear;
