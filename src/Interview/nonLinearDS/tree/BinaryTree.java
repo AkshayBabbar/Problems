@@ -9,8 +9,8 @@ public class BinaryTree {
         if (node == null) {
             return 0;
         } else {
-            return 1 + sizeOfTree(node.rightChild)
-                    + sizeOfTree(node.leftChild);
+            return 1 + sizeOfTree(node.right)
+                    + sizeOfTree(node.left);
         }
     }
 
@@ -26,6 +26,49 @@ public class BinaryTree {
      On the other hand, when the current level order is from right to left, we would push the nodes right child first, then its left child.
      Finally, do-not forget to swap those two stacks at the end of each level(i.e., when current level is empty)
      */
+
+    public static void print(Node root) {
+
+        // base case
+        if (root == null)
+            return;
+
+        print(root.left);
+        System.out.print(root.data + " ");
+        print(root.right);
+    }
+
+    public static void main(String[] args) {
+        BinaryTree tree = new BinaryTree();
+        tree.rootNode = new Node(50);
+        tree.rootNode.left = new Node(30);
+        tree.rootNode.right = new Node(70);
+        tree.rootNode.left.left = new Node(20);
+        tree.rootNode.left.right = new Node(40);
+        tree.rootNode.right.left = new Node(60);
+        tree.rootNode.right.right = new Node(80);
+
+//        System.out.println("ZigZag Order traversal of binary tree is");
+        tree.printZigZagTraversal();
+        System.out.println();
+//
+//        System.out.println("This is the size of tree : " + sizeOfTree(tree.rootNode));
+//        int size = 8;
+//        int[][] matrix = new int[size][size];
+//
+//        tree.ancestorMatrix(tree.rootNode, matrix, size);
+//
+//        for (int i = 0; i < size; i++) {
+//            for (int j = 0; j < size; j++) {
+//                System.out.print(matrix[i][j] + " ");
+//            }
+//            System.out.println();
+//        }
+
+//        tree.prune(tree.rootNode, 9);
+        System.out.println(tree.kthLargest(tree.rootNode, 2));
+        print(tree.rootNode);
+    }
 
     void printZigZagTraversal() {
 
@@ -43,18 +86,18 @@ public class BinaryTree {
             System.out.print(node.data + " ");
 
             if (leftToRight) {
-                if (node.leftChild != null) {
-                    currentLevel.push(node.leftChild);
+                if (node.left != null) {
+                    currentLevel.push(node.left);
                 }
-                if (node.rightChild != null) {
-                    currentLevel.push(node.rightChild);
+                if (node.right != null) {
+                    currentLevel.push(node.right);
                 }
             } else {
-                if (node.rightChild != null) {
-                    nextLevel.push(node.rightChild);
+                if (node.right != null) {
+                    nextLevel.push(node.right);
                 }
-                if (node.leftChild != null) {
-                    nextLevel.push(node.leftChild);
+                if (node.left != null) {
+                    nextLevel.push(node.left);
                 }
             }
 
@@ -86,12 +129,12 @@ public class BinaryTree {
             return;
         }
 
-        ancestorMatrix(rootNode.leftChild, matrix, size);
+        ancestorMatrix(rootNode.left, matrix, size);
 
-        ancestorMatrix(rootNode.rightChild, matrix, size);
+        ancestorMatrix(rootNode.right, matrix, size);
 
-        if (rootNode.leftChild != null) {
-            matrix[rootNode.data][rootNode.leftChild.data] = 1;
+        if (rootNode.left != null) {
+            matrix[rootNode.data][rootNode.left.data] = 1;
             // iterate through all the columns of children node
             // all nodes which are children to
             // children of root node will also
@@ -100,12 +143,12 @@ public class BinaryTree {
                 // if children of root node is a parent
                 // of someone (i.e 1) then make that node
                 // as children of root also
-                if (matrix[rootNode.leftChild.data][i] == 1)
+                if (matrix[rootNode.left.data][i] == 1)
                     matrix[rootNode.data][i] = 1;
             }
         }
-        if (rootNode.rightChild != null) {
-            matrix[rootNode.data][rootNode.rightChild.data] = 1;
+        if (rootNode.right != null) {
+            matrix[rootNode.data][rootNode.right.data] = 1;
             // iterate through all the columns of children node
             // all nodes which are children to
             // children of root node will also
@@ -114,11 +157,24 @@ public class BinaryTree {
                 // if children of root node is a parent
                 // of someone (i.e 1) then make that node
                 // as children of root also
-                if (matrix[rootNode.rightChild.data][i] == 1)
+                if (matrix[rootNode.right.data][i] == 1)
                     matrix[rootNode.data][i] = 1;
             }
         }
     }
+
+    /*
+        Question:   Given a Binary Search Tree (BST) and a positive integer k, find the k’th largest element in the Binary Search Tree.
+        Approach:   The idea is to do reverse inorder traversal of BST. Keep a count of nodes visited.
+                    The reverse inorder traversal traverses all nodes in decreasing order, i.e, visit the right node then centre then left and continue traversing the nodes recursively.
+                    While doing the traversal, keep track of the count of nodes visited so far.
+                    When the count becomes equal to k, stop the traversal and print the key.
+
+        Time Complexity: O(h + k). The code first traverses down to the rightmost node which takes O(h) time, then traverses k elements in O(k) time.
+                        Therefore overall time complexity is O(h + k).
+        Auxiliary Space: O(1).
+
+     */
 
     /*
 
@@ -140,11 +196,11 @@ public class BinaryTree {
         if (rootNode == null) {
             return null;
         }
-        rootNode.leftChild = prune(rootNode.leftChild, sum - rootNode.data);
-        rootNode.rightChild = prune(rootNode.rightChild, sum - rootNode.data);
+        rootNode.left = prune(rootNode.left, sum - rootNode.data);
+        rootNode.right = prune(rootNode.right, sum - rootNode.data);
 
         //case of Leaf Node
-        if (rootNode.rightChild == null && rootNode.leftChild == null && rootNode != null) {
+        if (rootNode.right == null && rootNode.left == null && rootNode != null) {
             if (rootNode.data < sum) {
                 rootNode = null;
             }
@@ -152,76 +208,20 @@ public class BinaryTree {
         return rootNode;
     }
 
-    public static void print(Node root) {
-
-        // base case
-        if (root == null)
-            return;
-
-        print(root.leftChild);
-        System.out.print(root.data + " ");
-        print(root.rightChild);
-    }
-
-    /*
-        Question:   Given a Binary Search Tree (BST) and a positive integer k, find the k’th largest element in the Binary Search Tree.
-        Approach:   The idea is to do reverse inorder traversal of BST. Keep a count of nodes visited.
-                    The reverse inorder traversal traverses all nodes in decreasing order, i.e, visit the right node then centre then left and continue traversing the nodes recursively.
-                    While doing the traversal, keep track of the count of nodes visited so far.
-                    When the count becomes equal to k, stop the traversal and print the key.
-
-        Time Complexity: O(h + k). The code first traverses down to the rightmost node which takes O(h) time, then traverses k elements in O(k) time.
-                        Therefore overall time complexity is O(h + k).
-        Auxiliary Space: O(1).
-
-     */
-
     public int kthLargest(Node rootNode, int kthValue) {
         if (rootNode != null && kthValue == 0) {
             return rootNode.data;
         }
         int count = 0;
 
-        kthLargest(rootNode.rightChild, kthValue);
+        kthLargest(rootNode.right, kthValue);
         count++;
 
         if (count == kthValue) {
             return rootNode.data;
         }
 
-        kthLargest(rootNode.leftChild, kthValue);
+        kthLargest(rootNode.left, kthValue);
         return -1;
-    }
-
-    public static void main(String[] args) {
-        BinaryTree tree = new BinaryTree();
-        tree.rootNode = new Node(50);
-        tree.rootNode.leftChild = new Node(30);
-        tree.rootNode.rightChild = new Node(70);
-        tree.rootNode.leftChild.leftChild = new Node(20);
-        tree.rootNode.leftChild.rightChild = new Node(40);
-        tree.rootNode.rightChild.leftChild = new Node(60);
-        tree.rootNode.rightChild.rightChild = new Node(80);
-
-//        System.out.println("ZigZag Order traversal of binary tree is");
-        tree.printZigZagTraversal();
-        System.out.println();
-//
-//        System.out.println("This is the size of tree : " + sizeOfTree(tree.rootNode));
-//        int size = 8;
-//        int[][] matrix = new int[size][size];
-//
-//        tree.ancestorMatrix(tree.rootNode, matrix, size);
-//
-//        for (int i = 0; i < size; i++) {
-//            for (int j = 0; j < size; j++) {
-//                System.out.print(matrix[i][j] + " ");
-//            }
-//            System.out.println();
-//        }
-
-//        tree.prune(tree.rootNode, 9);
-        System.out.println(tree.kthLargest(tree.rootNode, 2));
-        print(tree.rootNode);
     }
 }

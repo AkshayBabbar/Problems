@@ -1,8 +1,6 @@
 package src.scaler.advanced;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 public class Trees {
 
@@ -64,6 +62,70 @@ public class Trees {
 //        mainList.add(level);
 //        return mainList;
 //    }
+
+    public TreeNode buildTree(ArrayList<Integer> inOrder, ArrayList<Integer> postOrder) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < inOrder.size(); i++) {
+            map.put(inOrder.get(i), i);
+        }
+        Stack<Integer> st = new Stack<>();
+        st.pop();
+        return constructTreeFromPoIn(inOrder, postOrder, 0, postOrder.size() - 1, 0, inOrder.size() - 1, map);
+    }
+
+    public TreeNode constructTreeFromPrIn(ArrayList<Integer> preOrder, ArrayList<Integer> inOrder, int prs, int pre, int ins, int ine, HashMap<Integer, Integer> map) {
+        if (prs > pre || ins > ine) {
+            return null;
+        }
+
+        int curr_root = preOrder.get(prs);
+        TreeNode root = new TreeNode(curr_root);
+        int idx = map.get(curr_root);
+        int length = idx - ins;
+        root.left = constructTreeFromPrIn(preOrder, inOrder, prs + 1, prs + length, ins, idx - 1, map);
+        root.right = constructTreeFromPrIn(preOrder, inOrder, prs + length + 1, pre, idx + 1, ine, map);
+        return root;
+    }
+
+    public TreeNode constructTreeFromPoIn(ArrayList<Integer> inOrder, ArrayList<Integer> postOrder, int postStart, int postEnd, int inStart, int inEnd, HashMap<Integer, Integer> map) {
+        if (postStart > postEnd || inStart > inEnd) {
+            return null;
+        }
+
+        int curr_root = postOrder.get(postEnd);
+        TreeNode root = new TreeNode(curr_root);
+        int idx = map.get(curr_root);
+        int length = idx - inStart;
+        root.left = constructTreeFromPoIn(inOrder, postOrder, postStart, postStart + length - 1, inStart, idx - 1, map);
+        root.right = constructTreeFromPoIn(inOrder, postOrder, postStart + length, postEnd - 1, idx + 1, inEnd, map);
+        return root;
+    }
+
+//    public int kthsmallest(TreeNode A, int B) {
+//
+//
+//    }
+//
+//    public Stack<> getPath(TreeNode root) {
+//
+//        if(root==null){
+//            return null;
+//        }
+//
+//    }
+
+    public int count(TreeNode root, int k) {
+        if (root == null) {
+            return 0;
+        }
+        if (k == 0) {
+            return 1;
+        }
+        int left = count(root.left, k - 1);
+        int right = count(root.right, k - 1);
+
+        return left + right;
+    }
 
     public static void main(String[] args) {
 

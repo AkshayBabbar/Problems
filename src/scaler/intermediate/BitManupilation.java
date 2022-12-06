@@ -1,7 +1,6 @@
 package src.scaler.intermediate;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class BitManupilation {
 
@@ -67,6 +66,21 @@ public class BitManupilation {
         }
     }
 
+    public static long reverse(long input) {
+        long output = 0L;
+
+        for (int i = 0; i < 32; i++) {
+
+            if ((input & 1) == 1) {
+                output++;
+            } else {
+                input = input >> 1;
+                output = output << 1;
+            }
+        }
+        return output;
+    }
+
     public String addBinary(String A, String B) {
         int len1 = A.length();
         int len2 = B.length();
@@ -103,33 +117,22 @@ public class BitManupilation {
         return output.toString();
     }
 
-//    public Long unsetBits(Long input, int unsetNumber) {
-//
-//        Long ans = input;
-//        for (int i = 0; i < unsetNumber; i++) {
-//            if ((input & (1<< i)) == true) {
-//                ans -= (1L << i);
-//            }
-//        }
-//        return ans;
-//    }
-
     public static void main(String[] args) {
 
         BitManupilation bit = new BitManupilation();
-        ArrayList<Integer> input = new ArrayList<>(Arrays.asList(186, 256, 102, 377, 186, 377));
-        uniqueDouble(input);
+//        ArrayList<Integer> input = new ArrayList<>(Arrays.asList(186, 256, 102, 377, 186, 377));
+//        uniqueDouble(input);
 //        System.out.println(bit.addBinary("1", "1"));
-//        String check = bit.addBinary("1010110111001101101000", "1000011011000000111100110");
+        String check = bit.addBinary("110", "10");
 //        String test = "1001110001111010101001110";
 //        System.out.println(check.compareTo(test));
 
 //        System.out.println(bit.unsetBits(53L, 5));
-        Integer test = 100;
-
-        bit.cals(test);
-        test = test * 2;
-        System.out.println(test);
+//        Integer test = 100;
+        System.out.println(reverse(13));
+//        bit.cals(test);
+//        test = test * 2;
+//        System.out.println(test);
 //        bit.printSum();
 
 
@@ -154,6 +157,44 @@ public class BitManupilation {
 //        recusrion(10);
 
 
+    }
+
+    public String addBinaryV2(String A, String B) {
+        if (A.length() < B.length()) return addBinary(B, A);
+        int i = A.length() - 1;
+        int j = B.length() - 1;
+        int carry = 0;
+        StringBuilder sb = new StringBuilder();
+        while (i >= 0) {
+            int sum = carry + Character.getNumericValue(A.charAt(i)) + getJ(j, B);
+            sb.append(sum % 2);
+            carry = sum / 2;
+            i--;
+            j--;
+        }
+        if (carry != 0) {
+            sb.append("1");
+        }
+
+        return sb.reverse().toString();
+    }
+
+//    public Long unsetBits(Long input, int unsetNumber) {
+//
+//        Long ans = input;
+//        for (int i = 0; i < unsetNumber; i++) {
+//            if ((input & (1<< i)) == true) {
+//                ans -= (1L << i);
+//            }
+//        }
+//        return ans;
+//    }
+
+    public int getJ(int j, String B) {
+        if (j >= 0) {
+            return Character.getNumericValue(B.charAt(j));
+        }
+        return 0;
     }
 
     //    int number = 100;

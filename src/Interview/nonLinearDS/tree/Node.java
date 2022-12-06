@@ -1,14 +1,13 @@
 package src.Interview.nonLinearDS.tree;
 
-public class Node {
+class Node {
     int data;
-    Node leftChild;
-    Node rightChild;
+    Node left;
+    Node right;
 
     Node(int data) {
         this.data = data;
-        this.leftChild = null;
-        this.rightChild = null;
+        left = null;
+        right = null;
     }
-
 }
