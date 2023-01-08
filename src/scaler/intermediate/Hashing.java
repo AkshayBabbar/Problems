@@ -198,6 +198,28 @@ public class Hashing {
         return output;
     }
 
+    public int getSum(int A, int B, ArrayList<Integer> C) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        int sum = 0;
+        for (int i = 0; i < C.size(); i++) {
+            if (map.containsKey(C.get(i))) {
+                map.put(C.get(i), map.get(C.get(i)) + 1);
+            } else {
+                map.put(C.get(i), 1);
+            }
+        }
+        boolean zeroFlag = false;
+        for (Map.Entry<Integer, Integer> hMap : map.entrySet()) {
+            if (hMap.getKey().equals(B)) {
+                if (hMap.getValue().equals(0)) {
+                    zeroFlag = true;
+                }
+                sum = sum + (int) hMap.getValue();
+            }
+        }
+        return (!zeroFlag && sum == 0) ? -1 : sum;
+    }
+
     public static void main(String[] args) {
         ArrayList<Integer> array1 = new ArrayList<>(Arrays.asList(1, 2, -2, 4, -4));
 //        ArrayList<Integer> array2 = new ArrayList<>(Arrays.asList(2, 3, 1, 2));

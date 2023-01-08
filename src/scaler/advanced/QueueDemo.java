@@ -83,6 +83,27 @@ public class QueueDemo {
         return output;
     }
 
+    public static ArrayList<Integer> slidingWindowMaximum(final ArrayList<Integer> input, int k) {
+        ArrayDeque<Integer> dq = new ArrayDeque<>();
+        for (int i = 0; i < k; i++) {
+//            while(!dq.isEmpty() && input.size()>0)
+//                dq.add(input.get(i));
+        }
+        ArrayList<Integer> output = new ArrayList<>();
+        for (int i = k; i < input.size(); i++) {
+            Integer rear = dq.peek();
+            if (rear < input.get(i)) {
+                dq.poll();
+            } else {
+                dq.add(input.get(i));
+            }
+//            output.add(Math.min(dq.peekFirst()));
+
+        }
+        return output;
+
+    }
+
     public static void main(String[] args) {
         getPermutation(9);
     }
