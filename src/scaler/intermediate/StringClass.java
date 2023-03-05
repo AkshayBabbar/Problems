@@ -1,5 +1,7 @@
 package src.scaler.intermediate;
 
+import java.util.*;
+
 public class StringClass {
 
     public static String reverse(String input) {
@@ -14,7 +16,7 @@ public class StringClass {
             if (sb.charAt(end) != ' ') {
                 end++;
             }
-            String reverseString = sb.toString().substring(start, end);
+            String reverseString = sb.substring(start, end);
             current = current + reverseToString(reverseString, start, end - 1);
             start = end;
         }
@@ -58,7 +60,30 @@ public class StringClass {
 
     public static void main(String[] args) {
 
-        String test = "hgUe";
-        System.out.println(pattern(test));
+        String test = "umeaylnlfd";
+//        System.out.println(swapCharacer(test,1));
+
     }
+
+//    public static int swapCharacer(String input, int maximumSwaps) {
+//        int[] freqArray = new int[26];
+//        int distinct = 0;
+//
+//        Arrays.fill(freqArray,0);
+//
+//        for(int i =0; i<input.length();i++){
+//            freqArray[input.charAt(i) -97]++;
+//        }
+//        Arrays.sort(freqArray);
+//        int remove =0;
+//        while(maximumSwaps < 0){
+//            int min = 0;
+//            int index = 0;
+//            for(int i =0; i<26;i++){
+//
+//            }
+//        }
+//    }
+
+
 }

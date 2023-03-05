@@ -1,7 +1,6 @@
 package src.scaler.intermediate;
 
 import java.util.*;
-import java.util.Queue;
 
 public class Hashing {
 
@@ -117,7 +116,7 @@ public class Hashing {
     public static String toBinary(int A) {
         String out = "";
         while (A != 0) {
-            out = Integer.toString(A % 2) + out;
+            out = A % 2 + out;
             A = A / 2;
         }
         return out;
@@ -198,6 +197,58 @@ public class Hashing {
         return output;
     }
 
+    public static int alienHashing(String[] input, String key) {
+        HashMap<Character, Integer> map = new HashMap<>();
+
+        for (int i = 0; i < key.length(); i++) {
+            map.put(key.charAt(i), i);
+        }
+        for (int i = 0; i < input.length - 1; i++) {
+            if (map.get(input[i].charAt(0)) > map.get(input[i + 1].charAt(0))) {
+                return 0;
+            }
+            if (map.get(input[i].charAt(0)) == map.get(input[i + 1].charAt(0))) {
+                boolean flag = compareString(map, input[i], input[i + 1]);
+                if (flag) continue;
+                else return 0;
+            }
+
+        }
+        return 1;
+    }
+
+    static boolean compareString(HashMap<Character, Integer> map, String s1, String s2) {
+        for (int i = 1; i < s1.length() && i < s2.length(); i++) {
+            if (map.get(s1.charAt(i)) < map.get(s2.charAt(i)))
+                return true;
+            if (map.get(s1.charAt(i)) > map.get(s2.charAt(i)))
+                return false;
+        }
+        return s1.length() <= s2.length();
+    }
+
+    public static void main(String[] args) {
+        ArrayList<Integer> array1 = new ArrayList<>(Arrays.asList(1, 2, -2, 4, -4));
+//        ArrayList<Integer> array2 = new ArrayList<>(Arrays.asList(2, 3, 1, 2));
+//        ArrayList<Integer> array3 = new ArrayList<>(Arrays.asList(3, 3, 27, 38, 38, 42, 42, 42, 42, 42, 48, 48, 54, 54, 54, 54, 54, 54, 54, 58, 63, 65, 76, 76, 76, 86, 86, 86));
+        int element = 3;
+//        System.out.println(function(2, 10));
+        String[] test = {"hello", "scaler", "interviewbit"};
+        String check = "adhbcfegskjlponmirqtxwuvzy";
+        alienHashing(test, check);
+//        lszero(array1);
+//        System.out.println(toBinary(17));
+
+
+//        System.out.println(checkDiffK(array3, element));
+//        ArrayList<Integer> output = dNums(array3, element);
+
+//        ArrayList<Integer> output2 = commonElements(array1, array2);
+//        for (Integer e : output) {
+//            System.out.println(e);
+//        }
+    }
+
     public int getSum(int A, int B, ArrayList<Integer> C) {
         HashMap<Integer, Integer> map = new HashMap<>();
         int sum = 0;
@@ -214,30 +265,10 @@ public class Hashing {
                 if (hMap.getValue().equals(0)) {
                     zeroFlag = true;
                 }
-                sum = sum + (int) hMap.getValue();
+                sum = sum + hMap.getValue();
             }
         }
         return (!zeroFlag && sum == 0) ? -1 : sum;
-    }
-
-    public static void main(String[] args) {
-        ArrayList<Integer> array1 = new ArrayList<>(Arrays.asList(1, 2, -2, 4, -4));
-//        ArrayList<Integer> array2 = new ArrayList<>(Arrays.asList(2, 3, 1, 2));
-//        ArrayList<Integer> array3 = new ArrayList<>(Arrays.asList(3, 3, 27, 38, 38, 42, 42, 42, 42, 42, 48, 48, 54, 54, 54, 54, 54, 54, 54, 58, 63, 65, 76, 76, 76, 86, 86, 86));
-        int element = 3;
-        System.out.println(function(2, 10));
-
-        lszero(array1);
-        System.out.println(toBinary(17));
-
-
-//        System.out.println(checkDiffK(array3, element));
-//        ArrayList<Integer> output = dNums(array3, element);
-
-//        ArrayList<Integer> output2 = commonElements(array1, array2);
-//        for (Integer e : output) {
-//            System.out.println(e);
-//        }
     }
 
 //    public String solve(int A) {
