@@ -219,10 +219,8 @@ public class Hashing {
 
     static boolean compareString(HashMap<Character, Integer> map, String s1, String s2) {
         for (int i = 1; i < s1.length() && i < s2.length(); i++) {
-            if (map.get(s1.charAt(i)) < map.get(s2.charAt(i)))
-                return true;
-            if (map.get(s1.charAt(i)) > map.get(s2.charAt(i)))
-                return false;
+            if (map.get(s1.charAt(i)) < map.get(s2.charAt(i))) return true;
+            if (map.get(s1.charAt(i)) > map.get(s2.charAt(i))) return false;
         }
         return s1.length() <= s2.length();
     }
@@ -235,7 +233,8 @@ public class Hashing {
 //        System.out.println(function(2, 10));
         String[] test = {"hello", "scaler", "interviewbit"};
         String check = "adhbcfegskjlponmirqtxwuvzy";
-        alienHashing(test, check);
+//        alienHashing(test, check);
+        colorfulNumber(230);
 //        lszero(array1);
 //        System.out.println(toBinary(17));
 
@@ -247,6 +246,61 @@ public class Hashing {
 //        for (Integer e : output) {
 //            System.out.println(e);
 //        }
+    }
+
+    public static int colorfulNumber(Integer input) {
+
+        ArrayList<Integer> check = new ArrayList<>();
+        int test = input;
+        while (test != 0) {
+            check.add(test % 10);
+            test = test / 10;
+        }
+        HashSet<Integer> set = new HashSet<>();
+        Collections.reverse(check);
+        for (int i = 0; i < check.size(); i++) {
+            int product = 1;
+            for (int j = 0; j < check.size(); j++) {
+                product = product * check.get(i);
+                if (set.contains(product * check.get(i))) {
+                    return 0;
+                } else {
+                    set.add(product * check.get(i));
+                }
+            }
+        }
+        return 1;
+    }
+
+    /**
+     * Problem Description
+     * Given an integer array A containing N distinct integers.
+     * <p>
+     * Find the number of unique pairs of integers in the array whose XOR is equal to B.
+     * <p>
+     * NOTE:
+     * <p>
+     * Pair (a, b) and (b, a) is considered to be the same and should be counted once.
+     */
+    public int pairXor(ArrayList<Integer> input, int element) {
+        HashSet<String> set = new HashSet<>();
+        set.add("test");
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        for (Integer integer : input) {
+            if (map.containsKey(integer)) {
+                map.put(integer, map.get(integer) + 1);
+            } else {
+                map.put(integer, 1);
+            }
+        }
+        int count = 0;
+        for (Integer integer : input) {
+            if (map.containsKey(integer ^ element)) {
+                count++;
+            }
+        }
+        return count / 2;
     }
 
     public int getSum(int A, int B, ArrayList<Integer> C) {
