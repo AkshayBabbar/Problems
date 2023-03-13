@@ -1,7 +1,6 @@
 package src.scaler.advanced;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Array1 {
 
@@ -64,57 +63,127 @@ public class Array1 {
         return output;
     }
 
+
+    public static boolean[] sieve(int maxLimit) {
+        boolean[] sieve = new boolean[maxLimit + 1];
+        for (int i = 0; i <= maxLimit; i++) {
+            sieve[i] = true;
+        }
+        sieve[0] = false;
+        sieve[1] = false;
+
+        for (int i = 2; i <= maxLimit; i++) {
+            if (sieve[i] == true) {
+                for (int j = 2 * i; j <= maxLimit; j += i) {
+                    sieve[j] = false;
+                }
+            }
+        }
+        return sieve;
+    }
+
     /**
-     * Q1. Rain Water Trapped
+     * Prime Sum
+     * <p>
      * Problem Description
-     * Given a vector A of non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it is able to trap after raining.
+     * Given an even number A ( greater than 2 ), return two prime numbers whose sum will be equal to the given number.
+     * <p>
+     * If there is more than one solution possible, return the lexicographically smaller solution.
+     * <p>
+     * If [a, b] is one solution with a <= b, and [c,d] is another solution with c <= d, then
+     * [a, b] < [c, d], If a < c OR a==c AND b < d.
+     * NOTE: A solution will always exist. Read Goldbach's conjecture.
      * <p>
      * <p>
      * <p>
      * Problem Constraints
-     * 1 <= |A| <= 100000
+     * 4 <= A <= 2*107
      * <p>
      * <p>
      * <p>
      * Input Format
-     * First and only argument is the vector A
+     * First and only argument of input is an even number A.
      * <p>
      * <p>
      * <p>
      * Output Format
-     * Return one integer, the answer to the question
+     * Return a integer array of size 2 containing primes whose sum will be equal to given number.
      * <p>
      * <p>
      * <p>
      * Example Input
-     * Input 1:
-     * <p>
-     * A = [0, 1, 0, 2]
-     * Input 2:
-     * <p>
-     * A = [1, 2]
+     * 4
      * <p>
      * <p>
      * Example Output
-     * Output 1:
-     * <p>
-     * 1
-     * Output 2:
-     * <p>
-     * 0
+     * [2, 2]
      * <p>
      * <p>
      * Example Explanation
-     * Explanation 1:
-     * <p>
-     * 1 unit is trapped on top of the 3rd element.
-     * Explanation 2:
-     * <p>
-     * No water is trapped.
+     * There is only 1 solution for A = 4.
      */
-    
+    public static ArrayList<Integer> primesum(int A) {
+
+        boolean[] sieveArray = sieve(A);
+        ArrayList<Integer> out = new ArrayList<>(2);
+        for (int i = 0; i < sieveArray.length; i++) {
+            if (sieveArray[i] && sieveArray[A - i]) {
+                out.add(i);
+                out.add(A - i);
+                break;
+            }
+        }
+        return out;
+
+    }
+
+
+    /**
+     * Q4. Distinct Primes
+     * You have given an array A having N integers. Let say G is the product of all elements of A.
+     * <p>
+     * You have to find the number of distinct prime divisors of G.
+     * <p>
+     * Input Format
+     * <p>
+     * The first argument given is an Array A, having N integers.
+     * Output Format
+     * <p>
+     * Return an Integer, i.e number of distinct prime divisors of G.
+     * Constraints
+     * <p>
+     * 1 <= N <= 1e5
+     * 1 <= A[i] <= 1e5
+     * For Example
+     * <p>
+     * Input:
+     * A = [1, 2, 3, 4]
+     * Output:
+     * 2
+     * <p>
+     * Explanation:
+     * here G = 1 * 2 * 3 * 4 = 24
+     * and distinct prime divisors of G are [2, 3]
+     */
+    public static int distinctPrime(ArrayList<Integer> A) {
+        int max = Integer.MIN_VALUE;
+        for (Integer i : A) {
+            max = Math.max(max, i);
+        }
+
+        HashSet<Integer> set = new HashSet<>();
+        for (int i = 2; i < A.size(); i++) {
+            boolean[] sieveArray = sieve(A.get(i));
+            for (int j = 0; j < sieveArray.length; j++) {
+                if (sieveArray[j]) {
+                    set.add(j);
+                }
+            }
+        }
+        return set.size();
+    }
 
     public static void main(String[] args) {
-
+        System.out.println(primesum(16777214));
     }
 }
