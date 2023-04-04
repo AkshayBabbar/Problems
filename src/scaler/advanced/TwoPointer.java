@@ -173,16 +173,37 @@ public class TwoPointer {
         return maxVol;
     }
 
+    public static int countRect(ArrayList<Integer> input, int limiter) {
+
+        int count = 0;
+        int i = 0;
+        int j = input.size();
+        while (i < j) {
+            int sum = input.get(i) * input.get(j);
+            if (sum < limiter) {
+                count = count + 2;
+                j--;
+            }
+            if (input.get(i) < limiter) {
+                i++;
+            } else {
+                j--;
+            }
+        }
+
+        return count;
+    }
+
     public static void main(String[] args) {
 
-        ArrayList<Integer> tc1 = new ArrayList<>(Arrays.asList(-5, 1, 4, -7, 10, -7, 0, 7, 3, 0, -2, -5, -3, -6, 4, -7, -8, 0, 4, 9, 4, 1, -8, -6, -6, 0, -9, 5, 3, -9, -5, -9, 6, 3, 8, -10, 1, -2, 2, 1, -9, 2, -3, 9, 9, -10, 0, -9, -2, 7, 0, -4, -3, 1, 6, -3));
-        ArrayList<Integer> tc2 = new ArrayList<>(Arrays.asList(1, -4, 0, 0, 5, -5, 1, 0, -2, 4, -4, 1, -1, -4, 3, 4, -1, -1, -3));
-        int temp = -1;
+//        ArrayList<Integer> tc1 = new ArrayList<>(Arrays.asList(-5, 1, 4, -7, 10, -7, 0, 7, 3, 0, -2, -5, -3, -6, 4, -7, -8, 0, 4, 9, 4, 1, -8, -6, -6, 0, -9, 5, 3, -9, -5, -9, 6, 3, 8, -10, 1, -2, 2, 1, -9, 2, -3, 9, 9, -10, 0, -9, -2, 7, 0, -4, -3, 1, 6, -3));
+//        ArrayList<Integer> tc2 = new ArrayList<>(Arrays.asList(1, -4, 0, 0, 5, -5, 1, 0, -2, 4, -4, 1, -1, -4, 3, 4, -1, -1, -3));
+//        int temp = -1;
 //        System.out.println(pairsWithGivenSum(tc1, temp));
 //        ArrayList<Integer> tc2 = new ArrayList<>(List.of(0));
 //        sortColors(tc2);
-        System.out.println(pairsWithGivenSum(tc1, temp));
-        threeSumZero(tc2);
+//        System.out.println(pairsWithGivenSum(tc1, temp));
+//        threeSumZero(tc2);
 
     }
 

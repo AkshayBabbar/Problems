@@ -85,6 +85,26 @@ public class BitManipulation {
         return (int) ans;
     }
 
+    public ArrayList<Integer> grayCode(int a) {
+        ArrayList<Integer> al = new ArrayList<Integer>();
+        if (a == 1) {
+            al.add(0);
+            al.add(1);
+            return al;
+        }
+        ArrayList<Integer> temp = new ArrayList<Integer>();
+        temp.addAll(grayCode(a - 1));
+        ArrayList<Integer> ans = new ArrayList<Integer>();
+        for (int i = 0; i < temp.size(); i++) {
+            ans.add(temp.get(i));
+        }
+        for (int i = temp.size() - 1; i >= 0; i--) {
+            ans.add(temp.get(i) + (1 << (a - 1)));
+        }
+        return ans;
+    }
+
+
     public String addBinary(String A, String B) {
         int len1 = A.length();
         int len2 = B.length();
