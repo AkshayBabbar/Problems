@@ -1,6 +1,8 @@
 package src.Interview.collectionDemo;
 
-public class LinkedListCustom<E> {
+import java.io.Serializable;
+
+public class LinkedListCustom<E> implements Serializable {
 
     /**
      * Pointer to the first node.

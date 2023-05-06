@@ -127,11 +127,85 @@ public class PQDriver {
         return ans;
     }
 
+    /**
+     * Q1. Magician and Chocolates
+     * Problem Description
+     * Given N bags, each bag contains Bi chocolates. There is a kid and a magician.
+     * In a unit of time, the kid can choose any bag i, and eat Bi chocolates from it, then the magician will fill the ith bag with floor(Bi/2) chocolates.
+     * <p>
+     * Find the maximum number of chocolates that the kid can eat in A units of time.
+     * <p>
+     * NOTE:
+     * <p>
+     * floor() function returns the largest integer less than or equal to a given number.
+     * Return your answer modulo 109+7
+     * <p>
+     * <p>
+     * Problem Constraints
+     * 1 <= N <= 100000
+     * 0 <= B[i] <= INT_MAX
+     * 0 <= A <= 105
+     * <p>
+     * <p>
+     * Input Format
+     * The first argument is an integer A.
+     * The second argument is an integer array B of size N.
+     * <p>
+     * <p>
+     * Output Format
+     * Return an integer denoting the maximum number of chocolates the kid can eat in A units of time.
+     * <p>
+     * Example Input
+     * Input 1:
+     * <p>
+     * A = 3
+     * B = [6, 5]
+     * Input 2:
+     * <p>
+     * A = 5
+     * b = [2, 4, 6, 8, 10]
+     * <p>
+     * Example Output
+     * Output 1:
+     * 14
+     * Output 2:
+     * 33
+     * <p>
+     * Example Explanation
+     * Explanation 1:
+     * <p>
+     * At t = 1 kid eats 6 chocolates from bag 0, and the bag gets filled by 3 chocolates.
+     * At t = 2 kid eats 5 chocolates from bag 1, and the bag gets filled by 2 chocolates.
+     * At t = 3 kid eats 3 chocolates from bag 0, and the bag gets filled by 1 chocolate.
+     * so, total number of chocolates eaten are 6 + 5 + 3 = 14
+     * Explanation 2:
+     * <p>
+     * Maximum number of chocolates that can be eaten is 33.
+     */
+    public static int nchoc(int time, ArrayList<Integer> bag) {
+        int ans = 0;
+        PriorityQueue<Integer> pq = new PriorityQueue<>(bag.size(), Collections.reverseOrder());
+        int mod = 1000_000_000 + 7;
+
+        for (Integer iterator : bag) {
+
+            pq.offer(iterator);
+            Math
+        }
+        while (time > 0) {
+            int top = pq.poll();
+            ans = (ans + top) % mod;
+            pq.offer((top / 2));
+            time--;
+        }
+        return ans % mod;
+    }
+
     public static void main(String[] args) {
 
 //        ArrayList<Integer> inputTC1 = new ArrayList<>(Arrays.asList(57, 3, -14, -87, 42, 38, 31, -7, -28, -61));
-        ArrayList<Integer> inputTC2 = new ArrayList<>(Arrays.asList(16, 7, 3, 5, 9, 8, 6, 15));
-        System.out.println(getMinRopes(inputTC2));
+        ArrayList<Integer> inputTC2 = new ArrayList<>(Arrays.asList(2147483647, 2000000014, 2147483647));
+        System.out.println(nchoc(10, inputTC2));
 
         int k = 10;
 //        System.out.println(maxSum(inputTC1, k));
