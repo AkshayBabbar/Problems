@@ -190,7 +190,7 @@ public class PQDriver {
         for (Integer iterator : bag) {
 
             pq.offer(iterator);
-            Math
+
         }
         while (time > 0) {
             int top = pq.poll();

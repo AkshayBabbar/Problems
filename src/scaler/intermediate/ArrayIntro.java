@@ -2,7 +2,6 @@ package src.scaler.intermediate;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 
 public class ArrayIntro {
 
@@ -24,15 +23,71 @@ public class ArrayIntro {
         }
     }
 
+    public static int longestConsecutiveString(String A) {
+        int len = A.length();
+        int[] left = new int[len];
+        int[] right = new int[len];
+        if (A.charAt(0) == '1') {
+            left[0] = 1;
+        } else {
+            left[0] = 0;
+        }
+        if (A.charAt(len - 1) == '1')
+            right[len - 1] = 1;
+        else
+            right[len - 1] = 0;
+
+        for (int i = 1; i < len; i++) {
+            if (A.charAt(i) == '1') {
+                left[i] = left[i - 1] + 1;
+            } else {
+                left[i] = 0;
+            }
+        }
+        for (int i = len - 2; i >= 0; i--) {
+            if (A.charAt(i) == '1') {
+                right[i] = right[i + 1] + 1;
+            } else
+                right[i] = 0;
+        }
+        int cnt_1 = 0;
+        int max_cnt = 0;
+        for (int i = 0; i < len; i++) {
+            if (A.charAt(i) == '1') {
+                cnt_1++;
+            }
+        }
+        int cnt = 0;
+        int sum = 0;
+        for (int i = 1; i < len - 1; i++) {
+            if (A.charAt(i) == '0') {
+                sum = left[i - 1] + right[i + 1];
+                if (sum < cnt_1) {
+                    cnt = sum + 1;
+                }
+                else{
+                    cnt = sum;
+                }
+                max_cnt = Math.max(cnt, max_cnt);
+                cnt=0;
+            }
+        }
+        return max_cnt;
+
+    }
+
     public static void main(String[] args) {
         ArrayList<Integer> test = new ArrayList<>();
+        int[] check = new int[]{1, 2, 3, 7, 3, 2, 1};
+        System.out.println(longestConsecutiveString("1111111111111"));
+//        getEquilibrium(check);
 
 //        test.add(1);
 //        test.add(2);
 //        test.add(4);
 //        test.add(5);
 //        Collections.addAll(test, 1, 2, 3, 7, 1, 2, 3);
-        Collections.addAll(test, -533, -666, -500, 169, 724, 478, 358, -38, -536, 705, -855, 281, -173, 961, -509, -5, 942, -173, 436, -609, -396, 902, -847, -708, -618, 421, -284, 718, 895, 447, 726, -229, 538, 869, 912, 667, -701, 35, 894, -297, 811, 322, -667, 673, -336, 141, 711, -747, -132, 547, 644, -338, -243, -963, -141, -277, 741, 529, -222, -684, 35);
+//        Collections.addAll(test, -533, -666, -500, 169, 724, 478, 358, -38, -536, 705, -855, 281, -173, 961, -509, -5, 942, -173, 436, -609, -396, 902, -847, -708, -618, 421, -284, 718, 895, 447, 726, -229, 538, 869, 912, 667, -701, 35, 894, -297, 811, 322, -667, 673, -336, 141, 711, -747, -132, 547, 644, -338, -243, -963, -141, -277, 741, 529, -222, -684, 35);
 //        ArrayList<Integer> out = rotate(test, 3);
 //        for (int i = 0; i < out.size(); i++) {
 //            System.out.print(out.get(i) + " ");
@@ -58,15 +113,16 @@ public class ArrayIntro {
 //        for (int i = 0; i < output.size(); i++) {
 //            System.out.println(output.get(i));
 //        }
-        ArrayIntro arrayIntro = new ArrayIntro();
+//        ArrayIntro arrayIntro = new ArrayIntro();
 //        int output = arrayIntro.getEquilibrium(test);
-        int output = arrayIntro.maxPossibleSum(test,48);
+//        int output = arrayIntro.maxPossibleSum(test,48);
 
-        if (output != -1) {
-            System.out.println("Equilibrium point is " + output);
-        } else {
-            System.out.println("There is no equilibrium point exist.");
-        }
+//        if (output != -1) {
+//            System.out.println("Equilibrium point is " + output);
+//        } else {
+//            System.out.println("There is no equilibrium point exist.");
+//        }
+
 
     }
 
@@ -146,10 +202,35 @@ public class ArrayIntro {
 
     }
 
+    public static int getEquilibrium(int[] A) {
+        int[] pfsum = new int[A.length];
+        pfsum[0] = A[0];
+        int size = A.length;
+        int totlSum = 0;
+        for (int i = 0; i < size; i++) {
+            totlSum += A[i];
+        }
+        int rightSum[] = new int[A.length];
+        rightSum[0] = totlSum - A[0];
+        if (rightSum[0] == 0) {
+            return 0;
+        }
+        for (int i = 1; i < size; i++) {
+            pfsum[i] = pfsum[i - 1] + A[i];
+            rightSum[i] = totlSum - pfsum[i];
+            if (rightSum[i] == pfsum[i - 1]) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
     /**
      * You are given an integer array A of size N.
      * You have to pick B elements in total. Some (possibly 0) elements from left end of array A and some (possibly 0) from the right end of array A to get the maximum sum.
      * Find and return this maximum possible sum.
+     *
      * @param A
      * @param B
      * @return integer
@@ -159,16 +240,16 @@ public class ArrayIntro {
         int n = A.size();
         int ans = Integer.MIN_VALUE;
         int curr = 0;
-        int back= B-1;
-        for(int i =0;i<B;i++){
+        int back = B - 1;
+        for (int i = 0; i < B; i++) {
             curr = A.get(i) + curr;
         }
         // got Current Value till B;
-        ans = Math.max(curr,ans);
-        for(int i=0; i<B; i++){
-            if(back!=-1){
-                curr = curr - A.get(back -i) + A.get(n-1-i);
-                ans = Math.max(ans,curr);
+        ans = Math.max(curr, ans);
+        for (int i = 0; i < B; i++) {
+            if (back != -1) {
+                curr = curr - A.get(back - i) + A.get(n - 1 - i);
+                ans = Math.max(ans, curr);
             }
         }
 
