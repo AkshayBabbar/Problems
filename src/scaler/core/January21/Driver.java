@@ -1,5 +1,8 @@
 package src.scaler.core.January21;
 
+/**
+ * @purpose: Thread starting
+ */
 public class Driver {
     public static void main(String[] args) {
         Thread t = new Thread();
