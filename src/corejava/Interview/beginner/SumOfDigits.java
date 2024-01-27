@@ -11,7 +11,6 @@ public class SumOfDigits {
     public static int sumOfDigits(int test) {
         int sum = 0;
         int remainder;
-
         for (int i = 0; i < test; i++) {
 
             remainder = test % 10;
@@ -20,7 +19,6 @@ public class SumOfDigits {
         }
         return sum;
     }
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter the digits.");
