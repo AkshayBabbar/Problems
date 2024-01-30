@@ -1,12 +1,20 @@
 package src.scaler.core.January28.AdderSubtracter;
 
 import java.util.concurrent.Callable;
+import java.util.concurrent.locks.Lock;
 
 public class Adder implements Callable {
     private Count count;
+    private Lock lock;
 
+    public Adder(Count count, Lock lock) {
+        this.count = count;
+        this.lock = lock;
+    }
 
-
+    public Adder(Count count) {
+        this.count = count;
+    }
 
     /**
      * Computes a result, or throws an exception if unable to do so.
@@ -17,8 +25,11 @@ public class Adder implements Callable {
     @Override
     public Integer call() throws Exception {
         for (int i = 0; i <=1000; i++) {
-//            count.value +=i;
+            lock.lock();
+            System.out.println("INSIDE LOCK");
+            count.value.incrementAndGet();
+            lock.unlock();
         }
-        return Integer.valueOf(1);
+        return count.value.get();
     }
 }
