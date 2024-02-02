@@ -19,4 +19,12 @@ class NodeIterator implements Iterator<Integer>{
         current = current.next;
         return data;
     }
+
+    /**
+     * @return
+     */
+    @Override
+    public Iterator<src.scaler.core.january31.Node> iterator() {
+        return null;
+    }
 }

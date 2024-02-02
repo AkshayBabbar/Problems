@@ -1,5 +1,7 @@
 package src.Interview.collectionDemo;
 
+import src.scaler.core.january31.Node;
+
 import java.util.Objects;
 
 public interface Iterator<T> {
@@ -20,4 +22,5 @@ public interface Iterator<T> {
         }
     }
 
+    Iterator<Node> iterator();
 }

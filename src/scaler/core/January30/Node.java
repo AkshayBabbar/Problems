@@ -17,6 +17,7 @@ public class Node implements Iterable<Integer> {
      */
     @Override
     public Iterator<Integer> iterator() {
-        return new NodeIterator(this);
+
+        return null;
     }
 }
