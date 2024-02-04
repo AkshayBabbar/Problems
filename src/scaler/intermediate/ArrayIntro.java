@@ -2,6 +2,7 @@ package src.scaler.intermediate;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 public class ArrayIntro {
 
@@ -80,18 +81,18 @@ public class ArrayIntro {
         ArrayList<Integer> test = new ArrayList<>();
         int[] check = new int[]{1, 2, 3, 7, 3, 2, 1};
         System.out.println(longestConsecutiveString("1111111111111"));
-//        getEquilibrium(check);
+        getEquilibrium(check);
 
-//        test.add(1);
-//        test.add(2);
-//        test.add(4);
-//        test.add(5);
-//        Collections.addAll(test, 1, 2, 3, 7, 1, 2, 3);
-//        Collections.addAll(test, -533, -666, -500, 169, 724, 478, 358, -38, -536, 705, -855, 281, -173, 961, -509, -5, 942, -173, 436, -609, -396, 902, -847, -708, -618, 421, -284, 718, 895, 447, 726, -229, 538, 869, 912, 667, -701, 35, 894, -297, 811, 322, -667, 673, -336, 141, 711, -747, -132, 547, 644, -338, -243, -963, -141, -277, 741, 529, -222, -684, 35);
-//        ArrayList<Integer> out = rotate(test, 3);
-//        for (int i = 0; i < out.size(); i++) {
-//            System.out.print(out.get(i) + " ");
-//        }
+        test.add(1);
+        test.add(2);
+        test.add(4);
+        test.add(5);
+        Collections.addAll(test, 1, 2, 3, 7, 1, 2, 3);
+        Collections.addAll(test, -533, -666, -500, 169, 724, 478, 358, -38, -536, 705, -855, 281, -173, 961, -509, -5, 942, -173, 436, -609, -396, 902, -847, -708, -618, 421, -284, 718, 895, 447, 726, -229, 538, 869, 912, 667, -701, 35, 894, -297, 811, 322, -667, 673, -336, 141, 711, -747, -132, 547, 644, -338, -243, -963, -141, -277, 741, 529, -222, -684, 35);
+        ArrayList<Integer> out = rotate(test, 3);
+        for (int i = 0; i < out.size(); i++) {
+            System.out.print(out.get(i) + " ");
+        }
 
 //        ArrayList<ArrayList<Integer>> check = new ArrayList<>();
 //        check.add(new ArrayList<>(Arrays.asList(1, 38)));
