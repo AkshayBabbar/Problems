@@ -45,6 +45,38 @@ public class Demo {
 //        this(x, y);
 //    }
 
+    public int getSum(int A, int B, ArrayList<Integer> C) {
+        int mod = (int) 1e9 + 7;
+        HashMap<Integer, Integer> map = new HashMap<>();
+        ArrayList<Integer> L = new ArrayList<>();
+        for (int i = 0; i < A; i++) {
+            if (map.containsKey(C.get(i))) {
+                map.put(C.get(i), map.get(C.get(i)) + 1);
+                if (map.get(C.get(i)) == B) {
+                    L.add(C.get(i));
+                }
+                if (map.get(C.get(i)) > B) {
+                    L.remove(C.get(i));
+                }
+            } else {
+                map.put(C.get(i), 1);
+                if (map.get(C.get(i)) == B) { // if B==1 ;
+                    L.add(C.get(i));
+                }
+            }
+        }
+        int N = L.size();
+        int sum = 0;
+        for (int j = 0; j < N; j++) {
+            sum = sum + L.get(j);
+        }
+        if (N == 0) {
+            return -1;
+        } // if all elemants are distinct
+        else
+            return sum % mod;
+    }
+
     static Integer getAscii(String str) {
         return str.length();
     }
@@ -63,11 +95,11 @@ public class Demo {
 
     public static void getShoCode(int n) {
 
-        String[] s = {"afsa","afsa"};
+        String[] s = {"afsa", "afsa"};
         s[0].compareTo(s[1]);
 
         ArrayList<Integer> test = new ArrayList<>();
-        Map<Integer,Integer> hMap = new HashMap<>();
+        Map<Integer, Integer> hMap = new HashMap<>();
         int max = Integer.MAX_VALUE;
 
 
