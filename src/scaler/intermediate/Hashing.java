@@ -272,6 +272,24 @@ public class Hashing {
         return 1;
     }
 
+    public int diffPossible(final List<Integer> A, int B) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < A.size(); i++) {
+            int checkKey = B - A.get(i);
+            // Non Duplicate Cases.
+            if (map.containsKey(checkKey)) {
+                return 1;
+            }
+            // Duplicate Cases
+            if (map.containsKey(checkKey) && map.get(checkKey) > 2) {
+                return 1;
+            }
+            map.put(A.get(i), map.getOrDefault(A.get(i), 0) + 1);
+
+        }
+        return 0;
+    }
+
     /**
      * Problem Description
      * Given an integer array A containing N distinct integers.
