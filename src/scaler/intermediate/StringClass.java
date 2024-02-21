@@ -58,6 +58,23 @@ public class StringClass {
 
     }
 
+    public static int checkBOB(String A) {
+        int start = 0;
+        int end = 2;
+        int count=0;
+
+        while(end!=A.length()-1){
+            if(A.charAt(start) == 'b' && A.charAt(start+1) == 'o' && A.charAt(end) == 'b'){
+                count++;
+                start +=2;
+                end+=2;
+            }
+            start++;
+            end++;
+        }
+        return count;
+
+    }
     public static void main(String[] args) {
 
         String test = "umeaylnlfd";

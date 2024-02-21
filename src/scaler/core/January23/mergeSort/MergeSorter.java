@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Future;
 
 public class MergeSorter implements Callable<List<Integer>> {
 
@@ -13,27 +12,28 @@ public class MergeSorter implements Callable<List<Integer>> {
     private ExecutorService executorService;
 
 
-    MergeSorter(List<Integer> arrayToSort, ExecutorService executorService){
+    MergeSorter(List<Integer> arrayToSort, ExecutorService executorService) {
         this.arrayToSort = arrayToSort;
         this.executorService = executorService;
     }
+
     @Override
     public List<Integer> call() throws Exception {
         System.out.println("Call thread name " + Thread.currentThread().getName());
 
 //        Base case
-        if(arrayToSort.size()<=1){
+        if (arrayToSort.size() <= 1) {
             return arrayToSort;
         }
 
-        int mid = arrayToSort.size()/2;
+        int mid = arrayToSort.size() / 2;
 
         List<Integer> leftArray = new ArrayList<>();
-        for(int i =0; i<mid; i++){
+        for (int i = 0; i < mid; i++) {
             leftArray.add(arrayToSort.get(i));
         }
         List<Integer> rightArray = new ArrayList<>();
-        for(int i =mid; i< arrayToSort.size(); i++){
+        for (int i = mid; i < arrayToSort.size(); i++) {
             rightArray.add(arrayToSort.get(i));
         }
 
@@ -42,10 +42,21 @@ public class MergeSorter implements Callable<List<Integer>> {
 
         List<Integer> leftSortedArray = leftSorter.call();
         List<Integer> rightSortedArray = rightSorter.call();
-
-        int i=0,j=0;
-
-        List<Integer> leftSortedArray =
-
+        // Merge the sorted halves
+        List<Integer> mergedArray = new ArrayList<>();
+        int i = 0, j = 0;
+        while (i < leftSortedArray.size() && j < rightSortedArray.size()) {
+            if (leftSortedArray.get(i) <= rightSortedArray.get(j)) {
+                mergedArray.add(leftSortedArray.get(i));
+                i++;
+            } else {
+                mergedArray.add(rightSortedArray.get(j));
+                j++;
+            }
+        }
+        // Add remaining elements from either list
+        mergedArray.addAll(leftSortedArray.subList(i, leftSortedArray.size()));
+        mergedArray.addAll(rightSortedArray.subList(j, rightSortedArray.size()));
+        return mergedArray;
     }
 }

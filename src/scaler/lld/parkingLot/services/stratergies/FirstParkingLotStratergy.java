@@ -15,15 +15,15 @@ public class FirstParkingLotStratergy implements ParkingSlotAllocationStrategy{
     private ParkingSpotRepository psRepo;
     @Override
     public ParkingSpot assignParkingSlot(Long gateId, VehicleType vehicleType) {
-        ParkingFloor parkingFloor = plRepo.getParkingLotByGateId(gateId);
-        List<ParkingSpot> allParkingSlots = psRepo.getAllParkingSlotsByParkingLotId(parkingFloor.getId());
-
-        for(ParkingSpot ps: allParkingSlots){
-            if(ps.getParkingSpotStatus().equals(ParkingSpotStatus.AVAILABLE) &&
-                    ps.getVehicleTypeSupported().equals(vehicleType)){
-                return ps;
-            }
-        }
+//        ParkingFloor parkingFloor = plRepo.getParkingLotByGateId(gateId);
+//        List<ParkingSpot> allParkingSlots = psRepo.getAllParkingSlotsByParkingLotId(parkingFloor.getId());
+//
+//        for(ParkingSpot ps: allParkingSlots){
+//            if(ps.getParkingSpotStatus().equals(ParkingSpotStatus.AVAILABLE) &&
+//                    ps.getVehicleTypeSupported().equals(vehicleType)){
+//                return ps;
+//            }
+//        }
         return  null;
     }
 }

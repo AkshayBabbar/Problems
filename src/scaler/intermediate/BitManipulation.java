@@ -1,7 +1,6 @@
 package src.scaler.intermediate;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class BitManipulation {
 
@@ -46,17 +45,29 @@ public class BitManipulation {
         return output;
     }
 
+    public static String repeatNumber(int A, int B) {
+        String test = "";
+        for (int i = 0; i < A; i++) {
+            test += '1';
+        }
+        for (int i = 0; i < B; i++) {
+            test += '0';
+        }
+        return test;
+    }
+
     public static void main(String[] args) {
 
-        BitManipulation bit = new BitManipulation();
-        ArrayList<Integer> input = new ArrayList<>(Arrays.asList(186, 256, 102, 377, 186, 377));
-        uniqueDouble(input);
-        System.out.println(bit.addBinary("1", "1"));
-        String check = bit.addBinary("110", "10");
-        String test = "1001110001111010101001110";
-        System.out.println(check.compareTo(test));
-        System.out.println(bit.unsetBits(53L, 5));
-        System.out.println(reverse(13));
+//        BitManipulation bit = new BitManipulation();
+//        ArrayList<Integer> input = new ArrayList<>(Arrays.asList(186, 256, 102, 377, 186, 377));
+//        uniqueDouble(input);
+//        System.out.println(bit.addBinary("1", "1"));
+//        String check = bit.addBinary("110", "10");
+//        String test = "1001110001111010101001110";
+//        System.out.println(check.compareTo(test));
+//        System.out.println(bit.unsetBits(53L, 5));
+//        System.out.println(reverse(13));
+        System.out.println(repeatNumber(2, 3));
 
     }
 
@@ -83,6 +94,37 @@ public class BitManipulation {
             ans = ans % mod;
         }
         return (int) ans;
+    }
+
+    public ArrayList<Integer> solve(String A, ArrayList<ArrayList<Integer>> B) {
+        int row = B.size();
+        int col = B.get(0).size();
+        int[] prefixSum = new int[A.length()];
+        ArrayList<Integer> output = new ArrayList<>();
+
+        prefixSum[0] = (isVowel(A.charAt(0)) ? 1 : 0);
+        for(int i =1; i<A.length(); i++){
+            if(isVowel(A.charAt(i))){
+                prefixSum[i] = 1 + prefixSum[i-1];
+            }
+            prefixSum[i] = prefixSum[i-1];
+        }
+       for(int i =0; i< row;i++){
+           for (int j =0; j<2; j++){
+                 int end = prefixSum[B.get(i).get(j)+1];
+                 output.add(end);
+           }
+       }
+       return output;
+
+//        for(int i =0; i<A)
+    }
+
+    public static boolean isVowel(char c) {
+        if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
+            return true;
+        }
+        return false;
     }
 
     public ArrayList<Integer> grayCode(int a) {

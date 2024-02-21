@@ -12,10 +12,10 @@ public class Client {
 //        TicketService ts = new TicketService();
 //        TicketController tc = new TicketController(ts);
 
-        GenerateTicketRequestDTO requestDTO = new GenerateTicketRequestDTO();
-        requestDTO.setGateId(10L);
-        requestDTO.setVehicleType(VehicleType.LIGHT);
-        requestDTO.setVehicleNumber("DL9C9366");
+//        GenerateTicketRequestDTO requestDTO = new GenerateTicketRequestDTO();
+//        requestDTO.setGateId(10L);
+//        requestDTO.setVehicleType(VehicleType.LIGHT);
+//        requestDTO.setVehicleNumber("DL9C9366");
 
 //        GenerateTicketResponseDTO responseDTO = tc.generateTicket(requestDTO);
 //        if(responseDTO.getResponseStatus() == ResponseStatus.OK){

@@ -28,28 +28,28 @@ public class TicketService {
     }
 
     public Ticket generateTicket(Long gateId, String vehicleNumber, VehicleType vehicleType) throws NoSlotAssignedException {
-        Gate gate = gateService.getGateById(gateId);
-        Vehicle vehicle = vehicleService.getVehicleByNumber(vehicleNumber);
-        if(vehicle == null){
-            vehicle = vehicleService.registerVehicle(vehicleNumber, vehicleType);
-        }
-
-        ParkingSpot assignedSlot = pas.assignParkingSlot(gateId, vehicleType);
-        if(assignedSlot == null){
-            throw new NoSlotAssignedException();
-        }
+//        Gate gate = gateService.getGateById(gateId);
+//        Vehicle vehicle = vehicleService.getVehicleByNumber(vehicleNumber);
+//        if(vehicle == null){
+//            vehicle = vehicleService.registerVehicle(vehicleNumber, vehicleType);
+//        }
+//
+//        ParkingSpot assignedSlot = pas.assignParkingSlot(gateId, vehicleType);
+//        if(assignedSlot == null){
+//            throw new NoSlotAssignedException();
+//        }
 
         // HIT the ParkingSlotService to mark this slot as occupied now
 
         // set 5 properties in ticket and save it to db
         Ticket ticket = new Ticket();
-        ticket.setStartTime(new Date());
-        ticket.setEntryGate(gate);
-        ticket.setVehicle(vehicle);
-        ticket.setOperator(gate.getOperator());
-        ticket.setParkingSpotOccupied(assignedSlot);
-
-        tr.save(ticket);
+//        ticket.setStartTime(new Date());
+//        ticket.setEntryGate(gate);
+//        ticket.setVehicle(vehicle);
+//        ticket.setOperator(gate.getOperator());
+//        ticket.setParkingSpotOccupied(assignedSlot);
+//
+//        tr.save(ticket);
 
         return ticket;
     }
