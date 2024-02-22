@@ -208,6 +208,9 @@ public class ArrayIntro {
 
     public static ArrayList<Integer> maxPosSubArray(ArrayList<Integer> A) {
         int posCount = 0;
+        ArrayList<Character> characters = new ArrayList<>();
+        characters.set(2, (char) ('a'+26));
+
         ArrayList<Integer> posArray = new ArrayList<>();
         for (int i = 0; i < A.size(); i++) {
             if (A.get(i) > 0) {

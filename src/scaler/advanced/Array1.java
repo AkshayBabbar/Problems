@@ -1,6 +1,7 @@
 package src.scaler.advanced;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Array1 {
 
@@ -181,6 +182,65 @@ public class Array1 {
             }
         }
         return set.size();
+    }
+
+    public static long[][] constructPrefMat(int[][] A) {
+        long[][] prefMat = new long[A.length][A[0].length];
+        for (int i = 0; i < A.length; i++) {
+            prefMat[i][0] = A[i][0];
+            //row wise prefix
+            for (int j = 1; j < A[0].length; j++) {
+                prefMat[i][j] = prefMat[i][j - 1] + A[i][j];
+            }
+        }
+        //col wise prefix
+        for (int i = 0; i < A[0].length; i++) {
+            for (int j = 1; j < A.length; j++) {
+                prefMat[j][i] = prefMat[j][i] + prefMat[j - 1][i];
+            }
+        }
+        return prefMat;
+    }
+
+    public int maxSubSquareMatrix(int[][] A, int B) {
+        //get prefix matrix
+        long[][] prefMat = constructPrefMat(A);
+        long maxSum = Integer.MIN_VALUE, sum;
+
+        //it means the whole matrix is our answer, as there is no other matrix
+        if (A.length == B && A[0].length == B) return (int) calculateSum(prefMat, 0, 0, B - 1, B - 1);
+
+        //get top-right using 2 loops
+        //get x1
+        for (int x1 = 0; x1 <= A.length - B; x1++) {
+            //get y1
+            for (int y1 = 0; y1 <= A[0].length - B; y1++) {
+                //x2=x1+B-1, y2=y1+B-1
+                sum = calculateSum(prefMat, x1, y1, x1 + B - 1, y1 + B - 1);
+                maxSum = Math.max(maxSum, sum);
+
+            }
+        }
+
+        return (int) maxSum;
+    }
+
+    public static long calculateSum(long[][] A, int x1, int y1, int x2, int y2) {
+
+        long sum = A[x2][y2];
+        if (x1 == 0 && y1 == 0) {
+            return sum;
+        }
+        if (x1 == 0) {
+            sum -= A[x2][y1 - 1];
+        }
+        if (y1 == 0) {
+            sum -= A[x1 - 1][y2];
+        }
+        if (x1 != 0 && y1 != 0) {
+            sum = sum - A[x2][y1 - 1] - A[x1 - 1][y2] + A[x1 - 1][y1 - 1];
+        }
+        return sum;
     }
 
     public static void main(String[] args) {
