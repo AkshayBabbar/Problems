@@ -24,6 +24,18 @@ public class ArrayIntro {
         }
     }
 
+    public static ArrayList<Integer> reverse(ArrayList<Integer> input) {
+        int i = 0, j = input.size() - 1;
+        while (i < j) {
+            int temp = input.get(i);
+            input.set(i,input.get(j));
+            input.set(j,temp);
+            i++;
+            j--;
+        }
+        return input;
+    }
+
     public static int longestConsecutiveString(String A) {
         int len = A.length();
         int[] left = new int[len];
