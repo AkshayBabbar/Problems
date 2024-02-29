@@ -1,69 +1,10 @@
 package src.scaler.advanced;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 
 public class Array1 {
-
-    /**
-     * Q2. <B>Max Non Negative SubArray</B>
-     * <p>Given an array of integers, A of length N, find out the maximum sum sub-array of non negative numbers from A.
-     * The sub-array should be contiguous i.e., a sub-array created by choosing the second and fourth element and skipping the third element is invalid.
-     * <p>
-     * Maximum sub-array is defined in terms of the sum of the elements in the sub-array.
-     * <p>
-     * Find and return the required subarray.
-     * <p>
-     * NOTE:
-     * <p>
-     * 1. If there is a tie, then compare with segment's length and return segment which has maximum length.
-     * 2. If there is still a tie, then return the segment with minimum starting index.
-     * <p>
-     * <p>
-     * Input Format:
-     * <p>
-     * The first and the only argument of input contains an integer array A, of length N.
-     * Output Format:
-     * <p>
-     * Return an array of integers, that is a subarray of A that satisfies the given conditions.
-     * Constraints:
-     * <p>
-     * 1 <= N <= 1e5
-     * -INT_MAX < A[i] <= INT_MAX
-     * Examples:
-     * <p>
-     * Input 1:
-     * A = [1, 2, 5, -7, 2, 3]
-     * <p>
-     * Output 1:
-     * [1, 2, 5]
-     * <p>
-     * Explanation 1:
-     * The two sub-arrays are [1, 2, 5] [2, 3].
-     * The answer is [1, 2, 5] as its sum is larger than [2, 3].
-     * <p>
-     * Input 2:
-     * A = [10, -1, 2, 3, -4, 100]
-     * <p>
-     * Output 2:
-     * [100]
-     * <p>
-     * Explanation 2:
-     * The three sub-arrays are [10], [2, 3], [100].
-     * The answer is [100] as its sum is larger than the other two.
-     */
-    public ArrayList<Integer> maxset(ArrayList<Integer> A) {
-        ArrayList<Integer> output = new ArrayList<>();
-        for (Integer i : A) {
-            if (i > 0) {
-                output.add(i);
-            } else {
-                output.clear();
-            }
-        }
-        return output;
-    }
-
 
     public static boolean[] sieve(int maxLimit) {
         boolean[] sieve = new boolean[maxLimit + 1];
@@ -138,7 +79,6 @@ public class Array1 {
 
     }
 
-
     /**
      * Q4. Distinct Primes
      * You have given an array A having N integers. Let say G is the product of all elements of A.
@@ -202,27 +142,21 @@ public class Array1 {
         return prefMat;
     }
 
-    public int maxSubSquareMatrix(int[][] A, int B) {
-        //get prefix matrix
-        long[][] prefMat = constructPrefMat(A);
-        long maxSum = Integer.MIN_VALUE, sum;
+    public static int maxPathTriangle(int[][] input) {
 
-        //it means the whole matrix is our answer, as there is no other matrix
-        if (A.length == B && A[0].length == B) return (int) calculateSum(prefMat, 0, 0, B - 1, B - 1);
-
-        //get top-right using 2 loops
-        //get x1
-        for (int x1 = 0; x1 <= A.length - B; x1++) {
-            //get y1
-            for (int y1 = 0; y1 <= A[0].length - B; y1++) {
-                //x2=x1+B-1, y2=y1+B-1
-                sum = calculateSum(prefMat, x1, y1, x1 + B - 1, y1 + B - 1);
-                maxSum = Math.max(maxSum, sum);
-
+        int row = input.length;
+        int col = input[0].length;
+        int dp[][] = new int[row + 1][col + 1];
+        for (int j = 0; j < row; j++) {
+            dp[row - 1][j] = input[row - 1][j];
+        }
+        for (int[] arr : dp) Arrays.fill(arr, -1);
+        for (int i = row - 2; i > 0; i--) {
+            for (int j = 0; j <= i; j++) {
+                dp[i][j] = input[i][j] + Math.max(dp[i - 1][j], dp[i][j + 1]);
             }
         }
-
-        return (int) maxSum;
+        return dp[0][0];
     }
 
     public static long calculateSum(long[][] A, int x1, int y1, int x2, int y2) {
@@ -244,6 +178,92 @@ public class Array1 {
     }
 
     public static void main(String[] args) {
-        System.out.println(primesum(16777214));
+//        System.out.println(primesum(16777214));
+
+        int[][] matrix = new int[][]{{3, 0, 0, 0}, {7, 4, 0, 0}, {2, 4, 6, 0}, {8, 5, 9, 3}};
+        System.out.println(maxPathTriangle(matrix));
+
+    }
+
+    /**
+     * Q2. <B>Max Non Negative SubArray</B>
+     * <p>Given an array of integers, A of length N, find out the maximum sum sub-array of non negative numbers from A.
+     * The sub-array should be contiguous i.e., a sub-array created by choosing the second and fourth element and skipping the third element is invalid.
+     * <p>
+     * Maximum sub-array is defined in terms of the sum of the elements in the sub-array.
+     * <p>
+     * Find and return the required subarray.
+     * <p>
+     * NOTE:
+     * <p>
+     * 1. If there is a tie, then compare with segment's length and return segment which has maximum length.
+     * 2. If there is still a tie, then return the segment with minimum starting index.
+     * <p>
+     * <p>
+     * Input Format:
+     * <p>
+     * The first and the only argument of input contains an integer array A, of length N.
+     * Output Format:
+     * <p>
+     * Return an array of integers, that is a subarray of A that satisfies the given conditions.
+     * Constraints:
+     * <p>
+     * 1 <= N <= 1e5
+     * -INT_MAX < A[i] <= INT_MAX
+     * Examples:
+     * <p>
+     * Input 1:
+     * A = [1, 2, 5, -7, 2, 3]
+     * <p>
+     * Output 1:
+     * [1, 2, 5]
+     * <p>
+     * Explanation 1:
+     * The two sub-arrays are [1, 2, 5] [2, 3].
+     * The answer is [1, 2, 5] as its sum is larger than [2, 3].
+     * <p>
+     * Input 2:
+     * A = [10, -1, 2, 3, -4, 100]
+     * <p>
+     * Output 2:
+     * [100]
+     * <p>
+     * Explanation 2:
+     * The three sub-arrays are [10], [2, 3], [100].
+     * The answer is [100] as its sum is larger than the other two.
+     */
+    public ArrayList<Integer> maxset(ArrayList<Integer> A) {
+        ArrayList<Integer> output = new ArrayList<>();
+        for (Integer i : A) {
+            if (i > 0) {
+                output.add(i);
+            } else {
+                output.clear();
+            }
+        }
+        return output;
+    }
+
+    public int maxSubSquareMatrix(int[][] A, int B) {
+        //get prefix matrix
+        long[][] prefMat = constructPrefMat(A);
+        long maxSum = Integer.MIN_VALUE, sum;
+
+        //it means the whole matrix is our answer, as there is no other matrix
+        if (A.length == B && A[0].length == B) return (int) calculateSum(prefMat, 0, 0, B - 1, B - 1);
+
+        //get top-right using 2 loops
+        //get x1
+        for (int x1 = 0; x1 <= A.length - B; x1++) {
+            //get y1
+            for (int y1 = 0; y1 <= A[0].length - B; y1++) {
+                //x2=x1+B-1, y2=y1+B-1
+                sum = calculateSum(prefMat, x1, y1, x1 + B - 1, y1 + B - 1);
+                maxSum = Math.max(maxSum, sum);
+
+            }
+        }
+
+        return (int) maxSum;
     }
 }
