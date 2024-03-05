@@ -8,66 +8,6 @@ public class Array1 {
 
     private static int row;
 
-    /**
-     * Q2. <B>Max Non Negative SubArray</B>
-     * <p>Given an array of integers, A of length N, find out the maximum sum sub-array of non negative numbers from A.
-     * The sub-array should be contiguous i.e., a sub-array created by choosing the second and fourth element and skipping the third element is invalid.
-     * <p>
-     * Maximum sub-array is defined in terms of the sum of the elements in the sub-array.
-     * <p>
-     * Find and return the required subarray.
-     * <p>
-     * NOTE:
-     * <p>
-     * 1. If there is a tie, then compare with segment's length and return segment which has maximum length.
-     * 2. If there is still a tie, then return the segment with minimum starting index.
-     * <p>
-     * <p>
-     * Input Format:
-     * <p>
-     * The first and the only argument of input contains an integer array A, of length N.
-     * Output Format:
-     * <p>
-     * Return an array of integers, that is a subarray of A that satisfies the given conditions.
-     * Constraints:
-     * <p>
-     * 1 <= N <= 1e5
-     * -INT_MAX < A[i] <= INT_MAX
-     * Examples:
-     * <p>
-     * Input 1:
-     * A = [1, 2, 5, -7, 2, 3]
-     * <p>
-     * Output 1:
-     * [1, 2, 5]
-     * <p>
-     * Explanation 1:
-     * The two sub-arrays are [1, 2, 5] [2, 3].
-     * The answer is [1, 2, 5] as its sum is larger than [2, 3].
-     * <p>
-     * Input 2:
-     * A = [10, -1, 2, 3, -4, 100]
-     * <p>
-     * Output 2:
-     * [100]
-     * <p>
-     * Explanation 2:
-     * The three sub-arrays are [10], [2, 3], [100].
-     * The answer is [100] as its sum is larger than the other two.
-     */
-    public ArrayList<Integer> maxset(ArrayList<Integer> A) {
-        ArrayList<Integer> output = new ArrayList<>();
-        for (Integer i : A) {
-            if (i > 0) {
-                output.add(i);
-            } else {
-                output.clear();
-            }
-        }
-        return output;
-    }
-
-
     public static boolean[] sieve(int maxLimit) {
         boolean[] sieve = new boolean[maxLimit + 1];
         for (int i = 0; i <= maxLimit; i++) {
@@ -205,6 +145,108 @@ public class Array1 {
         return prefMat;
     }
 
+    public static int maxPathTriangle(int[][] input) {
+
+        int row = input.length;
+        int col = input[0].length;
+        int dp[][] = new int[row + 1][col + 1];
+        for (int j = 0; j < row; j++) {
+            dp[row - 1][j] = input[row - 1][j];
+        }
+        for (int[] arr : dp) Arrays.fill(arr, -1);
+        for (int i = row - 2; i > 0; i--) {
+            for (int j = 0; j <= i; j++) {
+                dp[i][j] = input[i][j] + Math.max(dp[i - 1][j], dp[i][j + 1]);
+            }
+        }
+        return dp[0][0];
+    }
+
+    public static long calculateSum(long[][] A, int x1, int y1, int x2, int y2) {
+
+        long sum = A[x2][y2];
+        if (x1 == 0 && y1 == 0) {
+            return sum;
+        }
+        if (x1 == 0) {
+            sum -= A[x2][y1 - 1];
+        }
+        if (y1 == 0) {
+            sum -= A[x1 - 1][y2];
+        }
+        if (x1 != 0 && y1 != 0) {
+            sum = sum - A[x2][y1 - 1] - A[x1 - 1][y2] + A[x1 - 1][y1 - 1];
+        }
+        return sum;
+    }
+
+    public static void main(String[] args) {
+//        System.out.println(primesum(16777214));
+
+        int[][] matrix = new int[][]{{3, 0, 0, 0}, {7, 4, 0, 0}, {2, 4, 6, 0}, {8, 5, 9, 3}};
+        System.out.println(maxPathTriangle(matrix));
+
+    }
+
+    /**
+     * Q2. <B>Max Non Negative SubArray</B>
+     * <p>Given an array of integers, A of length N, find out the maximum sum sub-array of non negative numbers from A.
+     * The sub-array should be contiguous i.e., a sub-array created by choosing the second and fourth element and skipping the third element is invalid.
+     * <p>
+     * Maximum sub-array is defined in terms of the sum of the elements in the sub-array.
+     * <p>
+     * Find and return the required subarray.
+     * <p>
+     * NOTE:
+     * <p>
+     * 1. If there is a tie, then compare with segment's length and return segment which has maximum length.
+     * 2. If there is still a tie, then return the segment with minimum starting index.
+     * <p>
+     * <p>
+     * Input Format:
+     * <p>
+     * The first and the only argument of input contains an integer array A, of length N.
+     * Output Format:
+     * <p>
+     * Return an array of integers, that is a subarray of A that satisfies the given conditions.
+     * Constraints:
+     * <p>
+     * 1 <= N <= 1e5
+     * -INT_MAX < A[i] <= INT_MAX
+     * Examples:
+     * <p>
+     * Input 1:
+     * A = [1, 2, 5, -7, 2, 3]
+     * <p>
+     * Output 1:
+     * [1, 2, 5]
+     * <p>
+     * Explanation 1:
+     * The two sub-arrays are [1, 2, 5] [2, 3].
+     * The answer is [1, 2, 5] as its sum is larger than [2, 3].
+     * <p>
+     * Input 2:
+     * A = [10, -1, 2, 3, -4, 100]
+     * <p>
+     * Output 2:
+     * [100]
+     * <p>
+     * Explanation 2:
+     * The three sub-arrays are [10], [2, 3], [100].
+     * The answer is [100] as its sum is larger than the other two.
+     */
+    public ArrayList<Integer> maxset(ArrayList<Integer> A) {
+        ArrayList<Integer> output = new ArrayList<>();
+        for (Integer i : A) {
+            if (i > 0) {
+                output.add(i);
+            } else {
+                output.clear();
+            }
+        }
+        return output;
+    }
+
     public int maxSubSquareMatrix(int[][] A, int B) {
         //get prefix matrix
         long[][] prefMat = constructPrefMat(A);
@@ -226,124 +268,5 @@ public class Array1 {
         }
 
         return (int) maxSum;
-    }
-
-    public static long calculateSum(long[][] A, int x1, int y1, int x2, int y2) {
-
-        long sum = A[x2][y2];
-        if (x1 == 0 && y1 == 0) {
-            return sum;
-        }
-        if (x1 == 0) {
-            sum -= A[x2][y1 - 1];
-        }
-        if (y1 == 0) {
-            sum -= A[x1 - 1][y2];
-        }
-        if (x1 != 0 && y1 != 0) {
-            sum = sum - A[x2][y1 - 1] - A[x1 - 1][y2] + A[x1 - 1][y1 - 1];
-        }
-        return sum;
-    }
-
-
-    public static ArrayList<ArrayList<Integer>> rowSumB(ArrayList<ArrayList<Integer>> inputArray, int B) {
-        ArrayList<ArrayList<Integer>> output = new ArrayList<>();
-//        populate outputArray;
-
-        Integer row = inputArray.size();
-        Integer col = inputArray.get(0).size();
-//        for (int i = 0; i < row; i++) {
-//            for (int j = 0; j < col; j++) {
-//                output.add(new ArrayList<>(Arrays.asList(0)));
-//            }
-//        }
-        for (int i = 0; i <= row - B; i++) {
-            ArrayList<Integer> test = new ArrayList<>();
-            for (int j = 0; j < col; j++) {
-                int pfSum = 0;
-                for (int k = i; k < i + B; k++) {
-                    int curr = inputArray.get(k).get(j);
-                    pfSum += curr;
-                }
-                test.add(pfSum);
-            }
-            output.add(test);
-        }
-        return output;
-    }
-
-    public static ArrayList<ArrayList<Integer>> rowSumB2(ArrayList<ArrayList<Integer>> inputArray, int B) {
-        ArrayList<ArrayList<Integer>> result = new ArrayList<>();
-        // Iterate over each row up to (inputArray.size() - B + 1)
-        int row = inputArray.size();
-        int col = inputArray.getFirst().size();
-        ArrayList<Long> pf = new ArrayList<>();
-        for (int i = 0; i <= row - B; i++) {
-            ArrayList<Integer> rowSum = new ArrayList<>();
-            // Iterate over each column up to index B
-            for (int j = 0; j < col; j++) {
-                int sum = 0;
-                for (int k = i; k < i + B; k++) {
-                    sum += inputArray.get(k).get(j);
-                }
-                // Sum elements in column j for current row i and the next (B - 1) rows
-                rowSum.add(sum);
-            }
-            result.add(rowSum);
-        }
-        return result;
-    }
-
-    public int solve(ArrayList<ArrayList<Integer>> A, int B) {
-        int N = A.size();
-        int M = A.get(0).size();
-        int ans = Integer.MIN_VALUE;
-
-        ArrayList<Long> pf = new ArrayList<Long>();
-        for(int k = 0; k <= M-B; k++) {
-            for(int row1 = 0; row1 <= N-B; row1++){
-                long sumofblock=0;
-                int n = row1;
-                for(int row2 = row1; row2 < n+B; row2++){
-                    for(int col = k; col < k+B; col++){
-                        sumofblock += (long) A.get(row2).get(col);
-                    }
-                }
-                ans = Math.max(ans, (int)sumofblock);
-            }
-        }
-        return ans;
-    }
-
-    public long kadane( ArrayList<Long> arr){
-        long maxsum = Integer.MIN_VALUE;
-        long currsum = 0;
-        for(int i = 0; i < arr.size(); i++){
-            currsum = currsum +arr.get(i);
-            if(maxsum < currsum){
-                maxsum = currsum;
-            }
-            if(currsum <0){
-                currsum = 0;
-            }
-        }
-        return maxsum;
-    }
-
-    public static void main(String[] args) {
-        ArrayList<Integer> test1 = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
-        ArrayList<Integer> test2 = new ArrayList<>(Arrays.asList(5, 6, 7, 8));
-        ArrayList<Integer> test3 = new ArrayList<>(Arrays.asList(9, 10, 11, 12));
-        ArrayList<Integer> test4 = new ArrayList<>(Arrays.asList(13, 14, 15, 16));
-
-        ArrayList<ArrayList<Integer>> testOutput = new ArrayList<>();
-        testOutput.add(test1);
-        testOutput.add(test2);
-        testOutput.add(test3);
-        testOutput.add(test4);
-        ArrayList<ArrayList<Integer>> result = rowSumB(testOutput, 3);
-
-        System.out.println(primesum(16777214));
     }
 }
