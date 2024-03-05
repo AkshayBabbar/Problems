@@ -34,12 +34,11 @@ public class BitManipulation {
         long output = 0L;
 
         for (int i = 0; i < 32; i++) {
-
+            output = output << 1;
             if ((input & 1) == 1) {
                 output++;
             } else {
                 input = input >> 1;
-                output = output << 1;
             }
         }
         return output;
@@ -67,6 +66,7 @@ public class BitManipulation {
 //        System.out.println(check.compareTo(test));
 //        System.out.println(bit.unsetBits(53L, 5));
 //        System.out.println(reverse(13));
+        System.out.println(reverse(23));
         System.out.println(repeatNumber(2, 3));
 
     }
@@ -103,19 +103,19 @@ public class BitManipulation {
         ArrayList<Integer> output = new ArrayList<>();
 
         prefixSum[0] = (isVowel(A.charAt(0)) ? 1 : 0);
-        for(int i =1; i<A.length(); i++){
-            if(isVowel(A.charAt(i))){
-                prefixSum[i] = 1 + prefixSum[i-1];
+        for (int i = 1; i < A.length(); i++) {
+            if (isVowel(A.charAt(i))) {
+                prefixSum[i] = 1 + prefixSum[i - 1];
             }
-            prefixSum[i] = prefixSum[i-1];
+            prefixSum[i] = prefixSum[i - 1];
         }
-       for(int i =0; i< row;i++){
-           for (int j =0; j<2; j++){
-                 int end = prefixSum[B.get(i).get(j)+1];
-                 output.add(end);
-           }
-       }
-       return output;
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < 2; j++) {
+                int end = prefixSum[B.get(i).get(j) + 1];
+                output.add(end);
+            }
+        }
+        return output;
 
 //        for(int i =0; i<A)
     }

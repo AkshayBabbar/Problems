@@ -1,9 +1,12 @@
 package src.scaler.advanced;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 
 public class Array1 {
+
+    private static int row;
 
     /**
      * Q2. <B>Max Non Negative SubArray</B>
@@ -74,7 +77,7 @@ public class Array1 {
         sieve[1] = false;
 
         for (int i = 2; i <= maxLimit; i++) {
-            if (sieve[i] == true) {
+            if (sieve[i]) {
                 for (int j = 2 * i; j <= maxLimit; j += i) {
                     sieve[j] = false;
                 }
@@ -243,7 +246,104 @@ public class Array1 {
         return sum;
     }
 
+
+    public static ArrayList<ArrayList<Integer>> rowSumB(ArrayList<ArrayList<Integer>> inputArray, int B) {
+        ArrayList<ArrayList<Integer>> output = new ArrayList<>();
+//        populate outputArray;
+
+        Integer row = inputArray.size();
+        Integer col = inputArray.get(0).size();
+//        for (int i = 0; i < row; i++) {
+//            for (int j = 0; j < col; j++) {
+//                output.add(new ArrayList<>(Arrays.asList(0)));
+//            }
+//        }
+        for (int i = 0; i <= row - B; i++) {
+            ArrayList<Integer> test = new ArrayList<>();
+            for (int j = 0; j < col; j++) {
+                int pfSum = 0;
+                for (int k = i; k < i + B; k++) {
+                    int curr = inputArray.get(k).get(j);
+                    pfSum += curr;
+                }
+                test.add(pfSum);
+            }
+            output.add(test);
+        }
+        return output;
+    }
+
+    public static ArrayList<ArrayList<Integer>> rowSumB2(ArrayList<ArrayList<Integer>> inputArray, int B) {
+        ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+        // Iterate over each row up to (inputArray.size() - B + 1)
+        int row = inputArray.size();
+        int col = inputArray.getFirst().size();
+        ArrayList<Long> pf = new ArrayList<>();
+        for (int i = 0; i <= row - B; i++) {
+            ArrayList<Integer> rowSum = new ArrayList<>();
+            // Iterate over each column up to index B
+            for (int j = 0; j < col; j++) {
+                int sum = 0;
+                for (int k = i; k < i + B; k++) {
+                    sum += inputArray.get(k).get(j);
+                }
+                // Sum elements in column j for current row i and the next (B - 1) rows
+                rowSum.add(sum);
+            }
+            result.add(rowSum);
+        }
+        return result;
+    }
+
+    public int solve(ArrayList<ArrayList<Integer>> A, int B) {
+        int N = A.size();
+        int M = A.get(0).size();
+        int ans = Integer.MIN_VALUE;
+
+        ArrayList<Long> pf = new ArrayList<Long>();
+        for(int k = 0; k <= M-B; k++) {
+            for(int row1 = 0; row1 <= N-B; row1++){
+                long sumofblock=0;
+                int n = row1;
+                for(int row2 = row1; row2 < n+B; row2++){
+                    for(int col = k; col < k+B; col++){
+                        sumofblock += (long) A.get(row2).get(col);
+                    }
+                }
+                ans = Math.max(ans, (int)sumofblock);
+            }
+        }
+        return ans;
+    }
+
+    public long kadane( ArrayList<Long> arr){
+        long maxsum = Integer.MIN_VALUE;
+        long currsum = 0;
+        for(int i = 0; i < arr.size(); i++){
+            currsum = currsum +arr.get(i);
+            if(maxsum < currsum){
+                maxsum = currsum;
+            }
+            if(currsum <0){
+                currsum = 0;
+            }
+        }
+        return maxsum;
+    }
+
     public static void main(String[] args) {
+        ArrayList<Integer> test1 = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
+        ArrayList<Integer> test2 = new ArrayList<>(Arrays.asList(5, 6, 7, 8));
+        ArrayList<Integer> test3 = new ArrayList<>(Arrays.asList(9, 10, 11, 12));
+        ArrayList<Integer> test4 = new ArrayList<>(Arrays.asList(13, 14, 15, 16));
+
+        ArrayList<ArrayList<Integer>> testOutput = new ArrayList<>();
+        testOutput.add(test1);
+        testOutput.add(test2);
+        testOutput.add(test3);
+        testOutput.add(test4);
+        ArrayList<ArrayList<Integer>> result = rowSumB(testOutput, 3);
+
         System.out.println(primesum(16777214));
     }
 }
