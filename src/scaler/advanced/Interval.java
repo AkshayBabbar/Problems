@@ -1,5 +1,10 @@
 package src.scaler.advanced;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Interval {
     int start;
     int end;

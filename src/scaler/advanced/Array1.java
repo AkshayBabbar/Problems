@@ -180,12 +180,22 @@ public class Array1 {
         return sum;
     }
 
-    public static void main(String[] args) {
-//        System.out.println(primesum(16777214));
 
-        int[][] matrix = new int[][]{{3, 0, 0, 0}, {7, 4, 0, 0}, {2, 4, 6, 0}, {8, 5, 9, 3}};
-        System.out.println(maxPathTriangle(matrix));
+    private static ArrayList<ArrayList<Integer>> getArrayLists(int[][] inputArray) {
+        ArrayList<ArrayList<Integer>> intervals = new ArrayList<>();
+        for (int[] innerArray : inputArray) {
+            // Create a new inner list to store the elements
+            ArrayList<Integer> newInnerList = new ArrayList<>();
 
+            // Add each element from the current inner array to the new inner list
+            for (int element : innerArray) {
+                newInnerList.add(element);
+            }
+
+            // Add the new inner list to the intervals list
+            intervals.add(newInnerList);
+        }
+        return intervals;
     }
 
     /**
@@ -236,15 +246,28 @@ public class Array1 {
      * The answer is [100] as its sum is larger than the other two.
      */
     public ArrayList<Integer> maxset(ArrayList<Integer> A) {
-        ArrayList<Integer> output = new ArrayList<>();
-        for (Integer i : A) {
-            if (i > 0) {
-                output.add(i);
+        long sum = 0; // for doing sum
+        long maxSum = 0; // to store the final sum
+
+        ArrayList<Integer> maxArray = new ArrayList<>(); // we will store here for each positive subarray
+        ArrayList<Integer> outputArray = new ArrayList<>(); // final max subarray
+
+        for (Integer i : A) { // iterate the ArrayList A
+            if (i >= 0) { // if element >= 0
+                sum += i; // then add them
+                maxArray.add(i); // and store the element to the maxArr
             } else {
-                output.clear();
+                sum = 0; // but if element < 0, then update the sum = 0
+                maxArray = new ArrayList<>(); // and update the maxArr to new ArrayList again
+            }
+            if (maxSum < sum || maxSum == sum && (maxArray.size() > outputArray.size())) {
+                // when maximum sum < sum, update maxSum = sum and resArr = maxArr .
+                // or if maxSum and sum are equal then return the subarray which has maximum length
+                maxSum = sum;
+                outputArray = maxArray;
             }
         }
-        return output;
+        return outputArray; // finally return the resultArray
     }
 
     public int maxSubSquareMatrix(int[][] A, int B) {
@@ -268,5 +291,82 @@ public class Array1 {
         }
 
         return (int) maxSum;
+    }
+
+    public static ArrayList<Integer> beggar(int A, ArrayList<ArrayList<Integer>> B) {
+        ArrayList<Integer> pfSum = new ArrayList<>();
+        ArrayList<Integer> out = new ArrayList<>();
+
+        for (int i = 0; i < A; i++) {
+            pfSum.add(0);
+            out.add(0);
+
+        }
+
+
+        for (int i = 0; i < B.size(); i++) {
+            ArrayList<Integer> temp = B.get(i);
+            int startIndex = temp.get(0);
+            int endIndex = temp.get(1);
+            int value = temp.get(2);
+
+            pfSum.set(startIndex - 1, pfSum.get(startIndex - 1) + value);
+            System.out.println();
+            if (endIndex != A) {
+                pfSum.set(endIndex, pfSum.get(endIndex) - value);
+            }
+        }
+
+        out.set(0, pfSum.get(0));
+
+        for (int i = 1; i < pfSum.size(); i++) {
+            out.set(i, pfSum.get(i) + out.get(i - 1));
+        }
+
+        return out;
+    }
+
+    public static int trap(final ArrayList<Integer> A) {
+
+        ArrayList<Integer> leftM = new ArrayList<>();
+        leftM.add(A.getFirst());
+        ArrayList<Integer> rightM = new ArrayList<>();
+        for (int i = 0; i < A.size(); i++) {
+            rightM.add(0);
+        }
+        for (int i = 1; i < A.size(); i++) {
+            leftM.add(Math.max(A.get(i), leftM.get(i - 1)));
+        }
+        rightM.set(A.size() - 1, A.get(A.size() - 1));
+        for (int i = A.size() - 2; i > -1; i--) {
+            rightM.set(i, Math.max(A.get(i), rightM.get(i + 1)));
+        }
+        int out = 0;
+
+        for (int i = 0; i < A.size(); i++) {
+            out += Math.min(rightM.get(i), leftM.get(i)) - A.get(i);
+        }
+        return out;
+    }
+
+
+    public static void main(String[] args) {
+//        System.out.println(primesum(16777214));
+        ArrayList<Integer> water = new ArrayList<>(Arrays.asList(0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1));
+
+        int[][] matrix = new int[][]{{3, 0, 0, 0}, {7, 4, 0, 0}, {2, 4, 6, 0}, {8, 5, 9, 3}};
+
+        int[][] inputArray = new int[][]{
+                {1, 2, 100}, {2, 5, 100}, {3, 4, 100}
+        };
+        System.out.println(trap(water));
+        ArrayList<ArrayList<Integer>> intervals = getArrayLists(inputArray);
+//        ArrayList<Integer> beggar = (beggar(5, intervals));
+//        for (Integer i : beggar) {
+//            System.out.print(i + ", ");
+//        }
+//        System.out.println(maxPathTriangle(matrix));
+
+
     }
 }
