@@ -162,6 +162,22 @@ public class Array1 {
         return dp[0][0];
     }
 
+    public static int kadane(ArrayList<Integer> v) {
+        int currSum = 0;
+        int maxSum = Integer.MIN_VALUE;
+        for (int i = 0; i < (int) v.size(); i++) {
+            currSum += v.get(i);
+            if (currSum > maxSum) {
+                maxSum = currSum;
+            }
+
+            if (currSum < 0) {
+                currSum = 0;
+            }
+        }
+        return maxSum;
+    }
+
     public static long calculateSum(long[][] A, int x1, int y1, int x2, int y2) {
 
         long sum = A[x2][y2];
@@ -180,6 +196,32 @@ public class Array1 {
         return sum;
     }
 
+
+    public int maxSumMatrix(int[][] A) {
+        int r = A.length;
+        int c = A[0].length;
+        int[][] prefix = new int[r][c];
+        for (int i = 0; i < r; i++) {
+            for (int j = 0; j < c; j++) {
+                if (j == 0) prefix[i][j] = A[i][j];
+                else prefix[i][j] = A[i][j] + prefix[i][j - 1];
+            }
+        }
+        int maxSum = Integer.MIN_VALUE;
+        for (int i = 0; i < c; i++) {
+            for (int j = i; j < c; j++) {
+                ArrayList<Integer> v = new ArrayList();
+                for (int k = 0; k < r; k++) {
+                    int el = 0;
+                    if (i == 0) el = prefix[k][j];
+                    else el = prefix[k][j] - prefix[k][i - 1];
+                    v.add(el);
+                }
+                maxSum = Math.max(maxSum, kadane(v));
+            }
+        }
+        return maxSum;
+    }
 
     private static ArrayList<ArrayList<Integer>> getArrayLists(int[][] inputArray) {
         ArrayList<ArrayList<Integer>> intervals = new ArrayList<>();
