@@ -44,7 +44,7 @@ public class Array3 {
         return output;
     }
 
-    public static void main(String[] args) {
+    public static void main(StringDemo[] args) {
         ArrayList<Interval> intervals = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
         int[][] input = {

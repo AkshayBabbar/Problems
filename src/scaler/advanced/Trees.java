@@ -127,7 +127,7 @@ public class Trees {
         return left + right;
     }
 
-    public static void main(String[] args) {
+    public static void main(StringDemo[] args) {
 
     }
 }

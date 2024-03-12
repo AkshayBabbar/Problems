@@ -94,7 +94,7 @@ public class DP1 {
         return max;
     }
 
-    public static void main(String[] args) {
+    public static void main(StringDemo[] args) {
 //        Scanner scanner = new Scanner(System.in);
 //        int input = scanner.nextInt();
 //        System.out.println(fibonacci(input));

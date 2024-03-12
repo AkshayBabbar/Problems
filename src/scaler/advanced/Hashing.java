@@ -6,10 +6,6 @@ import java.util.Map;
 
 public class Hashing {
 
-    public static void main(String[] args) {
-
-    }
-
     public ArrayList<Integer> lszero(ArrayList<Integer> A) {
         int pfSum = A.get(0);
         int startIndex = -1, endIndex = -1;
@@ -50,6 +46,25 @@ public class Hashing {
 
         }
         return output;
+
+    }
+
+    public static int nearestDuplicates(ArrayList<Integer> input) {
+        Map<Integer, Integer> map = new HashMap<>();
+        int nearestSum = 0;
+
+        for (int i = 0; i < input.size(); i++) {
+            if (map.containsKey(input.get(i))) {
+                nearestSum = Math.max(nearestSum, i - map.get(input.get(i)));
+                map.put(input.get(i), i);
+            } else {
+                map.put(input.get(i), i);
+            }
+        }
+        return nearestSum;
+    }
+
+    public static void main(StringDemo[] args) {
 
     }
 }

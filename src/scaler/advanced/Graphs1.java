@@ -29,7 +29,7 @@ public class Graphs1 {
 //        return 0;
 //    }
 
-    public static void main(String[] args) {
+    public static void main(StringDemo[] args) {
 
     }
 

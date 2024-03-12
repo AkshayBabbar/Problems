@@ -28,7 +28,7 @@ public class ArrayTopic {
         return count[element];
     }
 
-    public static void main(String[] args) {
+    public static void main(StringDemo[] args) {
 
         int[] output = solve(new int[]{3, 52, 66, 64, 14, 51, 6, 39, 5, 26, 80, 88, 60, 73, 67, 16, 1, 81, 62, 42, 83, 31, 40, 4, 32, 31, 44, 3, 20, 94, 93, 57, 2, 18, 32, 59, 91, 30, 45});
 

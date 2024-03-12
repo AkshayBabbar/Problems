@@ -155,6 +155,26 @@ public class StackDemo {
         return output;
 
     }
+    public static int[] nextGreater(int[] A) {
+        Stack < Integer > s = new Stack < > ();
+        s.push(0);
+        int n = A.length;
+        int[] ans = new int[n];
+        Arrays.fill(ans, -1);
+        for (int i = 1; i < n; i++) {
+            if (s.isEmpty()) {
+                s.push(i);
+                continue;
+            }
+            // find the elements whose next greater element is A[i]
+            while (!s.isEmpty() && A[s.peek()] < A[i]) {
+                ans[s.peek()] = A[i];
+                s.pop();
+            }
+            s.push(i);
+        }
+        return ans;
+    }
 
     public static void main(String[] args) {
 //        ArrayList<Integer> TC = new ArrayList<>(Arrays.asList(34, 35, 27, 42, 5, 28, 39, 20, 28));
@@ -162,6 +182,8 @@ public class StackDemo {
         ArrayList<Integer> output = new ArrayList<>(Arrays.asList(34, 35, 27, 42, 5, 28, 39, 20, 28));
 //        35 42 42 -1 28 39 -1 28 -1
 
+        int[] nextGreater = {34, 35, 27, 42, 5, 28, 39, 20, 28};
+        nextGreater(nextGreater);
 
         ArrayList<Integer> next = nextGreater(output);
         for (Integer i : next) {

@@ -1,9 +1,5 @@
 package src.scaler.advanced;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-
 public class Greedy {
     /**
      * Finish Maximum Jobs
@@ -73,7 +69,7 @@ public class Greedy {
 //
 //
 //    }
-    public static void main(String[] args) {
+    public static void main(StringDemo[] args) {
 
     }
 }

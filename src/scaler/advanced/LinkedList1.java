@@ -2,7 +2,7 @@ package src.scaler.advanced;
 
 public class LinkedList1 {
 
-    public static void main(String[] args) {
+    public static void main(StringDemo[] args) {
 
     }
 

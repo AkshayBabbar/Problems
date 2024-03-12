@@ -201,7 +201,7 @@ public class PQDriver {
         return ans % mod;
     }
 
-    public static void main(String[] args) {
+    public static void main(StringDemo[] args) {
 
 //        ArrayList<Integer> inputTC1 = new ArrayList<>(Arrays.asList(57, 3, -14, -87, 42, 38, 31, -7, -28, -61));
         ArrayList<Integer> inputTC2 = new ArrayList<>(Arrays.asList(2147483647, 2000000014, 2147483647));
