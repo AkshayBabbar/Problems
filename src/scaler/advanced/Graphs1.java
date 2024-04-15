@@ -29,9 +29,7 @@ public class Graphs1 {
 //        return 0;
 //    }
 
-    public static void main(StringDemo[] args) {
 
-    }
 
     public int solve(int A, ArrayList<ArrayList<Integer>> B) {
         ArrayList<Integer>[] list = createAdjacencyList(A, B);
@@ -78,5 +76,8 @@ public class Graphs1 {
                 }
             }
         }
+    }
+    public static void main(StringDemo[] args) {
+
     }
 }
