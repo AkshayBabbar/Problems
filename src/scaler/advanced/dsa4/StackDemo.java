@@ -1,4 +1,4 @@
-package src.scaler.advanced;
+package src.scaler.advanced.dsa4;
 
 import java.util.*;
 

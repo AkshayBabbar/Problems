@@ -1,5 +1,7 @@
 package src.scaler.advanced;
 
+import src.scaler.advanced.dsa4.ListNode;
+
 public class LinkedList1 {
 
     public static void main(StringDemo[] args) {

@@ -1,6 +1,9 @@
-package src.scaler.advanced;
+package src.scaler.advanced.dsa4;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Graphs1 {
 
@@ -30,7 +33,6 @@ public class Graphs1 {
 //    }
 
 
-
     public int solve(int A, ArrayList<ArrayList<Integer>> B) {
         ArrayList<Integer>[] list = createAdjacencyList(A, B);
         int[] visitedArr = new int[A + 1];
@@ -48,6 +50,19 @@ public class Graphs1 {
             res[B.get(i).get(0)].add(B.get(i).get(1));
         }
         return res;
+    }
+
+    public static ArrayList<ArrayList<Integer>> createAdjList(int A, ArrayList<ArrayList<Integer>> B) {
+        ArrayList<ArrayList<Integer>> adjList = new ArrayList<>(A + 1);
+
+        for (int i = 0; i < adjList.size(); i++) {
+            adjList.add(new ArrayList<>());
+        }
+
+        for (int i = 0; i < B.size(); i++) {
+            adjList.get(B.get(i).get(0)).add(B.get(i).get(1));
+        }
+        return adjList;
     }
 
     //TC: O(V+E) SC(recursion stack): O(V+E)
@@ -77,7 +92,17 @@ public class Graphs1 {
             }
         }
     }
-    public static void main(StringDemo[] args) {
+
+    public static void main(String[] args) {
+
+        ArrayList<ArrayList<Integer>> vertices = new ArrayList<>();
+        vertices.add(new ArrayList<>(Arrays.asList(2, 3)));
+        vertices.add(new ArrayList<>(Arrays.asList(1, 3)));
+        vertices.add(new ArrayList<>(Arrays.asList(1, 2)));
+        vertices.add(new ArrayList<>(Arrays.asList(1, 4)));
+        vertices.add(new ArrayList<>(Arrays.asList(4, 5)));
+        createAdjList(5, vertices);
+
 
     }
 }

@@ -1,4 +1,4 @@
-package src.scaler.advanced;
+package src.scaler.advanced.dsa4;
 
 public class DP5 {
     public static int lcsRecursive(String input1, String input2, int i, int j, int[][] dp) {
