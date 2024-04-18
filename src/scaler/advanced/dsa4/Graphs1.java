@@ -55,7 +55,7 @@ public class Graphs1 {
     public static ArrayList<ArrayList<Integer>> createAdjList(int A, ArrayList<ArrayList<Integer>> B) {
         ArrayList<ArrayList<Integer>> adjList = new ArrayList<>(A + 1);
 
-        for (int i = 0; i < A+1; i++) {
+        for (int i = 0; i < A + 1; i++) {
             adjList.add(new ArrayList<>());
         }
 
@@ -76,8 +76,8 @@ public class Graphs1 {
         }
     }
 
-    public void dfsList(int start, ArrayList<ArrayList<Integer>> adjList, ArrayList<Boolean> visitedArray){
-        visitedArray.set(start,true);
+    public void dfsList(int start, ArrayList<ArrayList<Integer>> adjList, ArrayList<Boolean> visitedArray) {
+        visitedArray.set(start, true);
         ArrayList<Integer> adjListNodes = adjList.get(start);
         for (int neightbour : adjListNodes) {
             if (!visitedArray.get(neightbour)) {
@@ -119,10 +119,11 @@ public class Graphs1 {
             }
         }
     }
+
     public static boolean validPath(int n, int[][] edges, int source, int destination) {
         ArrayList<ArrayList<Integer>> adjList = new ArrayList<>();
 
-        for(int i =0 ; i<n; i++){
+        for (int i = 0; i < n; i++) {
             adjList.add(new ArrayList<>());
         }
 
@@ -131,10 +132,10 @@ public class Graphs1 {
         }
 
         boolean[] visitedArray = new boolean[n];
-        for(int i=0 ;i<n; i++){
+        for (int i = 0; i < n; i++) {
             visitedArray[i] = false;
         }
-        boolean[] resultArray = bfs(source,adjList, visitedArray);
+        boolean[] resultArray = bfs(source, adjList, visitedArray);
         for (boolean b : resultArray) {
             if (!b) {
                 return false;
@@ -145,11 +146,11 @@ public class Graphs1 {
 
     }
 
-    public static boolean[] bfs(int start, ArrayList<ArrayList<Integer>> adjList, boolean[] visitedArray){
+    public static boolean[] bfs(int start, ArrayList<ArrayList<Integer>> adjList, boolean[] visitedArray) {
         Queue<Integer> q = new LinkedList<>();
         q.add(start);
         visitedArray[start] = true;
-        while(!q.isEmpty()){
+        while (!q.isEmpty()) {
             int front = q.poll();
             ArrayList<Integer> frontArray = adjList.get(front);
             for (int neighbour : frontArray) {
@@ -160,6 +161,35 @@ public class Graphs1 {
             }
         }
         return visitedArray;
+    }
+
+    public int solveDynamicIsland(ArrayList<ArrayList<Integer>> graph) {
+        int ans = 0;
+        for (int i = 0; i < graph.size(); i++) {
+            for (int j = 0; j < graph.getFirst().size(); j++) {
+                if (graph.get(i).get(j) == 1) {
+                    ans++;
+                    dfsIsland(i, j, graph);
+                }
+            }
+        }
+        return ans;
+    }
+
+    public void dfsIsland(int x, int y, ArrayList<ArrayList<Integer>> graph) {
+
+        ArrayList<Integer> dx = new ArrayList<>(Arrays.asList(0, 0, -1, 1));
+        ArrayList<Integer> dy = new ArrayList<>(Arrays.asList(-1, 1, 0, 0));
+
+        for (int k = 0; k < 4; k++) {
+            x = x + dx.get(k);
+            y = y + dy.get(k);
+
+            if (x >= 0 && x < graph.size() && y >= 0 && y < graph.getFirst().size() && graph.get(x).get(y) == 1) {
+                graph.get(x).set(y,2);
+                dfsIsland(x, y, graph);
+            }
+        }
     }
 
     public static void main(String[] args) {
@@ -175,7 +205,7 @@ public class Graphs1 {
         edges[0][0] = 0;
         edges[0][1] = 4;
 
-        System.out.println(validPath(5,edges,0,4));
+        System.out.println(validPath(5, edges, 0, 4));
         createAdjList(5, vertices);
 
 
