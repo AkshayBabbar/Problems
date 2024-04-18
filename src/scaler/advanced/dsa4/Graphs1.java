@@ -46,8 +46,8 @@ public class Graphs1 {
         for (int i = 0; i < res.length; i++) {
             res[i] = new ArrayList<Integer>();
         }
-        for (int i = 0; i < B.size(); i++) {
-            res[B.get(i).get(0)].add(B.get(i).get(1));
+        for (ArrayList<Integer> integers : B) {
+            res[integers.get(0)].add(integers.get(1));
         }
         return res;
     }
@@ -55,12 +55,12 @@ public class Graphs1 {
     public static ArrayList<ArrayList<Integer>> createAdjList(int A, ArrayList<ArrayList<Integer>> B) {
         ArrayList<ArrayList<Integer>> adjList = new ArrayList<>(A + 1);
 
-        for (int i = 0; i < adjList.size(); i++) {
+        for (int i = 0; i < A+1; i++) {
             adjList.add(new ArrayList<>());
         }
 
-        for (int i = 0; i < B.size(); i++) {
-            adjList.get(B.get(i).get(0)).add(B.get(i).get(1));
+        for (ArrayList<Integer> integers : B) {
+            adjList.get(integers.get(0)).add(integers.get(1));
         }
         return adjList;
     }
@@ -79,10 +79,9 @@ public class Graphs1 {
     public void dfsList(int start, ArrayList<ArrayList<Integer>> adjList, ArrayList<Boolean> visitedArray){
         visitedArray.set(start,true);
         ArrayList<Integer> adjListNodes = adjList.get(start);
-        for (int i = 0; i < adjListNodes.size(); i++) {
-            int neightbour = adjListNodes.get(i);
-            if(!visitedArray.get(neightbour)){
-                dfsList(neightbour, adjList,visitedArray);
+        for (int neightbour : adjListNodes) {
+            if (!visitedArray.get(neightbour)) {
+                dfsList(neightbour, adjList, visitedArray);
             }
         }
     }
@@ -112,24 +111,71 @@ public class Graphs1 {
         while (!queue.isEmpty()) {
             int front = queue.poll();
             ArrayList<Integer> frontArray = adjList.get(front);
-            for (int i = 0; i < frontArray.size(); i++) {
-                int neighbour = frontArray.get(i);
-                if(!vistedArray.get(neighbour)){
-                    vistedArray.set(neighbour,true);
+            for (int neighbour : frontArray) {
+                if (!vistedArray.get(neighbour)) {
+                    vistedArray.set(neighbour, true);
                     queue.add(neighbour);
                 }
             }
         }
     }
+    public static boolean validPath(int n, int[][] edges, int source, int destination) {
+        ArrayList<ArrayList<Integer>> adjList = new ArrayList<>();
+
+        for(int i =0 ; i<n; i++){
+            adjList.add(new ArrayList<>());
+        }
+
+        for (int[] edge : edges) {
+            adjList.get(edge[0]).add(edge[1]);
+        }
+
+        boolean[] visitedArray = new boolean[n];
+        for(int i=0 ;i<n; i++){
+            visitedArray[i] = false;
+        }
+        boolean[] resultArray = bfs(source,adjList, visitedArray);
+        for (boolean b : resultArray) {
+            if (!b) {
+                return false;
+            }
+        }
+        return true;
+
+
+    }
+
+    public static boolean[] bfs(int start, ArrayList<ArrayList<Integer>> adjList, boolean[] visitedArray){
+        Queue<Integer> q = new LinkedList<>();
+        q.add(start);
+        visitedArray[start] = true;
+        while(!q.isEmpty()){
+            int front = q.poll();
+            ArrayList<Integer> frontArray = adjList.get(front);
+            for (int neighbour : frontArray) {
+                if (!visitedArray[neighbour]) {
+                    visitedArray[neighbour] = true;
+                    q.add(neighbour);
+                }
+            }
+        }
+        return visitedArray;
+    }
 
     public static void main(String[] args) {
 
         ArrayList<ArrayList<Integer>> vertices = new ArrayList<>();
-        vertices.add(new ArrayList<>(Arrays.asList(2, 3)));
-        vertices.add(new ArrayList<>(Arrays.asList(1, 3)));
-        vertices.add(new ArrayList<>(Arrays.asList(1, 2)));
-        vertices.add(new ArrayList<>(Arrays.asList(1, 4)));
-        vertices.add(new ArrayList<>(Arrays.asList(4, 5)));
+//        vertices.add(new ArrayList<>(Arrays.asList(2, 3)));
+//        vertices.add(new ArrayList<>(Arrays.asList(1, 3)));
+//        vertices.add(new ArrayList<>(Arrays.asList(1, 2)));
+//        vertices.add(new ArrayList<>(Arrays.asList(1, 4)));
+//        vertices.add(new ArrayList<>(Arrays.asList(4, 5)));
+        vertices.add(new ArrayList<>(Arrays.asList(0, 4)));
+        int[][] edges = new int[1][2];
+        edges[0][0] = 0;
+        edges[0][1] = 4;
+
+        System.out.println(validPath(5,edges,0,4));
         createAdjList(5, vertices);
 
 
