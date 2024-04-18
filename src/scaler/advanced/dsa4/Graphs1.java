@@ -76,6 +76,17 @@ public class Graphs1 {
         }
     }
 
+    public void dfsList(int start, ArrayList<ArrayList<Integer>> adjList, ArrayList<Boolean> visitedArray){
+        visitedArray.set(start,true);
+        ArrayList<Integer> adjListNodes = adjList.get(start);
+        for (int i = 0; i < adjListNodes.size(); i++) {
+            int neightbour = adjListNodes.get(i);
+            if(!visitedArray.get(neightbour)){
+                dfsList(neightbour, adjList,visitedArray);
+            }
+        }
+    }
+
     //TC: O(V+E) SC(queue): O(V) i.e. Max number of edges for a vertex
     public void bfs(int start, ArrayList<Integer>[] list, int[] visitedArr) {
         Queue<Integer> queue = new LinkedList<>();
@@ -87,6 +98,24 @@ public class Graphs1 {
                 int neighbour = list[front].get(i);
                 if (visitedArr[neighbour] != 1) {
                     visitedArr[neighbour] = 1;
+                    queue.add(neighbour);
+                }
+            }
+        }
+    }
+
+    public void bfsList(int start, ArrayList<ArrayList<Integer>> adjList, ArrayList<Boolean> vistedArray) {
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(start);
+        vistedArray.set(start, true);
+
+        while (!queue.isEmpty()) {
+            int front = queue.poll();
+            ArrayList<Integer> frontArray = adjList.get(front);
+            for (int i = 0; i < frontArray.size(); i++) {
+                int neighbour = frontArray.get(i);
+                if(!vistedArray.get(neighbour)){
+                    vistedArray.set(neighbour,true);
                     queue.add(neighbour);
                 }
             }
