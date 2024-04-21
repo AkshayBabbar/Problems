@@ -267,34 +267,142 @@ public class Graphs1 {
      * <p>
      * The given graph doesn't contain any cycle.
      */
-        public static int checkCyclicGraph(int nodes, ArrayList<ArrayList<Integer>> graph) {
-            ArrayList<ArrayList<Integer>> adjList = new ArrayList<>(nodes + 1);
+    public static int checkCyclicDirectedGraph(int nodes, ArrayList<ArrayList<Integer>> graph) {
+        ArrayList<ArrayList<Integer>> adjList = new ArrayList<>(nodes + 1);
 
-            for (int i = 0; i < nodes + 1; i++) {
-                adjList.add(new ArrayList<>());
-            }
-
-            for (int i = 0; i < graph.size(); i++) {
-                adjList.get(graph.get(i).get(0)).add(graph.get(i).get(1));
-            }
-            ArrayList<Boolean> visited = getVisitedArrayBFS(nodes, adjList);
-            for(int i =0; i<visited.size();i++){
-                if(!visited.get(i)){
-                    return 1;
-                }
-            }
-
-            return 0;
+        for (int i = 0; i < nodes + 1; i++) {
+            adjList.add(new ArrayList<>());
         }
 
+        for (int i = 0; i < graph.size(); i++) {
+            adjList.get(graph.get(i).get(0)).add(graph.get(i).get(1));
+        }
+        ArrayList<Boolean> visited = getVisitedArrayBFS(nodes, adjList);
+        for (int i = 0; i < visited.size(); i++) {
+            if (!visited.get(i)) {
+                return 1;
+            }
+        }
+
+        return 0;
+    }
+
+    /**
+     * Q5. Cycle in Undirected Graph
+     * Solved
+     * feature icon
+     * Get your doubts resolved blazing fast with Chat GPT Help
+     * Check Chat GPT
+     * feature icon
+     * Using hints except Complete Solution is Penalty free now
+     * Use Hint
+     * Problem Description
+     * <p>
+     * Given an undirected graph having A nodes labelled from 1 to A with M edges given in a form of matrix B of size M x 2 where (B[i][0], B[i][1]) represents two nodes B[i][0] and B[i][1] connected by an edge.
+     * <p>
+     * Find whether the graph contains a cycle or not, return 1 if cycle is present else return 0.
+     * <p>
+     * NOTE:
+     * <p>
+     * The cycle must contain atleast three nodes.
+     * There are no self-loops in the graph.
+     * There are no multiple edges between two nodes.
+     * The graph may or may not be connected.
+     * Nodes are numbered from 1 to A.
+     * Your solution will run on multiple test cases. If you are using global variables make sure to clear them.
+     * <p>
+     * <p>
+     * Problem Constraints
+     * <p>
+     * 1 <= A, M <= 3*105
+     * <p>
+     * 1 <= B[i][0], B[i][1] <= A
+     * <p>
+     * Input Format
+     * <p>
+     * The first argument given is an integer A representing the number of nodes in the graph.
+     * <p>
+     * The second argument given is an matrix B of size M x 2 which represents the M edges such that there is a edge between node B[i][0] and node B[i][1].
+     * <p>
+     * <p>
+     * <p>
+     * Output Format
+     * <p>
+     * Return 1 if cycle is present else return 0.
+     * <p>
+     * <p>
+     * <p>
+     * Example Input
+     * <p>
+     * Input 1:
+     * <p>
+     * A = 5
+     * B = [  [1. 2]
+     * [1, 3]
+     * [2, 3]
+     * [1, 4]
+     * [4, 5]
+     * ]
+     * Input 2:
+     * <p>
+     * A = 3
+     * B = [  [1. 2]
+     * [1, 3]
+     * ]
+     * <p>
+     * <p>
+     * Example Output
+     * <p>
+     * Output 1:
+     * <p>
+     * 1
+     * Output 2:
+     * <p>
+     * 0
+     * <p>
+     * Example Explanation
+     * <p>
+     * Explanation 1:
+     * <p>
+     * There is a cycle in the graph i.e 1 -> 2 -> 3 -> 1 so we will return 1
+     * Explanation 2:
+     * <p>
+     * No cycle present in the graph so we will return 0.
+     */
+
+    public static int checkCyclicUndirectedGraph(int nodes, ArrayList<ArrayList<Integer>> graph) {
+        ArrayList<ArrayList<Integer>> adjList = new ArrayList<>(nodes + 1);
+
+        for (int i = 0; i < nodes + 1; i++) {
+            adjList.add(new ArrayList<>());
+        }
+
+        for (ArrayList<Integer> integers : graph) {
+            adjList.get(integers.get(0)).add(integers.get(1));
+        }
+
+        ArrayList<Boolean> visitedArray  = new ArrayList<>();
+
+        for (int i = 0; i < nodes + 1; i++) {
+            visitedArray.add(false);
+        }
+        ArrayList<Boolean> visited = getVisitedArrayDFS(nodes, adjList,adjList.getFirst().getFirst(),visitedArray);
+        for (int i = 0; i < visited.size(); i++) {
+            if (!visited.get(i)) {
+                return 1;
+            }
+        }
+
+        return 0;
+    }
     private static ArrayList<Boolean> getVisitedArrayBFS(int nodes, ArrayList<ArrayList<Integer>> adjList) {
         ArrayList<Boolean> visited = new ArrayList<>();
-        for(int i =0; i<nodes+1; i++){
+        for (int i = 0; i < nodes + 1; i++) {
             visited.add(false);
         }
         for (int i = 0; i < nodes; i++) {
             Queue<Integer> queue = new LinkedList<>();
-            if(adjList.get(i).isEmpty()){
+            if (adjList.get(i).isEmpty()) {
                 queue.offer(i);
             }
             queue.add(i);
@@ -314,6 +422,18 @@ public class Graphs1 {
         return visited;
     }
 
+    private static ArrayList<Boolean> getVisitedArrayDFS(int nodes, ArrayList<ArrayList<Integer>> adjList, int start, ArrayList<Boolean> visitedArray) {
+        visitedArray.set(start, true);
+        ArrayList<Integer> adjListNodes = adjList.get(start);
+        for (int neightbour : adjListNodes) {
+            if (!visitedArray.get(neightbour)) {
+                getVisitedArrayDFS(nodes, adjList, neightbour, visitedArray);
+            }
+        }
+        return visitedArray;
+
+    }
+
     public static void main(String[] args) {
 
         ArrayList<ArrayList<Integer>> vertices = new ArrayList<>();
@@ -326,7 +446,7 @@ public class Graphs1 {
         vertices.add(new ArrayList<>(Arrays.asList(5, 3)));
         vertices.add(new ArrayList<>(Arrays.asList(2, 5)));
         vertices.add(new ArrayList<>(Arrays.asList(5, 1)));
-        vertices.add(new ArrayList<>(Arrays.asList( 4,2)));
+        vertices.add(new ArrayList<>(Arrays.asList(4, 2)));
         vertices.add(new ArrayList<>(Arrays.asList(3, 1)));
         vertices.add(new ArrayList<>(Arrays.asList(5, 4)));
         vertices.add(new ArrayList<>(Arrays.asList(3, 4)));
@@ -339,7 +459,7 @@ public class Graphs1 {
         int[][] edges = new int[1][2];
         edges[0][0] = 0;
         edges[0][1] = 4;
-        System.out.println(checkCyclicGraph(5,vertices));
+        System.out.println(checkCyclicDirectedGraph(5, vertices));
 
         System.out.println(validPath(5, edges, 0, 4));
         createAdjList(5, vertices);
