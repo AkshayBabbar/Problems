@@ -1,9 +1,6 @@
 package src.scaler.advanced.dsa4;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 public class Graphs1 {
 
@@ -381,12 +378,12 @@ public class Graphs1 {
             adjList.get(integers.get(0)).add(integers.get(1));
         }
 
-        ArrayList<Boolean> visitedArray  = new ArrayList<>();
+        ArrayList<Boolean> visitedArray = new ArrayList<>();
 
         for (int i = 0; i < nodes + 1; i++) {
             visitedArray.add(false);
         }
-        ArrayList<Boolean> visited = getVisitedArrayDFS(nodes, adjList,adjList.getFirst().getFirst(),visitedArray);
+        ArrayList<Boolean> visited = getVisitedArrayDFS(nodes, adjList, adjList.getFirst().getFirst(), visitedArray);
         for (int i = 0; i < visited.size(); i++) {
             if (!visited.get(i)) {
                 return 1;
@@ -395,6 +392,7 @@ public class Graphs1 {
 
         return 0;
     }
+
     private static ArrayList<Boolean> getVisitedArrayBFS(int nodes, ArrayList<ArrayList<Integer>> adjList) {
         ArrayList<Boolean> visited = new ArrayList<>();
         for (int i = 0; i < nodes + 1; i++) {
@@ -432,6 +430,129 @@ public class Graphs1 {
         }
         return visitedArray;
 
+    }
+
+    /**
+     * Q2. Shortest Distance in a Maze
+     * Problem Description
+     * Given a matrix of integers A of size N x M describing a maze. The maze consists of empty locations and walls.
+     * <p>
+     * 1 represents a wall in a matrix and 0 represents an empty location in a wall.
+     * <p>
+     * There is a ball trapped in a maze. The ball can go through empty spaces by rolling up, down, left or right, but it won't stop rolling until hitting a wall (maze boundary is also considered as a wall). When the ball stops, it could choose the next direction.
+     * <p>
+     * Given two array of integers of size B and C of size 2 denoting the starting and destination position of the ball.
+     * <p>
+     * Find the shortest distance for the ball to stop at the destination. The distance is defined by the number of empty spaces traveled by the ball from the starting position (excluded) to the destination (included). If the ball cannot stop at the destination, return -1.
+     * <p>
+     * <p>
+     * <p>
+     * Problem Constraints
+     * 2 <= N, M <= 100
+     * <p>
+     * 0 <= A[i] <= 1
+     * <p>
+     * 0 <= B[i][0], C[i][0] < N
+     * <p>
+     * 0 <= B[i][1], C[i][1] < M
+     * <p>
+     * <p>
+     * <p>
+     * Input Format
+     * The first argument given is the integer matrix A.
+     * <p>
+     * The second argument given is an array of integer B.
+     * <p>
+     * The third argument if an array of integer C.
+     * <p>
+     * <p>
+     * <p>
+     * Output Format
+     * Return a single integer, the minimum distance required to reach destination
+     * <p>
+     * <p>
+     * <p>
+     * Example Input
+     * Input 1:
+     * <p>
+     * A = [ [0, 0],
+     * [0, 0] ]
+     * B = [0, 0]
+     * C = [0, 1]
+     * Input 2:
+     * <p>
+     * A = [ [0, 1],
+     * [1, 0] ]
+     * B = [0, 0]
+     * C = [1, 1]
+     * <p>
+     * <p>
+     * Example Output
+     * Output 1:
+     * <p>
+     * 1
+     * Output 2:
+     * <p>
+     * -1
+     * <p>
+     * <p>
+     * Example Explanation
+     * Explanation 1:
+     * <p>
+     * Go directly from start to destination in distance 1.
+     * Explanation 2:
+     * <p>
+     * It is impossible to reach the destination from (0, 0) to (1, 1) as there are walls at (1, 0) and (0, 1)
+     */
+    public int shortestDistance(ArrayList<ArrayList<Integer>> graph, ArrayList<Integer> B, ArrayList<Integer> C) {
+        int row = graph.size();
+        int col = graph.get(0).size();
+        ArrayList<ArrayList<Integer>> distance = new ArrayList<>();
+        for (int i = 0; i < row; i++) {
+            distance.add(new ArrayList<>());
+        }
+        distance.get(B.get(0)).set(B.get(1), 0);// dest.
+        dijkstra(graph, B, distance);
+        return distance.get(C.get(0)).get(1) == Integer.MAX_VALUE ? -1 : distance.get(B.get(0)).get(1);
+    }
+
+    public void dijkstra(ArrayList<ArrayList<Integer>> maze, ArrayList<Integer> start, ArrayList<ArrayList<Integer>> distance) {
+        ArrayList<ArrayList<Integer>> dirs = new ArrayList<>();
+        dirs.add(new ArrayList<>(java.util.Arrays.asList(0, 1)));
+        dirs.add(new ArrayList<>(java.util.Arrays.asList(0, -1)));
+        dirs.add(new ArrayList<>(java.util.Arrays.asList(-1, 0)));
+        dirs.add(new ArrayList<>(java.util.Arrays.asList(1, 0)));
+        PriorityQueue<ArrayList<Integer>> queue = new PriorityQueue<>((a, b) -> a.get(2) - b.get(2));
+        ArrayList<Integer> startingPoint = new ArrayList<>();
+        startingPoint.add(start.get(0));
+        startingPoint.add(start.get(1));
+        startingPoint.add(0);
+        queue.offer(startingPoint);
+
+        while (!queue.isEmpty()) {
+            ArrayList<Integer> s = queue.poll();
+            if (distance.get(s.get(0)).get(s.get(1)) < s.get(2)) {
+                continue;
+            }
+            for (ArrayList<Integer> dir : dirs) {
+                int x = s.get(0) + dir.get(0);
+                int y = s.get(1) + dir.get(1);
+                int count = 0;
+                while (x >= 0 && y >= 0 && x < maze.size() && y < maze.get(0).size() && maze.get(x).get(y) == 0) {
+                    x += dir.get(0);
+                    y += dir.get(1);
+                    count++;
+                }
+                if (distance.get(s.get(0)).get(s.get(1)) + count < distance.get(x - dir.get(0)).get(y - dir.get(1))) {
+                    distance.get(x - dir.get(0)).set(y - dir.get(1), distance.get(s.get(0)).get(s.get(1)) + count);
+                    ArrayList<Integer> newPoint = new ArrayList<>();
+                    newPoint.add(x - dir.get(0));
+                    newPoint.add(y - dir.get(1));
+                    newPoint.add(distance.get(x - dir.get(0)).get(y - dir.get(1)));
+                    queue.offer(newPoint);
+                }
+            }
+        }
     }
 
     public static void main(String[] args) {
