@@ -1,7 +1,5 @@
 package src.scaler.intermediate;
 
-import java.util.*;
-
 public class StringClass {
 
     public static String reverse(String input) {
@@ -61,13 +59,13 @@ public class StringClass {
     public static int checkBOB(String A) {
         int start = 0;
         int end = 2;
-        int count=0;
+        int count = 0;
 
-        while(end!=A.length()-1){
-            if(A.charAt(start) == 'b' && A.charAt(start+1) == 'o' && A.charAt(end) == 'b'){
+        while (end != A.length() - 1) {
+            if (A.charAt(start) == 'b' && A.charAt(start + 1) == 'o' && A.charAt(end) == 'b') {
                 count++;
-                start +=2;
-                end+=2;
+                start += 2;
+                end += 2;
             }
             start++;
             end++;
@@ -75,10 +73,25 @@ public class StringClass {
         return count;
 
     }
+
+    public static int AmazSub(String input) {
+        int n = input.length();
+        String vowels =  "aeiouAEIOU";
+        int ans = 0;
+        for (int i = 0; i < n; i++) {
+            if(vowels.indexOf(input.charAt(i)) != -1){
+                ans = ans + n - i ;
+            }
+        }
+        return ans;
+    }
+
     public static void main(String[] args) {
 
         String test = "umeaylnlfd";
 //        System.out.println(swapCharacer(test,1));
+
+        System.out.println(AmazSub("pGpEusuCSWEaPOJmamlFAnIBgAJGtcJaMPFTLfUfkQKXeymydQsdWCTyEFjFgbSmknAmKYFHopWceEyCSumTyAFwhrLqQXbWnXSn"));
 
     }
 

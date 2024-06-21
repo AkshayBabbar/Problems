@@ -274,6 +274,12 @@ public class Graphs1 {
         for (int i = 0; i < graph.size(); i++) {
             adjList.get(graph.get(i).get(0)).add(graph.get(i).get(1));
         }
+        ArrayList<Boolean> visitedArray = new ArrayList<>(nodes);
+        for(int i =0; i<=nodes; i++){
+            visitedArray.add(false);
+        }
+
+
         ArrayList<Boolean> visited = getVisitedArrayBFS(nodes, adjList);
         for (int i = 0; i < visited.size(); i++) {
             if (!visited.get(i)) {
@@ -382,6 +388,14 @@ public class Graphs1 {
 
         for (int i = 0; i < nodes + 1; i++) {
             visitedArray.add(false);
+        }
+
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(graph.get(1).get(0));
+        while(!queue.isEmpty()){
+            int neigbour = queue.poll();
+            ArrayList<Integer> neigbourArray = adjList.get(neigbour);
+
         }
         ArrayList<Boolean> visited = getVisitedArrayDFS(nodes, adjList, adjList.getFirst().getFirst(), visitedArray);
         for (int i = 0; i < visited.size(); i++) {
@@ -582,8 +596,8 @@ public class Graphs1 {
         edges[0][1] = 4;
         System.out.println(checkCyclicDirectedGraph(5, vertices));
 
-        System.out.println(validPath(5, edges, 0, 4));
-        createAdjList(5, vertices);
+//        System.out.println(validPath(5, edges, 0, 4));
+//        createAdjList(5, vertices);
 
 
     }

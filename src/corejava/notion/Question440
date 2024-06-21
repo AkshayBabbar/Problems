@@ -1,0 +1,120 @@
+Question: HTTP Status codes and their meanings.Programs
+
+HTTP status codes are standardized codes returned by web servers to indicate the result of the request made by a client (such as a browser or an API client). These status codes are divided into five classes based on their starting digits:
+
+1xx (Informational): Request received, continuing process.
+2xx (Successful): The request was successfully received, understood, and accepted.
+3xx (Redirection): Further action needs to be taken in order to complete the request.
+4xx (Client Error): The request contains bad syntax or cannot be fulfilled.
+5xx (Server Error): The server failed to fulfill an apparently valid request.
+Here are some common HTTP status codes and their meanings:
+
+1xx Informational
+100 Continue: The server has received the request headers, and the client should proceed to send the request body.
+101 Switching Protocols: The requester has asked the server to switch protocols, and the server has agreed to do so.
+
+2xx Successful
+200 OK: The request has succeeded.
+201 Created: The request has been fulfilled, resulting in the creation of a new resource.
+202 Accepted: The request has been accepted for processing, but the processing has not been completed.
+204 No Content: The server successfully processed the request, but is not returning any content.
+3xx Redirection
+301 Moved Permanently: The URL of the requested resource has been changed permanently.
+302 Found: The resource was found, but at a different URL.
+304 Not Modified: Indicates that the resource has not been modified since the version specified by the request headers.
+4xx Client Error
+400 Bad Request: The server could not understand the request due to invalid syntax.
+401 Unauthorized: The client must authenticate itself to get the requested response.
+403 Forbidden: The client does not have access rights to the content.
+404 Not Found: The server can not find the requested resource.
+405 Method Not Allowed: The request method is known by the server but is not supported by the target resource.
+5xx Server Error
+500 Internal Server Error: The server has encountered a situation it doesn't know how to handle.
+501 Not Implemented: The request method is not supported by the server and cannot be handled.
+502 Bad Gateway: The server, while acting as a gateway or proxy, received an invalid response from the upstream server.
+503 Service Unavailable: The server is not ready to handle the request, typically due to being overloaded or down for maintenance.
+504 Gateway Timeout: The server is acting as a gateway and cannot get a response in time.
+Example Programs
+Here are some example programs to demonstrate handling HTTP status codes in Java using the Spring framework.
+
+Example 1: Return Different HTTP Status Codes in a Spring Controller
+java
+Copy code
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/api")
+public class ApiController {
+
+    @GetMapping("/success")
+    public ResponseEntity<String> success() {
+        return new ResponseEntity<>("Success!", HttpStatus.OK);
+    }
+
+    @GetMapping("/created")
+    public ResponseEntity<String> created() {
+        return new ResponseEntity<>("Resource created", HttpStatus.CREATED);
+    }
+
+    @GetMapping("/not-found")
+    public ResponseEntity<String> notFound() {
+        return new ResponseEntity<>("Resource not found", HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/bad-request")
+    public ResponseEntity<String> badRequest() {
+        return new ResponseEntity<>("Bad request", HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping("/internal-server-error")
+    public ResponseEntity<String> internalServerError() {
+        return new ResponseEntity<>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+}
+Example 2: Custom Exception Handling with HTTP Status Codes
+java
+Copy code
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/api")
+public class ExceptionController {
+
+    @GetMapping("/exception")
+    public String throwException() {
+        throw new CustomException("This is a custom exception");
+    }
+}
+
+@ControllerAdvice
+class GlobalExceptionHandler {
+
+    @ExceptionHandler(CustomException.class)
+    public ResponseEntity<String> handleCustomException(CustomException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+}
+
+class CustomException extends RuntimeException {
+    public CustomException(String message) {
+        super(message);
+    }
+}
+These examples demonstrate how to set and handle HTTP status codes in a Spring-based Java web application. The first example shows how to return specific status codes from controller methods, while the second example demonstrates custom exception handling to return appropriate HTTP status codes when exceptions occur.
+
+
+
+
+
+
