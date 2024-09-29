@@ -1,4 +1,4 @@
-package src.scaler.lld.crashCourse;
+package src.scaler.lld.crashCourse.oops;
 
 public class User {
     protected long id;

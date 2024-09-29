@@ -1,4 +1,4 @@
-package src.scaler.lld.crashCourse;
+package src.scaler.lld.crashCourse.oops;
 
 import java.util.ArrayList;
 import java.util.List;
