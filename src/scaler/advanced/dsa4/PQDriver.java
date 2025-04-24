@@ -1,7 +1,5 @@
 package src.scaler.advanced.dsa4;
 
-import src.scaler.advanced.StringDemo;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -111,14 +109,12 @@ public class PQDriver {
         int i = 0;
         while (i < A.size()) {
             pq.add(A.get(i));
-            ans += A.get(i);
             i++;
         }
         if (A.size() < 2) {
             return ans;
         }
         ans = 0;
-        ArrayList<Integer> output = new ArrayList<>();
         while (!pq.isEmpty() & pq.size() > 1) {
             int first = pq.poll();
             int second = pq.poll();
@@ -203,11 +199,28 @@ public class PQDriver {
         return ans % mod;
     }
 
-    public static void main(StringDemo[] args) {
+    public static int kthMinimum(ArrayList<Integer> first, ArrayList<Integer> second, int kthElement) {
+//        PriorityQueue<Integer> integerPriorityQueue = new PriorityQueue<>(Comparator.reverseOrder());
+//        integerPriorityQueue.add(Math.min(first.get(0), second.get(0)));
+        return 0;
+
+    }
+
+    public static void main(String[] args) {
 
 //        ArrayList<Integer> inputTC1 = new ArrayList<>(Arrays.asList(57, 3, -14, -87, 42, 38, 31, -7, -28, -61));
         ArrayList<Integer> inputTC2 = new ArrayList<>(Arrays.asList(2147483647, 2000000014, 2147483647));
-        System.out.println(nchoc(10, inputTC2));
+        ArrayList<Integer> inputTCT1 = new ArrayList<>(Arrays.asList(1, 2, 3 , 4 , 5));
+        ArrayList<Integer> inputTCT2 = new ArrayList<>(Arrays.asList(2, 3, 4));
+        System.out.println(getMinRopes(inputTCT1));
+//        System.out.println(kthMinimum(inputTCT1, inputTCT2, 3));
+//        System.out.println(nchoc(10, inputTC2));
+//        PriorityQueue<Integer> pq = new PriorityQueue<>();
+//        pq.add(3);
+//        pq.add(3);
+//        pq.add(3);
+//        System.out.println(pq.size());
+
 
         int k = 10;
 //        System.out.println(maxSum(inputTC1, k));
@@ -309,4 +322,105 @@ public class PQDriver {
         }
         return res;
     }
+
+    /**
+     * Given a 2D matrix of size NxM with sorted rows. Merge all the rows into a sorted 1D array.
+     * Example:
+     * [[1, 3, 8],
+     * [2, 5, 7],
+     * [4, 9, 12]]
+     * Here, the respective 1D array would be:
+     * [1, 2, 3, 4, 5, 7, 8, 9, 12]
+     */
+//    public static ArrayList<Integer> sortedArray(ArrayList<ArrayList<Integer>> input) {
+//        int row = input.size();
+//        int col = input.get(0).size();
+//
+//
+//    }
+
+    /**
+     * Problem Description
+     * <p>
+     * Given a list containing head pointers of N sorted linked lists.
+     * Merge these given sorted linked lists and return them as one sorted list.
+     * <p>
+     * <p>
+     * <p>
+     * Problem Constraints
+     * <p>
+     * 1 <= total number of elements in given linked lists <= 100000
+     * <p>
+     * <p>
+     * <p>
+     * Input Format
+     * <p>
+     * The first and only argument is a list containing N head pointers.
+     * <p>
+     * <p>
+     * <p>
+     * Output Format
+     * <p>
+     * Return a pointer to the head of the sorted linked list after merging all the given linked lists.
+     * <p>
+     * <p>
+     * <p>
+     * Example Input
+     * <p>
+     * Input 1:
+     * <p>
+     * 1 -> 10 -> 20
+     * 4 -> 11 -> 13
+     * 3 -> 8 -> 9
+     * Input 2:
+     * <p>
+     * 10 -> 12
+     * 13
+     * 5 -> 6
+     * <p>
+     * <p>
+     * Example Output
+     * <p>
+     * Output 1:
+     * <p>
+     * 1 -> 3 -> 4 -> 8 -> 9 -> 10 -> 11 -> 13 -> 20
+     * Output 2:
+     * <p>
+     * 5 -> 6 -> 10 -> 12 ->13
+     * <p>
+     * <p>
+     * Example Explanation
+     * <p>
+     * Explanation 1:
+     * <p>
+     * The resulting sorted Linked List formed after merging is 1 -> 3 -> 4 -> 8 -> 9 -> 10 -> 11 -> 13 -> 20.
+     * Explanation 2:
+     * <p>
+     * The resulting sorted Linked List formed after merging is 5 -> 6 -> 10 -> 12 ->13.
+     */
+//    public ListNode mergeKLists(ArrayList<ListNode> list) {
+//        if(list.isEmpty()){
+//            return null;
+//        }
+//
+//
+//        while (list.size() > 1) {
+//            int mergedSize = (list.size() + 1) / 2;
+//            ArrayList<ListNode> merged = new ArrayList<>(mergedSize);
+////            ListNode[] merged = new ListNode[mergedSize];
+//            for (int i = 0; i < mergedSize; i++) {
+//                int index1 = i * 2;
+//                int index2 = i * 2 + 1;
+//                ListNode l1 = list.get(index1);
+//                ListNode l2 = (index2 < list.size()) ? list.get(index2) : null;
+//                merged[i] = mergeTwoLists(l1, l2);
+//            }
+//            lists = merged;
+//        }
+//
+//        return lists[0];
+//
+//    }
+
+
 }
