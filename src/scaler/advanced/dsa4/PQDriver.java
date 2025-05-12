@@ -1,9 +1,6 @@
 package src.scaler.advanced.dsa4;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.PriorityQueue;
+import java.util.*;
 
 public class PQDriver {
 
@@ -420,6 +417,41 @@ public class PQDriver {
 //
 //        return lists[0];
 //
+//    }
+
+    /**
+     * You are getting a stream of integers. With every new element you get, return the current median.
+     * Example:
+     * Suppose the stream is: [4, 6, 3, 2, 9]
+     * After 1st element: [4] -> Median = 4
+     * After 2nd element: [4, 6] -> Median = 5
+     * After 3rd element: [4, 6, 3] -> [3, 4, 6] -> Median = 4
+     * After 4th element: [4, 6, 3, 2] -> [2, 3, 4, 6] -> Median = 3.5
+     * After 5th element: [4, 6, 3, 2, 9] -> [2, 3, 4, 6, 9] -> Median = 4
+     */
+
+//    public ArrayList<Integer> getRunningMedian(ArrayList<Integer> A) {
+//        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+//        HashSet<Integer> hs = new HashSet<>();
+//        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
+//
+//        for(int i =0; i<A.size(); i++){
+//            maxHeap.add(A.get(i));
+//            if(maxHeap.peek()> minHeap.peek()){
+//                int max = maxHeap.peek();
+//                int min = minHeap.peek();
+//                maxHeap.poll();
+//                minHeap.poll();
+//                maxHeap.add(min);
+//                minHeap.add(max);
+//            }
+//            if(maxHeap.size() > minHeap.size() + 1){
+//                int max = maxHeap.poll();
+//                maxHeap.poll();
+//                minHeap.add(max);
+//            }
+//
+//        }
 //    }
 
 
