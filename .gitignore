@@ -1,3 +1,17 @@
-# Project exclude paths
-.out/
+# Compiled output
+out/
+*.class
+
+# IDE
 .idea/
+*.iml
+
+# OS
+.DS_Store
+
+# Dependencies
+*.jar
+!lib/*.jar
+
+# Logs
+*.log

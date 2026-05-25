@@ -7,7 +7,6 @@ package src.corejava.designpatterns.creational.singleton;
  * @Purpose: Enum based singleton implementation. Effective Java 2nd Edition (Joshua Bloch) p. 18
  * This implementation is thread safe, however adding any other method and its thread safety
  * is developers responsibility.
- * /
  */
 public enum EnumSingleton {
 

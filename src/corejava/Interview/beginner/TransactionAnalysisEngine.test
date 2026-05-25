@@ -1,0 +1,16 @@
+package src.corejava.Interview.beginner;
+
+public static class SecurityLayer {
+    public String encrypt(String data) {
+        // Implement encryption for data transmission/storage
+        // Return encrypted data
+        return "encryptedData";
+    }
+
+    public String decrypt(String encryptedData) {
+        // Implement decryption for encrypted data
+        // Return decrypted data
+        return "decryptedData";}
+    }
+
+}

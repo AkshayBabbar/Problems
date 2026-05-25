@@ -1,12 +1,10 @@
 package src.scaler.advanced.dsa4;
 
-import src.scaler.advanced.StringDemo;
-
 import java.util.ArrayList;
 
 public class DP {
 
-    public static void main(StringDemo[] args) {
+    public static void main(String[] args) {
         int[] A = new int[]{60, 100, 120};
         int[] B = new int[]{10, 20, 30};
         int C = 50;

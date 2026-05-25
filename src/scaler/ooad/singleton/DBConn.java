@@ -12,10 +12,13 @@ public class DBConn {
     public static DBConn getInstance(){
         if(inst == null){
             lock.lock();
-            if(inst == null){
-                inst = new DBConn();
+            try {
+                if(inst == null){
+                    inst = new DBConn();
+                }
+            } finally {
+                lock.unlock();
             }
-            lock.unlock();
         }
 
         return inst;
