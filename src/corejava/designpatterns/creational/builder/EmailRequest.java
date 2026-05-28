@@ -1,15 +1,16 @@
 package src.corejava.designpatterns.creational.builder;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class EmailRequest {
 
-    private String to;
-    private String from;
-    private String body;
-    private List<String> cc;
-    private List<String> bcc;
+    private final String to;
+    private final String from;
+    private final String body;
+    private final List<String> cc;
+    private final List<String> bcc;
     private int retryCount;
 
     // add getters
@@ -37,7 +38,7 @@ public class EmailRequest {
         return retryCount;
     }
 
-    public EmailRequest(Builder builder) {
+    private EmailRequest(Builder builder) {
         this.to = builder.to;
         this.from = builder.from;
         this.body = builder.body;
@@ -51,8 +52,8 @@ public class EmailRequest {
         private String to;
         private String from;
         private String body;
-        private List<String> cc = new ArrayList<>();
-        private List<String> bcc = new ArrayList<>();
+        private List<String> cc = Collections.unmodifiableList(new ArrayList<>());
+        private List<String> bcc = Collections.unmodifiableList(new ArrayList<>());
         private int retryCount = 0;
 
         public Builder(String to, String from, String body) {
