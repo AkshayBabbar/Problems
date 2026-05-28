@@ -78,6 +78,15 @@ public class EmailRequest {
         }
 
         public EmailRequest build() {
+            if (this.to == null || this.to.isEmpty()) {
+                throw new IllegalArgumentException("'to' address is mandatory");
+            }
+            if (this.from == null || this.from.isEmpty()) {
+                throw new IllegalArgumentException("'from' address is mandatory");
+            }
+            if (this.body == null || this.body.isEmpty()) {
+                throw new IllegalArgumentException("'body' is mandatory");
+            }
             return new EmailRequest(this);
         }
     }
